@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "bootstrap": "^5.2.0-beta1",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "handlebars": "^4.7.7",
