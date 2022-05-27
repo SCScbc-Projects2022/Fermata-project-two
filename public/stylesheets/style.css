@@ -37,3 +37,13 @@ a:active {
     text-decoration: none;
     color: #7089AC;
 }
+
+p {
+    font-size: 1.25rem;
+}
+
+#letter-input {
+    height: 500px;
+    width: 500px;
+    font-size: 1.5rem;
+}
