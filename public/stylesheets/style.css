@@ -16,3 +16,24 @@ h1 {
 }
 
 .button {background-color: #e7e7e7; color: black;}
+
+a:link {
+    text-decoration: none;
+    color: #7089AC;
+
+}
+
+a:hover {
+    text-direction: none;
+    color: #7089AC;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #7089AC;
+}
+
+a:active {
+    text-decoration: none;
+    color: #7089AC;
+}
