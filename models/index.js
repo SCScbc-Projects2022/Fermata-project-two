@@ -34,3 +34,5 @@ Font.hasMany(Sent, {
 Sent.belongsTo(Font, {
     foreignKey: 'font_id'
 });
+
+module.exports = { User, Font, Draft, Sent };
