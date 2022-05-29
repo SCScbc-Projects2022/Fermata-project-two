@@ -1,14 +1,15 @@
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Letter extends Model {}
+class Draft extends Model {}
 
-Letter.init(
+Draft.init(
     {
         id: {
             type: DataTypes.STRING,
             allowNull: false,
             primaryKey: true,
+            unique: true,
             autoIncrement: false
         },
         sign_off: {
@@ -45,19 +46,14 @@ Letter.init(
                 model: 'font',
                 key: 'id'
             }
-        },
-        read_only: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: false
         }
     },
     {
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'letter'
+        modelName: 'draft'
     }
 )
 
-module.exports = Letter;
+module.exports = Draft;

@@ -1,25 +1,43 @@
 const User = require('./User');
 const Font = require('./Font');
-const Letter = require('./Letter');
+const Draft = require('./Draft');
+const Sent = require('./Sent');
 
-User.hasMany(Letter, {
+User.hasMany(Draft, {
     foreignKey: 'user_id'
 });
 
-Letter.belongsTo(User, {
+Draft.belongsTo(User, {
     foreignKey: 'user_id'
 });
 
-Font.hasMany(Letter, {
+User.hasMany(Sent, {
+    foreignKey: 'user_id'
+});
+
+Sent.belongsTo(User, {
+    foreignKey: 'user_id'
+});
+
+Font.hasMany(Draft, {
     foreignKey: 'font_id'
 });
 
-Letter.belongsTo(Font, {
+Draft.belongsTo(Font, {
+    foreignKey: 'font_id'
+});
+
+Font.hasMany(Sent, {
+    foreignKey: 'font_id'
+});
+
+Sent.belongsTo(Font, {
     foreignKey: 'font_id'
 });
 
 module.exports = {
     User,
-    Letter,
-    Font
+    Font,
+    Draft,
+    Sent
   };
