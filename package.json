@@ -11,10 +11,12 @@
     "handlebars": "^4.7.7",
     "materialize-css": "^1.0.0-rc.2",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.20.0"
+    "sequelize": "^6.20.0",
+    "uniqid": "^5.4.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
