@@ -4,8 +4,12 @@ const { Font } = require('../../models');
 
 // get all fonts
 router.get('/', (req, res) => {
-    Font.findAll({
-        
-    })
-})
+    Font.findAll()
+    .then(dbFontData => res.json(dbFontData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
 module.exports = router;
