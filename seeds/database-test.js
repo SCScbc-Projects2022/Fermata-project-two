@@ -1,4 +1,4 @@
-const {User, Font, Draft, Sent} = require('./models');
+const {User, Font, Draft, Sent} = require('../models');
 
 async function printAll() {
     let x = await User.findAll();
