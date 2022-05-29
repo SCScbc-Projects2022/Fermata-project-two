@@ -49,6 +49,12 @@ p {
     font-size: 1.5rem;
 }
 
+#letter-preview {
+    height: 500px;
+    width: 500px;
+    font-size: 1.5rem;
+}
+
 nav {
     width: 100%;
 }
