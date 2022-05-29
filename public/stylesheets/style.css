@@ -47,6 +47,8 @@ p {
     height: 500px;
     width: 500px;
     font-size: 1.5rem;
+    /* border: none; */
+    outline: none;
 }
 
 #letter-preview {
