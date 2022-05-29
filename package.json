@@ -1,8 +1,8 @@
 {
-  "name": "project-two",
+  "name": "fermata-project-two",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "bootstrap": "^5.2.0-beta1",
@@ -11,10 +11,13 @@
     "handlebars": "^4.7.7",
     "materialize-css": "^1.0.0-rc.2",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.20.0"
+    "sequelize": "^6.20.0",
+    "uniqid": "^5.4.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "seed": "node seeds/index.js"
   },
   "repository": {
     "type": "git",
