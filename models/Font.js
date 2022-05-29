@@ -11,7 +11,7 @@ Font.init(
             primaryKey: true,
             autoIncrement: true
         },
-        font: {
+        style_tag: {
             type: DataTypes.STRING,
             allowNull: false,
             iunique: true
@@ -21,7 +21,7 @@ Font.init(
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'fonts'
+        modelName: 'font'
     }
 )
 

@@ -1,17 +1,16 @@
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Sent extends Model {}
+class Letter extends Model {}
 
-Sent.init(
+Letter.init(
     {
         id: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
             primaryKey: true,
             autoIncrement: false
         },
-        // OPTIONAL
         sign_off: {
             type: DataTypes.STRING,
             allowNull: true,
@@ -26,34 +25,39 @@ Sent.init(
         },
         recipient_email: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
             validate: {
                 isEmail: true
             }   
         },
         letter_body: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         spotify_id: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         font_id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
             references: {
                 model: 'font',
                 key: 'id'
             }
+        },
+        read_only: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
         }
     },
     {
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'draft'
+        modelName: 'letter'
     }
 )
 
-module.exports = Sent;
+module.exports = Letter;

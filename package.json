@@ -1,8 +1,8 @@
 {
-  "name": "project-two",
+  "name": "fermata-project-two",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "bootstrap": "^5.2.0-beta1",
@@ -16,7 +16,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "seed": "node seeds/index.js"
   },
   "repository": {
     "type": "git",
@@ -28,5 +29,8 @@
   "bugs": {
     "url": "https://github.com/SCScbc-Projects2022/project-two/issues"
   },
-  "homepage": "https://github.com/SCScbc-Projects2022/project-two#readme"
+  "homepage": "https://github.com/SCScbc-Projects2022/project-two#readme",
+  "devDependencies": {
+    "console.table": "^0.10.0"
+  }
 }
