@@ -6,13 +6,13 @@ async function printAll() {
     let z = await Draft.findAll();
     let n = await Sent.findAll();
     console.log('\n--- ALL USERS ---\n');
-    console.log(x);
+    console.log(x.map(item => console.log(item.dataValues)));
     console.log('\n--- ALL FONTS ---\n');
-    console.log(y);
+    console.log(y.map(item => console.log(item.dataValues)));
     console.log('\n--- ALL DRAFTS ---\n');
-    console.log(z);
+    console.log(z.map(item => console.log(item.dataValues)));
     console.log('\n--- ALL SENT ---\n');
-    console.log(n);
+    console.log(n.map(item => console.log(item.dataValues)));
 }
 
 async function joinUserDraft() {
@@ -81,7 +81,7 @@ async function joinSentFont() {
 
 
 
-// printAll();
+printAll();
 
 // joinUserDraft();
 // joinUserSent();

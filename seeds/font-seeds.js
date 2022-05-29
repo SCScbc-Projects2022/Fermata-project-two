@@ -2,13 +2,13 @@ const {Font} = require('../models');
 
 const fontData = [
     {
-        style_tag: 'style=font1'
+        style_tag: "'Caveat', cursive"
     },
     {
-        style_tag: 'style=font2'
+        style_tag: "'Lato', sans-serif"
     },
     {
-        style_tag: 'style=font3'
+        style_tag: "'Merriweather', serif"
     }
 ]
 
