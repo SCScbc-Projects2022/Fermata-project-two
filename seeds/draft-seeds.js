@@ -17,7 +17,7 @@ const draftData = [
         recipient_email: null,
         letter_body: 'This is a letter from user2', 
         spotify_id: 'Kdawp3iL',
-        font_id: null
+        font_id: 2
     },
     {
         id: 'd4e5f6',

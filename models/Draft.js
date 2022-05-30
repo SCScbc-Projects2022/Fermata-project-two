@@ -41,7 +41,7 @@ Draft.init(
         },
         font_id: {
             type: DataTypes.INTEGER,
-            allowNull: true,
+            allowNull: false,
             references: {
                 model: 'font',
                 key: 'id'

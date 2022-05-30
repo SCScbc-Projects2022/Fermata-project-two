@@ -36,9 +36,15 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
 
 // submit STYLE data
 if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Style.html') {
-    document.querySelector('#song-btn').addEventListener('click', () => {
-        console.log('this works');
-        document.location.replace('file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Send.html');
+    document.querySelector('#style-btn').addEventListener('click', () => {
+        let selected = document.querySelector('input[name="font"]:checked');
+        if (!selected) {
+            alert("please select a style option");
+        } else {
+            console.log(parseInt(selected.value));
+            console.log('this works!')
+            //document.location.replace('file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Send.html');
+        }
     });
 }
 
