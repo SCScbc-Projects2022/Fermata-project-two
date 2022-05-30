@@ -1,7 +1,7 @@
 // CHANGE ALL HREFS TO PATHNAME
 
 // const { response } = require("express");
-
+const uniqid = require("uniqid");
 let letterBody;
 let sendBtn;
 
@@ -51,7 +51,7 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
 // submit SONG data
 if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Song.html') {
     document.querySelector('#song-btn').addEventListener('click', async () => {
-        sessionStorage.setItem('spotify_id', 'placeholder value'); // ----- placeholder value
+        sessionStorage.setItem('spotify_id', 'a1b2c3'); // ----- placeholder value
         document.location.replace('file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Style.html');
     });
 }
@@ -59,6 +59,7 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
 // submit STYLE data
 if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Style.html') {
     document.querySelector('#style-btn').addEventListener('click', () => {
+        // ADD STYLE SELECTED CSS
         document.querySelector('input[name="font"]').addEventListener(':checked', () => {
             eventTarget.setAttribute('style', 'color:red');
             console.log('style changed')
@@ -87,21 +88,16 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
             alert('Your message should be less than 255 characters');
             return
         }
-        sessionStorage.setItem('letter_body', letterBody.value.trim());
-        console.log('the end of the journey!');
-        console.log(sessionStorage.getItem('sign_off'));
-        console.log(sessionStorage.getItem('recipient_email'));
-        console.log(sessionStorage.getItem('spotify_id'));
-        console.log(sessionStorage.getItem('font_id'));
-        console.log(sessionStorage.getItem('letter_body'));
+        let id = uniqid();
+        let letter_body = letterBody.value.trim();
         let sign_off = sessionStorage.getItem('sign_off');
         let recipient_email = sessionStorage.getItem('recipient_email');
         let spotify_id = sessionStorage.getItem('spotify_id');
         let font_id = sessionStorage.getItem('font_id');
-        let letter_body = sessionStorage.getItem('letter_body');
         const createLetter = await fetch('api/drafts', {
             method: 'POST',
             body: JSON.stringify({
+                id,
                 sign_off,
                 recipient_email,
                 spotify_id,
@@ -112,7 +108,7 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
                 'Content-Type': 'application/json'
             }
         });
-        if (response.ok) {
+        if (createLetter.ok) {
             console.log('success!')
             //document.location.replace('file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Preview.html');
         } else {
@@ -125,6 +121,27 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
 // send letter
 if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Preview.html') {
     sendBtn = document.querySelector('#send-btn').addEventListener('click', () => {
+        const sendLetter = await fetch('api/sent', {
+            method: 'POST',
+            body: JSON.stringify({
+                id,
+                sign_off,
+                recipient_email,
+                spotify_id,
+                font_id,
+                letter_body
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        if (sendLetter.ok) {
+            console.log('success!')
+            //document.location.replace('file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Preview.html');
+        } else {
+            alert(response.statusText);
+        }
+        // email API
         //document.location.replace('file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Dashboard.html');
     });
 }
