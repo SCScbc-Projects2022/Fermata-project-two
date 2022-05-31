@@ -1,4 +1,10 @@
-<main>
+ <main>
+      <div
+        class="container-fluid d-flex mt-5 justify-content-center align-items-center"
+      >
+        <h1>Welcome to Fermata</h1>
+      </div>
+
       <div
         class="container-fluid d-flex mt-5 justify-content-center align-items-center"
       >
@@ -10,22 +16,16 @@
           Compose
         </button>
       </div>
+
       <div class="container-fluid d-flex mt-5">
         <h4>Drafts:</h4>
       </div>
       <div class="container-fluid d-flex">
-          <ol class="drafts-list">
-              {{#each draft as |draft|}}
-              <li>
-              <a href="{{draft.draft_url}}" target="_blank">
-                  {{!-- Ideally get the first 15 characters of the draft here. Can we use .substring? --}}
-                  </a>
-              </li>
-              {{/each}}
-          {{!-- <p class="draft" id="history-item">
+        <a href="#"
+          ><p class="draft" id="history-item">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          </p><span>- {{created_at}}</span> --}}
-          </ol>
+          </p></a
+        >
       </div>
 
       <div class="container-fluid d-flex mt-5">
