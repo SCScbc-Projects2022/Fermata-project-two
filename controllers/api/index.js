@@ -10,4 +10,9 @@ router.use('/drafts', draftRoutes);
 router.use('/sent', sentRoutes);
 router.use('/fonts', fontRotues);
 
+router.get('/', (req, res) => {
+    res.render('homepage');
+  });
+  
+
 module.exports = router;
