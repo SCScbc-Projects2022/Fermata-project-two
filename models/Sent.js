@@ -24,6 +24,10 @@ Sent.init(
                 key: 'id'
             }
         },
+        recipient_name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         recipient_email: {
             type: DataTypes.STRING,
             allowNull: false,

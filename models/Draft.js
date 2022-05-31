@@ -24,6 +24,10 @@ Draft.init(
                 key: 'id'
             }
         },
+        recipient_name: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
         recipient_email: {
             type: DataTypes.STRING,
             allowNull: true,

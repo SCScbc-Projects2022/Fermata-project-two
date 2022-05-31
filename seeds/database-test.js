@@ -21,7 +21,7 @@ async function joinUserDraft() {
         include: [
             {
                 model: Draft,
-                attributes: ['id', 'sign_off', 'user_id', 'recipient_email', 'letter_body', 'spotify_id', 'font_id']
+                attributes: ['id', 'sign_off', 'user_id', 'recipient_name', 'recipient_email', 'letter_body', 'spotify_id', 'font_id']
             }
         ]
     });
@@ -37,7 +37,7 @@ async function joinUserSent() {
         include: [
             {
                 model: Sent,
-                attributes: ['id', 'sign_off', 'user_id', 'recipient_email', 'letter_body', 'spotify_id', 'font_id']
+                attributes: ['id', 'sign_off', 'user_id', 'recipient_name', 'recipient_email', 'letter_body', 'spotify_id', 'font_id']
             }
         ]
     });
@@ -49,7 +49,7 @@ async function joinUserSent() {
 
 async function joinDraftUserFont() {
     let x = await Draft.findAll({
-        attributes: ['id', 'sign_off', 'user_id', 'recipient_email', 'letter_body', 'spotify_id', 'font_id'],
+        attributes: ['id', 'sign_off', 'user_id', 'recipient_name', 'recipient_email', 'letter_body', 'spotify_id', 'font_id'],
         include: [
             {
                 model: User,
@@ -71,7 +71,7 @@ async function joinDraftUserFont() {
 
 async function joinSentUserFont() {
     let x = await Sent.findAll({
-        attributes: ['id', 'sign_off', 'user_id', 'recipient_email', 'letter_body', 'spotify_id', 'font_id'],
+        attributes: ['id', 'sign_off', 'user_id', 'recipient_name', 'recipient_email', 'letter_body', 'spotify_id', 'font_id'],
         include: [
             {
                 model: User,
@@ -84,7 +84,7 @@ async function joinSentUserFont() {
         ]
     });
     console.log('\n--- SENT + USER + FONT ---\n');
-    // x.map(item => console.log(item.dataValues));
+    x.map(item => console.log(item.dataValues));
     console.log('\n--- SENT USER LIST ---\n');
     x.map(item => console.log(item.dataValues.user.dataValues));
     console.log('\n--- SENT FONT LIST ---\n');
@@ -97,5 +97,5 @@ async function joinSentUserFont() {
 
 // joinUserDraft();
 // joinUserSent();
-// joinDraftUserFont();
+joinDraftUserFont();
 joinSentUserFont();
