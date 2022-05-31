@@ -1,7 +1,5 @@
 // CHANGE ALL HREFS TO PATHNAME
 
-// const { response } = require("express");
-const uniqid = require("uniqid");
 let letterBody;
 let sendBtn;
 
@@ -11,6 +9,8 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
     letterBody.setAttribute('readonly', true);
     sendBtn = document.querySelector('#send-btn');
     sendBtn.style.display = 'none';
+    heading = document.querySelector('#heading');
+    heading.style.display = 'none';
 }
 
 // submit YOU data
@@ -24,7 +24,7 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
         }
         sessionStorage.setItem('sign_off', name.value.trim());
         // sessionStorage.setItem('user_email', email.value.trim());  ----- remove from template
-        document.location.replace('file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Them.html');
+        document.location.replace('./Them.html');
     });
 }
 
@@ -32,19 +32,19 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
 if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Them.html') {
     let name = document.querySelector('#their-name');
     let email = document.querySelector('#their-email');
-    let format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
     document.querySelector('#them-btn').addEventListener('click', () => {
         if (!name.value || !email.value) {
             alert('Please enter the recipient name and email');
             return
         }
-        if (!format) {
-            alert('Please enter a valid email');
-            return
-        }
+        //let format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value);  ----- double check why validation fails
+        // if (!format) {
+        //     alert('Please enter a valid email');
+        //     return
+        // }
         // sessionStorage.setItem('recipient_name', name.value.trim()); ----- add to database
         sessionStorage.setItem('recipient_email', name.value.trim());
-        document.location.replace('file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Song.html');
+        document.location.replace('./Song.html');
     });
 }
 
@@ -52,7 +52,7 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
 if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Song.html') {
     document.querySelector('#song-btn').addEventListener('click', async () => {
         sessionStorage.setItem('spotify_id', 'a1b2c3'); // ----- placeholder value
-        document.location.replace('file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Style.html');
+        document.location.replace('./Style.html');
     });
 }
 
@@ -69,8 +69,9 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
             alert("please select a style option");
             return
         }
+        console.log(selected);
         sessionStorage.setItem('font_id', parseInt(selected.value));
-        document.location.replace('file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Send.html');
+        document.location.replace('./Send.html');
     });
 }
 
@@ -88,39 +89,43 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
             alert('Your message should be less than 255 characters');
             return
         }
-        let id = uniqid();
+        // let id = uniqid(); npm packages are backend only add to API POST requests
         let letter_body = letterBody.value.trim();
         let sign_off = sessionStorage.getItem('sign_off');
         let recipient_email = sessionStorage.getItem('recipient_email');
         let spotify_id = sessionStorage.getItem('spotify_id');
         let font_id = sessionStorage.getItem('font_id');
-        const createLetter = await fetch('api/drafts', {
-            method: 'POST',
-            body: JSON.stringify({
-                id,
-                sign_off,
-                recipient_email,
-                spotify_id,
-                font_id,
-                letter_body
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        if (createLetter.ok) {
-            console.log('success!')
-            //document.location.replace('file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Preview.html');
-        } else {
-            alert(response.statusText);
-        }
+        console.log(sign_off);
+        console.log(recipient_email,);
+        console.log(spotify_id);
+        console.log(font_id);
+        console.log(letter_body);
+        // const createLetter = await fetch('api/drafts', {
+        //     method: 'POST',
+        //     body: JSON.stringify({
+        //         sign_off,
+        //         recipient_email,
+        //         spotify_id,
+        //         font_id,
+        //         letter_body
+        //     }),
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // });
+        // if (createLetter.ok) {
+        //     console.log('success!')
+        //     //document.location.replace('file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Preview.html');
+        // } else {
+        //     alert(response.statusText);
+        // }
         
     });
 }
 
 // send letter
 if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Preview.html') {
-    sendBtn = document.querySelector('#send-btn').addEventListener('click', () => {
+    sendBtn = document.querySelector('#send-btn').addEventListener('click', async () => {
         const sendLetter = await fetch('api/sent', {
             method: 'POST',
             body: JSON.stringify({
@@ -142,10 +147,15 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
             alert(response.statusText);
         }
         // email API
+        // clear session
         //document.location.replace('file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Dashboard.html');
     });
 }
 
 // YOU -> THEM -> SONG -> STYLE -> SCRIPT -> PREVIEW
-// req.session.save() ???
 // <script src="../../../public/javascript/compose-letter.js"></script>
+
+// router.use('/users', userRoutes);
+// router.use('/drafts', draftRoutes);
+// router.use('/sent', sentRoutes);
+// router.use('/fonts', fontRotues);

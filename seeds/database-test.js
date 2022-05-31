@@ -47,43 +47,55 @@ async function joinUserSent() {
     x.map(item => console.log(item.dataValues.sents));
 }
 
-async function joinDraftFont() {
+async function joinDraftUserFont() {
     let x = await Draft.findAll({
         attributes: ['id', 'sign_off', 'user_id', 'recipient_email', 'letter_body', 'spotify_id', 'font_id'],
         include: [
             {
-                model: Font,
-                attributes: ['id', 'style_tag']
-            }
-        ]
-    });
-    console.log('\n--- DRAFT + FONT ---\n');
-    x.map(item => console.log(item.dataValues));
-    console.log('\n--- DRAFT FONT LIST ---\n');
-    x.map(item => console.log(item.dataValues.font));
-}
-
-async function joinSentFont() {
-    let x = await Sent.findAll({
-        attributes: ['id', 'sign_off', 'user_id', 'recipient_email', 'letter_body', 'spotify_id', 'font_id'],
-        include: [
+                model: User,
+                attributes: ['id', 'email']
+            },
             {
                 model: Font,
                 attributes: ['id', 'style_tag']
             }
         ]
     });
-    console.log('\n--- SENT + FONT ---\n');
+    console.log('\n--- DRAFT + USER + FONT ---\n');
     x.map(item => console.log(item.dataValues));
+    console.log('\n--- DRAFT USER LIST ---\n');
+    x.map(item => console.log(item.dataValues.user.dataValues));
+    console.log('\n--- DRAFT FONT LIST ---\n');
+    x.map(item => console.log(item.dataValues.font.dataValues));
+}
+
+async function joinSentUserFont() {
+    let x = await Sent.findAll({
+        attributes: ['id', 'sign_off', 'user_id', 'recipient_email', 'letter_body', 'spotify_id', 'font_id'],
+        include: [
+            {
+                model: User,
+                attributes: ['id', 'email']
+            },
+            {
+                model: Font,
+                attributes: ['id', 'style_tag']
+            }
+        ]
+    });
+    console.log('\n--- SENT + USER + FONT ---\n');
+    // x.map(item => console.log(item.dataValues));
+    console.log('\n--- SENT USER LIST ---\n');
+    x.map(item => console.log(item.dataValues.user.dataValues));
     console.log('\n--- SENT FONT LIST ---\n');
-    x.map(item => console.log(item.dataValues.font));
+    x.map(item => console.log(item.dataValues.font.dataValues));
 }
 
 
 
-printAll();
+// printAll();
 
 // joinUserDraft();
 // joinUserSent();
-// joinDraftFont();
-// joinSentFont();
+// joinDraftUserFont();
+joinSentUserFont();
