@@ -38,7 +38,7 @@ a:hover {
 
 a:visited {
     text-decoration: none;
-    color: #7089AC;
+    
 }
 
 a:active {
@@ -82,4 +82,14 @@ p.history {
 
 .small-text {
     font-size: 0.8rem;
+}
+
+li {
+    font-size: 1.3rem;
+    list-style: none;
+}
+
+
+table {
+    font-size: 1.2rem;
 }
