@@ -18,7 +18,7 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
     letterBody.setAttribute('readonly', true);
     sendBtn = document.querySelector('#send-btn');
     sendBtn.style.display = 'none';
-    heading = document.querySelector('#heading');
+    heading = document.querySelector('#head');
     heading.style.display = 'none';
 }
 
@@ -67,22 +67,25 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
 
 // submit STYLE data
 if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Style.html') {
-    // ADD STYLE SELECTED CSS
+    // indicate selected using text style
+    let caveat = document.querySelector('#caveat-label');
+    let lato = document.querySelector('#lato-label');
+    let merriweather = document.querySelector('#merriweather-label');
     document.querySelector('#caveat').addEventListener('click',() => {
-        document.querySelector('#caveat-label').style.color = "red"
-        document.querySelector('#lato-label').style.color = "#7089AC"
-        document.querySelector('#merriweather-label').style.color = "#7089AC"
-    }) // #7089AC
+        caveat.style.color = "red"
+        lato.style.color = "#7089AC"
+        merriweather.style.color = "#7089AC"
+    });
     document.querySelector('#lato').addEventListener('click',() => {
-        document.querySelector('#caveat-label').style.color = "#7089AC"
-        document.querySelector('#lato-label').style.color = "red"
-        document.querySelector('#merriweather-label').style.color = "#7089AC"
-    }) // #7089AC
+        caveat.style.color = "#7089AC"
+        lato.style.color = "red"
+        merriweather.style.color = "#7089AC"
+    });
     document.querySelector('#merriweather').addEventListener('click',() => {
-        document.querySelector('#caveat-label').style.color = "#7089AC"
-        document.querySelector('#lato-label').style.color = "#7089AC"
-        document.querySelector('#merriweather-label').style.color = "red"
-    }) // #7089AC
+        caveat.style.color = "#7089AC"
+        lato.style.color = "#7089AC"
+        merriweather.style.color = "red"
+    });
     document.querySelector('#style-btn').addEventListener('click', () => {
         let selected = document.querySelector('input[name="font"]:checked');
         if (!selected) {
@@ -91,10 +94,9 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
         }
         console.log(selected);
         sessionStorage.setItem('font_id', parseInt(selected.value));
-        //document.location.replace('./Send.html');
+        document.location.replace('./Send.html');
     });
 }
-
 
 // submit MESSAGE data
 if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Send.html') {
@@ -173,7 +175,6 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
             alert(response.statusText);
         }
         // email API
-        // clear session
         //document.location.replace('file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Dashboard.html');
     });
 }
