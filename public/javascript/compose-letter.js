@@ -1,7 +1,16 @@
 // CHANGE ALL HREFS TO PATHNAME
 
+// page fields
 let letterBody;
 let sendBtn;
+
+// JSON key/value
+let letter_body;
+let sign_off;
+let recipient_name;
+let recipient_email;
+let spotify_id;
+let font_id;
 
 // readonly
 if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Preview.html#' /*'/sent'*/) {
@@ -37,12 +46,12 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
             alert('Please enter the recipient name and email');
             return
         }
-        //let format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value);  ----- double check why validation fails
-        // if (!format) {
-        //     alert('Please enter a valid email');
-        //     return
-        // }
-        // sessionStorage.setItem('recipient_name', name.value.trim()); ----- add to database
+        let format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value);
+        if (!format) {
+            alert('Please enter a valid email');
+            return
+        }
+        sessionStorage.setItem('recipient_name', name.value.trim());
         sessionStorage.setItem('recipient_email', name.value.trim());
         document.location.replace('./Song.html');
     });
@@ -58,12 +67,23 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
 
 // submit STYLE data
 if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Style.html') {
+    // ADD STYLE SELECTED CSS
+    document.querySelector('#caveat').addEventListener('click',() => {
+        document.querySelector('#caveat-label').style.color = "red"
+        document.querySelector('#lato-label').style.color = "#7089AC"
+        document.querySelector('#merriweather-label').style.color = "#7089AC"
+    }) // #7089AC
+    document.querySelector('#lato').addEventListener('click',() => {
+        document.querySelector('#caveat-label').style.color = "#7089AC"
+        document.querySelector('#lato-label').style.color = "red"
+        document.querySelector('#merriweather-label').style.color = "#7089AC"
+    }) // #7089AC
+    document.querySelector('#merriweather').addEventListener('click',() => {
+        document.querySelector('#caveat-label').style.color = "#7089AC"
+        document.querySelector('#lato-label').style.color = "#7089AC"
+        document.querySelector('#merriweather-label').style.color = "red"
+    }) // #7089AC
     document.querySelector('#style-btn').addEventListener('click', () => {
-        // ADD STYLE SELECTED CSS
-        document.querySelector('input[name="font"]').addEventListener(':checked', () => {
-            eventTarget.setAttribute('style', 'color:red');
-            console.log('style changed')
-        })
         let selected = document.querySelector('input[name="font"]:checked');
         if (!selected) {
             alert("please select a style option");
@@ -71,7 +91,7 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
         }
         console.log(selected);
         sessionStorage.setItem('font_id', parseInt(selected.value));
-        document.location.replace('./Send.html');
+        //document.location.replace('./Send.html');
     });
 }
 
@@ -90,13 +110,15 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
             return
         }
         // let id = uniqid(); npm packages are backend only add to API POST requests
-        let letter_body = letterBody.value.trim();
-        let sign_off = sessionStorage.getItem('sign_off');
-        let recipient_email = sessionStorage.getItem('recipient_email');
-        let spotify_id = sessionStorage.getItem('spotify_id');
-        let font_id = sessionStorage.getItem('font_id');
+        letter_body = letterBody.value.trim();
+        sign_off = sessionStorage.getItem('sign_off');
+        recipient_name = sessionStorage.getItem('recipient_email');
+        recipient_email = sessionStorage.getItem('recipient_email');
+        spotify_id = sessionStorage.getItem('spotify_id');
+        font_id = sessionStorage.getItem('font_id');
         console.log(sign_off);
-        console.log(recipient_email,);
+        console.log(recipient_name);
+        console.log(recipient_email);
         console.log(spotify_id);
         console.log(font_id);
         console.log(letter_body);
@@ -104,6 +126,7 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
         //     method: 'POST',
         //     body: JSON.stringify({
         //         sign_off,
+        //         recipient_name,
         //         recipient_email,
         //         spotify_id,
         //         font_id,
@@ -126,10 +149,12 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
 // send letter
 if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Preview.html') {
     sendBtn = document.querySelector('#send-btn').addEventListener('click', async () => {
+        if (!field || !field2) {
+
+        }
         const sendLetter = await fetch('api/sent', {
             method: 'POST',
             body: JSON.stringify({
-                id,
                 sign_off,
                 recipient_email,
                 spotify_id,
@@ -141,7 +166,8 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
             }
         });
         if (sendLetter.ok) {
-            console.log('success!')
+            console.log('success!');
+            sessionStorage.clear();
             //document.location.replace('file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Preview.html');
         } else {
             alert(response.statusText);
@@ -158,4 +184,4 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
 // router.use('/users', userRoutes);
 // router.use('/drafts', draftRoutes);
 // router.use('/sent', sentRoutes);
-// router.use('/fonts', fontRotues);
+// router.use('/fonts', fontRoutes);
