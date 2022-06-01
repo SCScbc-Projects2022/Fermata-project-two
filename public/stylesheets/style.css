@@ -32,12 +32,13 @@ a:link {
 }
 
 a:hover {
+    color: rgb(255, 255, 255);
     text-decoration: none;
-    color: gray;
 }
 
 a:visited {
     text-decoration: none;
+    color: #7089AC;
     
 }
 
@@ -65,7 +66,8 @@ p {
     font-size: 1.5rem;
     border: none;
     outline: none;
-    color:#7089AC
+    color:#7089AC;
+    text-indent: inherit;
 }
 
 nav {
@@ -92,4 +94,17 @@ li {
 
 table {
     font-size: 1.2rem;
+}
+
+span {
+    font-size: 1.2rem;
+}
+
+.letter-preview {
+    width: 650px;
+    height: 600px;
+    overflow: auto;
+    /* overflow-y: auto;
+    overflow-wrap: normal;
+    overflow-x: hidden; */
 }
