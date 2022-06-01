@@ -20,3 +20,5 @@ message => alert(message)
 // });
 
 // emailjs.send('service_x0nwu7l', 'template_tyd731n', {from_name: 'abcdidgaf', to_name: 'jsearching', message: 'god i hope this works i have tried so many of these', reply_to}, publicKey);
+
+// elasticemail

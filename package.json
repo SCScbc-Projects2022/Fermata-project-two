@@ -15,6 +15,7 @@
     "handlebars": "^4.7.7",
     "materialize-css": "^1.0.0-rc.2",
     "mysql2": "^2.3.3",
+    "nodemailer": "^6.7.5",
     "sequelize": "^6.20.1",
     "uniqid": "^5.4.0"
   },
