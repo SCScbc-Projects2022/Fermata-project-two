@@ -18,7 +18,7 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
     letterBody.setAttribute('readonly', true);
     sendBtn = document.querySelector('#send-btn');
     sendBtn.style.display = 'none';
-    heading = document.querySelector('#head');
+    heading = document.querySelector('#head'); // ----- possibility for errors in debugging (add id to html/handlebars)
     heading.style.display = 'none';
 }
 
@@ -89,7 +89,7 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
     document.querySelector('#style-btn').addEventListener('click', () => {
         let selected = document.querySelector('input[name="font"]:checked');
         if (!selected) {
-            alert("please select a style option");
+            alert("Please select a style option");
             return
         }
         console.log(selected);
@@ -140,7 +140,8 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
         // });
         // if (createLetter.ok) {
         //     console.log('success!')
-        //     //document.location.replace('file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Preview.html');
+        //      sessionStorage.clear();
+        //     document.location.replace('./Preview.html');
         // } else {
         //     alert(response.statusText);
         // }
@@ -151,13 +152,29 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
 // send letter
 if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Preview.html') {
     sendBtn = document.querySelector('#send-btn').addEventListener('click', async () => {
-        if (!field || !field2) {
-
+        // let id = uniqid(); npm packages are backend only add to API POST requests
+        sign_off = document.querySelector();
+        recipient_name = document.querySelector();
+        recipient_email = document.querySelector();
+        spotify_id = 'a1b2c3' // ----- placeholder value
+        font_id = document.querySelector(); //ability not yet available
+        letter_body = document.querySelector();
+        if (!sign_off.value || !recipient_email.value || !spotify_id.value || !font_id.value || !letter_body.value) {
+            alert('Please ensure all fields are completed before sending your message')
+        }
+        if (letter_body.value > 255) {
+            alert('Your message should be less than 255 characters');
+        }
+        let format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(recipient_email.value);
+        if (!format) {
+            alert('Please enter a valid email');
+            return
         }
         const sendLetter = await fetch('api/sent', {
             method: 'POST',
             body: JSON.stringify({
                 sign_off,
+                recipient_name,
                 recipient_email,
                 spotify_id,
                 font_id,
@@ -169,8 +186,7 @@ if (window.location.href === 'file:///C:/Users/Ronnie/projects/fermata-project-t
         });
         if (sendLetter.ok) {
             console.log('success!');
-            sessionStorage.clear();
-            //document.location.replace('file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Preview.html');
+            //document.location.replace('./Dashboard.html');
         } else {
             alert(response.statusText);
         }
