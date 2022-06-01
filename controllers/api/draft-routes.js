@@ -1,10 +1,21 @@
 const router = require('express').Router();
-const { Draft } = require('../../models');
+const { Draft, Font, User } = require('../../models');
 // will also need withAuth once login is added?
 
 // get all drafts
 router.get('/', (req, res) => {
-    Draft.findAll()
+    Draft.findAll({
+        include: [
+            {
+                model: Font,
+                attributes: ['id', 'style_tag']
+            },
+            {
+                model: User,
+                attributes: ['id', 'username', 'email']
+            }
+        ]
+    })
     .then(dbDraftData => res.json(dbDraftData))
     .catch(err => {
         console.log(err);
@@ -17,7 +28,17 @@ router.get('/:id', (req, res) => {
     Draft.findOne({
         where: {
             id: req.params.id
-        }
+        },
+        include: [
+            {
+                model: Font,
+                attributes: ['id', 'style_tag']
+            },
+            {
+                model: User,
+                attributes: ['id', 'username', 'email']
+            }
+        ]
     })
     .then(dbDraftData => {
         if(!dbDraftData) {

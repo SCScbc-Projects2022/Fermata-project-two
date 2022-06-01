@@ -1,9 +1,20 @@
 const router = require('express').Router();
-const { Sent } = require('../../models');
+const { Sent, Font, User } = require('../../models');
 
 // get all Sent emails
 router.get('/', (req, res) => {
-    Sent.findAll()
+    Sent.findAll({
+        include: [
+            {
+                model: Font,
+                attributes: ['id', 'style_tag']
+            },
+            {
+                model: User,
+                attributes: ['id', 'username', 'email']
+            }
+        ]
+    })
     .then(dbSentData => res.json(dbSentData))
     .catch(err => {
         console.log(err);
@@ -16,7 +27,17 @@ router.get('/:id', (req, res) => {
     Sent.findOne({
         where: {
             id: req.params.id
-        }
+        },
+        include: [
+            {
+                model: Font,
+                attributes: ['id', 'style_tag']
+            },
+            {
+                model: User,
+                attributes: ['id', 'username', 'email']
+            }
+        ]
     })
     .then(dbSentData => {
         if(!dbSentData) {
