@@ -34,6 +34,7 @@ router.get('/:id', (req, res) => {
 
 // create draft - missing auth
 router.post('/', /* withAuth? */ (req, res) => {
+    req.body.id = uniqid();
     Draft.create({
         sign_off: req.body.sign_off,
         recipient_email: req.body.recipient_email,

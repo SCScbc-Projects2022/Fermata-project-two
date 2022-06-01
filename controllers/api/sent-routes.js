@@ -33,6 +33,7 @@ router.get('/:id', (req, res) => {
 
 // create Sent - missing auth
 router.post('/', /* withAuth? */ (req, res) => {
+    req.body.id = uniqid();
     Sent.create({
         sign_off: req.body.sign_off,
         recipient_email: req.body.recipient_email,
