@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "@emailjs/browser": "^3.6.2",
     "bcrypt": "^5.0.1",
     "bootstrap": "^5.2.0-beta1",
     "connect-session-sequelize": "^7.1.3",
