@@ -2,8 +2,10 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-2 mt-3">
-            <h5 id="their-name">Jennifer Lopez</h5>
-            <h5 id="their-email">jennyfromtheblock@gmail.com</h5>
+            <input id="their-name" value={{their_name}}></input>
+            <input id="their-email" value={{their_email}}></input>
+            <!--sign_off (your name) as an input field-->
+            <!--your email (not as an input field, retrieved from database) maybe??-->
             <a href="#"><p class="small-text">click to edit</p></a>
           </div>
           
@@ -12,14 +14,15 @@
           <div
             class="container-fluid d-flex mt-5 justify-content-center align-items-center"
           >
-            <h1>Preview</h1>
+            <h1 id="header">Preview</h1>
           </div>
 
           <div
             class="container-fluid d-flex mt-5 justify-content-around align-items-center"
           >
-            <textarea name="" id="letter-preview">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, itaque quod. Dignissimos rerum minus impedit illo suscipit! Facilis, obcaecati nemo.
+            <textarea name="" style={{style_tag}}id="letter-preview"> 
+              
+          {{letter_body}}
         </textarea
             >
           </div>
