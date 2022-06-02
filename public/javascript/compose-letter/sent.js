@@ -1,20 +1,6 @@
-// CHANGE ALL HREFS TO PATHNAME
-
-// page fields
-let letterBody;
-let sendBtn;
-
-// JSON key/value
-let letter_body;
-let sign_off;
-let recipient_name;
-let recipient_email;
-let spotify_id;
-let font_id;
-
 // document.location.replace('file:///C:/Users/Ronnie/projects/fermata-project-two/views/layouts/sandbox/Dashboard.html');
 
-// YOU -> THEM -> SONG -> STYLE -> SCRIPT -> PREVIEW
+// YOU -> THEM -> SONG -> STYLE -> SCRIPT(SEND) -> PREVIEW -> SENT -> DASHBOARD
 // <script src="../../../public/javascript/compose-letter/sent.js"></script>
 
 // router.use('/users', userRoutes);
