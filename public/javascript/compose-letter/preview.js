@@ -10,19 +10,10 @@ let recipient_email;
 let spotify_id;
 let font_id;
 
-let address = 'recipient@email.com'
-let sender = 'SENDERNAME'
-let recipient = 'RECIPIENTNAME'
-let link = 'http://www.fermata.com/sent/a1b2c3'
-
-sendBtn = document.querySelector('#send-btn').addEventListener('click', async () => {
-    console.log('clicked!');
-    var email = document.createElement("a");
-    email.href = `mailto:${address}?subject=Your Fermata Has Arrived \u{1F3B5}&body=Hey ${recipient}, %0D%0A %0D%0AYour favourite person, ${sender}, just sent you a Fermata. %0D%0AExperience it here: ${link}%0D%0A %0D%0A - with \u{1F498}, the Fermata team %0D%0A %0D%0A `;
-    email.click();
-})
-//<a href="mailto:noone@snai1mai1.com, notwo@snai1mai1.com?subject=more free chocolate&cc=buddys@snai1mai1.com&bcc=secretfriend@snai1mai1.com">
-//<A HREF="mailto:?subject=look at this website&body=Hi, I found this website and thought you might like it http://www.geocities.com/wowhtml/">tell a friend</A>
+let address = 'recipient@email.com' //placeholder
+let sender = 'SENDERNAME' //placeholder
+let recipient = 'RECIPIENTNAME' //placeholder
+let link = 'http://www.fermata.com/sent/a1b2c3' //placeholder
 
 // readonly --- edit this logic to apply to the input fields to selectively toggle on and off
 if (window.location.pathname === '/sent') {
@@ -37,7 +28,7 @@ if (window.location.pathname === '/sent') {
 // add an if statment to conditionally declare variables for the page when passed as a parameter from backend
 
 // send letter
-// sendBtn = document.querySelector('#send-btn').addEventListener('click', async () => {
+sendBtn = document.querySelector('#send-btn').addEventListener('click', async () => {
 //     // let id = uniqid(); npm packages are backend only add to API POST requests
 //     // res.render('/pathname, {key: value} - to pass variables from backend to frontend) + let x = {{key}} in js
 //     sign_off = document.querySelector();
@@ -73,13 +64,15 @@ if (window.location.pathname === '/sent') {
 //     });
 //     if (sendLetter.ok) {
 //         console.log('success!');
-//         //document.location.replace('./Dashboard.html');
+        var email = document.createElement("a");
+        email.href = `mailto:${address}?subject=\u{1F4EC} Your Fermata Has Arrived \u{1F3B5}&body=Hey ${recipient}, %0D%0A %0D%0A${sender} just sent you a Fermata - a personal letter with a song chosen just for you! %0D%0AExperience it here: ${link}%0D%0A %0D%0AWith \u{1F498}, %0D%0AThe Fermata Team %0D%0A %0D%0A `;
+        email.click();
+//      //document.location.replace('./Dashboard.html');
 //     } else {
 //         alert(response.statusText);
 //     }
-//     // email API --- mailto:
 //     //document.location.replace('./Sent.html');
-// });
+});
 
 // YOU -> THEM -> SONG -> STYLE -> SCRIPT(SEND) -> PREVIEW -> SENT -> DASHBOARD
 // <script src="../../../public/javascript/compose-letter/preview.js"></script>
