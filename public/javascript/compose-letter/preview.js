@@ -65,7 +65,7 @@ sendBtn = document.querySelector('#send-btn').addEventListener('click', async ()
 //     if (sendLetter.ok) {
 //         console.log('success!');
         var email = document.createElement("a");
-        email.href = `mailto:${address}?subject=\u{1F4EC} Your Fermata Has Arrived \u{1F3B5}&body=Hey ${recipient}, %0D%0A %0D%0A${sender} just sent you a Fermata - a personal letter with a song chosen just for you! %0D%0AExperience it here: ${link}%0D%0A %0D%0AWith \u{1F498}, %0D%0AThe Fermata Team %0D%0A %0D%0A `;
+        email.href = `mailto:${address}?subject=\u{1F4C3} Your Fermata Has Arrived \u{1F3B5}&body=Hey ${recipient}, %0D%0A %0D%0A${sender} just sent you a Fermata - a personal letter with a song chosen just for you! %0D%0AExperience it here: ${link}%0D%0A %0D%0AWith \u{1F498}, %0D%0AThe Fermata Team %0D%0A %0D%0A `;
         email.click();
 //      //document.location.replace('./Dashboard.html');
 //     } else {
