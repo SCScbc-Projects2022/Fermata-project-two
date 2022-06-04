@@ -1,6 +1,6 @@
 // send letter
 let letterBody = document.querySelector('#letter-input');
-document.querySelector('#you-btn').addEventListener('click', async () => {
+document.querySelector('#send-btn').addEventListener('click', async () => {
     if (!letterBody.value) {
         alert('Please enter your message');
         return
@@ -37,9 +37,9 @@ document.querySelector('#you-btn').addEventListener('click', async () => {
         }
     });
     if (createLetter.ok) {
-        document.location.replace('./Preview.html');
+        document.location.replace('preview');
     } else {
-        alert(response.statusText);
+        alert(createLetter.statusText);
     }
     
 });

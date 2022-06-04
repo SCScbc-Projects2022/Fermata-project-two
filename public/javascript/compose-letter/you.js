@@ -1,14 +1,12 @@
 // capture input fields
 document.querySelector('#you-btn').addEventListener('click', () => {
     let name = document.querySelector('#yourname-input');
-    let email = document.querySelector('#youremail-input');
-    if (!name.value || !email.value) {
-        alert('Please enter your name and email');
+    if (!name.value) {
+        alert('Please enter your name');
         return
     }
     sessionStorage.setItem('sign_off', name.value.trim());
-    // sessionStorage.setItem('user_email', email.value.trim());  ----- remove from template
-    document.location.replace('./Them.html');
+    document.location.replace('./them');
 });
 
 // YOU -> THEM -> SONG -> STYLE -> SCRIPT(SEND) -> PREVIEW -> SENT -> DASHBOARD

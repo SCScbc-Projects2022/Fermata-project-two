@@ -3,19 +3,19 @@ let caveat = document.querySelector('#caveat-label');
 let lato = document.querySelector('#lato-label');
 let merriweather = document.querySelector('#merriweather-label');
 document.querySelector('#caveat').addEventListener('click',() => {
-    caveat.style.color = "red"
+    caveat.style.color = "blue"
     lato.style.color = "#7089AC"
     merriweather.style.color = "#7089AC"
 });
 document.querySelector('#lato').addEventListener('click',() => {
     caveat.style.color = "#7089AC"
-    lato.style.color = "red"
+    lato.style.color = "blue"
     merriweather.style.color = "#7089AC"
 });
 document.querySelector('#merriweather').addEventListener('click',() => {
     caveat.style.color = "#7089AC"
     lato.style.color = "#7089AC"
-    merriweather.style.color = "red"
+    merriweather.style.color = "blue"
 });
 
 // capture selected font
@@ -26,7 +26,7 @@ document.querySelector('#style-btn').addEventListener('click', () => {
         return
     }
     sessionStorage.setItem('font_id', parseInt(selected.value));
-    document.location.replace('./Send.html');
+    document.location.replace('./send');
 });
 
 // YOU -> THEM -> SONG -> STYLE -> SCRIPT(SEND) -> PREVIEW -> SENT -> DASHBOARD
