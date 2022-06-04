@@ -6,7 +6,7 @@ document.querySelector('#you-btn').addEventListener('click', () => {
         return
     }
     sessionStorage.setItem('sign_off', name.value.trim());
-    document.location.replace('./them');
+    document.location.replace('/compose/them');
 });
 
 // YOU -> THEM -> SONG -> STYLE -> SCRIPT(SEND) -> PREVIEW -> SENT -> DASHBOARD

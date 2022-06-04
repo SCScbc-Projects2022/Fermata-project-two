@@ -1,14 +1,6 @@
 const router = require('express').Router();
 
 // routes for letter composition
-router.get('/sign-up', (req, res) => {
-    res.render('sign-up');
-});
-
-router.get('/sign-in', (req, res) => {
-    res.render('sign-in');
-});
-
 router.get('/you', (req, res) => {
     res.render('you');
 });
@@ -27,6 +19,10 @@ router.get('/style', (req, res) => {
 
 router.get('/send', (req, res) => {
     res.render('send');
+});
+
+router.get('/confirm', (req, res) => {
+    res.render('confirm');
 });
 
 module.exports = router;

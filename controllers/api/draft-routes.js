@@ -57,18 +57,21 @@ router.get('/:id', (req, res) => {
 // create draft - missing auth
 router.post('/', /* withAuth? */ (req, res) => {
     req.body.id = uniqid();
-    console.log(req.body.id);
     Draft.create({
         id: req.body.id,
         sign_off: req.body.sign_off,
+        user_id: req.body.user_id, //change to req.session.user_id
         recipient_name: req.body.recipient_name,
         recipient_email: req.body.recipient_email,
         letter_body: req.body.letter_body,
         spotify_id: req.body.spotify_id,
         font_id: req.body.font_id,
-        user_id: req.session.user_id //change to req.session.user_id
     })
-    .then(dbDraftData => res.json(dbDraftData))
+    .then(dbDraftData => {
+        // dbDraftData.previewURL = dbDraftData.dataValues.id;
+        console.log(res.json(dbDraftData));
+        // res.json({response: dbDraftData, location: dbDraftData.dataValues.id});
+    })
     .catch(err => {
         console.log(err);
         res.status(400).json(err);

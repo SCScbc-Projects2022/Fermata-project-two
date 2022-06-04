@@ -16,14 +16,14 @@ let recipient = 'RECIPIENTNAME' //placeholder
 let link = 'http://www.fermata.com/sent/a1b2c3' //placeholder
 
 // readonly --- edit this logic to apply to the input fields to selectively toggle on and off
-if (window.location.pathname === '/sent') {
-    letterBody = document.querySelector('#letter-preview');
-    letterBody.setAttribute('readonly', true);
-    sendBtn = document.querySelector('#send-btn');
-    sendBtn.style.display = 'none';
-    heading = document.querySelector('#head'); // ----- possibility for errors in debugging (add id to html/handlebars)
-    heading.style.display = 'none';
-}
+// if (window.location.pathname === '/sent') {
+//     letterBody = document.querySelector('#letter-preview');
+//     letterBody.setAttribute('readonly', true);
+//     sendBtn = document.querySelector('#send-btn');
+//     sendBtn.style.display = 'none';
+//     heading = document.querySelector('#head'); // ----- possibility for errors in debugging (add id to html/handlebars)
+//     heading.style.display = 'none';
+// }
 
 // add an if statment to conditionally declare variables for the page when passed as a parameter from backend -- probably no time to do this
 

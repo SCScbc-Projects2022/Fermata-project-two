@@ -41,7 +41,7 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
     console.log(font_id);
     console.log(letter_body);
     console.log(user_id);
-    const createLetter = await fetch('api/drafts', {
+    const createLetter = await fetch('../api/drafts', {
         method: 'POST',
         body: JSON.stringify({
             sign_off,
@@ -57,9 +57,9 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
         }
     });
     if (createLetter.ok) {
-        document.location.replace('sent');
+        console.log(createLetter)
+        // document.location.replace(`/draft/${createLetter.body.id}`);
     } else {
         alert(createLetter.statusText);
-    }
-    
+    } 
 });

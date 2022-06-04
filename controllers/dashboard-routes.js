@@ -1,12 +1,13 @@
 const router = require('express').Router();
+const {Draft, Sent, Font, User} = require('../models');
 
 router.get('/', async (req, res) => {
 // this is going to render partials to make a list for the dashboard
     try {
         let draftData = await Draft.findAll({
-            where: {
-                user_id: req.session.user_id
-            },
+            // where: {
+            //     user_id: req.session.user_id
+            // },
             include: [
                 {
                     model: Font,
@@ -19,9 +20,9 @@ router.get('/', async (req, res) => {
             ]
         });
         let sentData = await Sent.findAll({
-            where: {
-                user_id: req.session.user_id
-            },
+            // where: {
+            //     user_id: req.session.user_id
+            // },
             include: [
                 {
                     model: Font,
@@ -33,9 +34,9 @@ router.get('/', async (req, res) => {
                 }
             ]
         });
-        draftData.map(draft => draft.get({plain: true}));
-        sentData.map(sent => sent.get({plain: true}));
-        res.render('dashboard', {draft, sent, loggedIn: true});
+        let draftLetter = draftData.map(draft => draft.get({plain: true}));
+        let sentLetter = sentData.map(sent => sent.get({plain: true}));
+        res.render('dashboard', {draftLetter, sentLetter, loggedIn: true});
     }
     catch (err) {
         console.log(err);

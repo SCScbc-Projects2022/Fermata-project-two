@@ -13,7 +13,7 @@ document.querySelector('#them-btn').addEventListener('click', () => {
     }
     sessionStorage.setItem('recipient_name', name.value.trim());
     sessionStorage.setItem('recipient_email', email.value.trim());
-    document.location.replace('./song');
+    document.location.replace('/compose/song');
 });
 
 // YOU -> THEM -> SONG -> STYLE -> SCRIPT(SEND) -> PREVIEW -> SENT -> DASHBOARD
