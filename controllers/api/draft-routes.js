@@ -66,7 +66,7 @@ router.post('/', /* withAuth? */ (req, res) => {
         letter_body: req.body.letter_body,
         spotify_id: req.body.spotify_id,
         font_id: req.body.font_id,
-        user_id: req.body.user_id //change to req.session.user_id
+        user_id: req.session.user_id //change to req.session.user_id
     })
     .then(dbDraftData => res.json(dbDraftData))
     .catch(err => {
