@@ -1,0 +1,95 @@
+body {
+    font-family: 'Caveat', cursive;
+    color: #7089AC;
+    width: 100%;
+}
+
+.logo {
+    width: 300px;
+}
+
+.authenticate {
+    display: block;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+.btn {
+    background-color: white; 
+    color:#7089AC ;
+}
+
+.btn:hover {
+    background-color: #7089AC;
+}
+
+a:link {
+    text-decoration: none;
+    color: #7089AC;
+
+}
+
+a:hover {
+    text-decoration: none;
+    color: gray;
+}
+
+a:visited {
+    text-decoration: none;
+    
+}
+
+a:active {
+    text-decoration: none;
+    color: #7089AC;
+}
+
+p {
+    font-size: 1.25rem;
+}
+
+#letter-input {
+    height: 500px;
+    width: 500px;
+    font-size: 1.5rem;
+    /* border: none; */
+    outline: none;
+    color:#7089AC
+}
+
+#letter-preview {
+    height: 500px;
+    width: 500px;
+    font-size: 1.5rem;
+    border: none;
+    outline: none;
+    color:#7089AC
+}
+
+nav {
+    width: 100%;
+}
+
+p.draft {
+    color: gray;
+}
+
+p.history {
+    color: gray
+}
+
+.small-text {
+    font-size: 0.8rem;
+}
+
+li {
+    font-size: 1.3rem;
+    list-style: none;
+}
+
+
+table {
+    font-size: 1.2rem;
+}
