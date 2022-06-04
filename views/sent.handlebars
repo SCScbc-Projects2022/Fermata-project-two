@@ -1,30 +1,37 @@
 <section class="mt-5 row align-items-center">
-    <div class="container-fluid">
+  <div class="container-fluid">
     <div class="row">
-        <div class="col-2 mt-3">
-        <input id="their-name" value={{their_name}} readonly></input>
-        <input id="their-email" value={{their_email}} readonly></input>
-        <input id="sign-off" value={{sign_off}} readonly></input>
-
-        <a href="#"><p class="small-text">click to edit</p></a>
-        </div>
+      <div class="col-2 mt-3">
+        <input id="sent-to" readonly class="border-0" value= "Sent to:" + " " + {{their_name}}></input>
+        <input id="sent-toward" readonly class="border-0" value= "-" + " " + {{their_email}}></input>
+        <input id="signed-as" readonly class="border-0" value= "Signed as:" + " " + {{sign_off}}></input>
+      </div>
     </div>    
-    <div class="container-fluid d-flex mt-5 justify-content-center align-items-center">
-        <h1 id="header">Preview</h1>
-    </div>
+    <div class="container-fluid d-flex mt-5 justify-content-center align-items-center"></div>
+
     <div class="container-fluid d-flex mt-5 justify-content-around align-items-center">
-        <textarea name="" style={{style_tag}}id="letter-preview" readonly> 
-        {{letter_body}}
-        </textarea>
+      <textarea id="letter-preview" readonly name="" style={{style_tag}}> 
+      {{letter_body}}
+      </textarea>
     </div>
+
+        <div class="container-fluid d-flex mt-5 justify-content-around">
+        <a href="/dashboard">
+            <button
+            type="button"
+            class="btn btn-lg btn-outline-dark"
+            id="send-btn">
+            Home
+            </button>
+        </a>
     </div>
-    <div class="container-fluid d-flex mt-5 justify-content-around align-items-center"></div>
-    <div class="container-fluid d-flex mt-5 justify-content-evenly">
+  </div>
+  <div class="container-fluid d-flex mt-5 justify-content-around align-items-center"></div>
+  <div class="container-fluid d-flex mt-5 justify-content-evenly">
     <div class="now-playing">Now Playing:</div>
     <div>
-        <span id="artist-select">Arthur Rubenstein - </span>
-        <span id="song-select">Nocturnes, Op. 9: No. 2 in E-Flat Major</span>
+      <span id="artist-select">Arthur Rubenstein - </span>
+      <span id="song-select">Nocturnes, Op. 9: No. 2 in E-Flat Major</span>
     </div>
-    </div>
+  </div>
 </section>
-<script src="/javascript/sent.js"></script>

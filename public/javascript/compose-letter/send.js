@@ -41,27 +41,6 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
     console.log(font_id);
     console.log(letter_body);
     console.log(user_id);
-
-
-//     // create draft - missing auth
-// router.post('/', /* withAuth? */ (req, res) => {
-//     req.body.id = uniqid();
-//     Draft.create({
-//         sign_off: req.body.sign_off,
-//         recipient_name: req.body.recipient_name,
-//         recipient_email: req.body.recipient_email,
-//         letter_body: req.body.letter_body,
-//         spotify_id: req.body.spotify_id,
-//         font_id: req.body.font_id
-//         // user_id: req.session.user_id
-//     })
-//     .then(dbDraftData => res.json(dbDraftData))
-//     .catch(err => {
-//         console.log(err);
-//         res.status(400).json(err);
-//     });
-// });
-
     const createLetter = await fetch('api/drafts', {
         method: 'POST',
         body: JSON.stringify({
@@ -84,11 +63,3 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
     }
     
 });
-
-// YOU -> THEM -> SONG -> STYLE -> SCRIPT(SEND) -> PREVIEW -> SENT -> DASHBOARD
-// <script src="../../../public/javascript/compose-letter/send.js"></script>
-
-// router.use('/users', userRoutes);
-// router.use('/drafts', draftRoutes);
-// router.use('/sent', sentRoutes);
-// router.use('/fonts', fontRoutes);
