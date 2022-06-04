@@ -5,27 +5,29 @@
         <input id="sent-to" readonly class="border-0" value= "Sent to:" + " " + {{their_name}}></input>
         <input id="sent-toward" readonly class="border-0" value= "-" + " " + {{their_email}}></input>
         <input id="signed-as" readonly class="border-0" value= "Signed as:" + " " + {{sign_off}}></input>
+        <input id="sent-at" readonly class="border-0" value= "Sent:" + " " + {{last_edited}}></input>
       </div>
-    </div>    
+    </div>
+    
     <div class="container-fluid d-flex mt-5 justify-content-center align-items-center"></div>
-
     <div class="container-fluid d-flex mt-5 justify-content-around align-items-center">
       <textarea id="letter-preview" readonly name="" style={{style_tag}}> 
       {{letter_body}}
       </textarea>
     </div>
 
-        <div class="container-fluid d-flex mt-5 justify-content-around">
-        <a href="/dashboard">
-            <button
-            type="button"
-            class="btn btn-lg btn-outline-dark"
-            id="send-btn">
-            Home
-            </button>
-        </a>
+    <div class="container-fluid d-flex mt-5 justify-content-around">
+      <a href="/dashboard">
+          <button
+          type="button"
+          class="btn btn-lg btn-outline-dark"
+          id="send-btn">
+          Home
+          </button>
+      </a>
     </div>
   </div>
+
   <div class="container-fluid d-flex mt-5 justify-content-around align-items-center"></div>
   <div class="container-fluid d-flex mt-5 justify-content-evenly">
     <div class="now-playing">Now Playing:</div>
