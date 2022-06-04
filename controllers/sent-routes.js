@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
     })
     .then(dbSentData => {
         const sent = dbSentData.map(post => post.get({plain: true}));
-        res.render('Sents', sent);
+        res.render('sent', sent);
     })
     .catch(err => {
         console.log(err);

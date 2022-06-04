@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Draft, Font, User } = require('../../models');
+const uniqid = require('uniqid');
 // will also need withAuth once login is added?
 
 // get all drafts
@@ -56,13 +57,16 @@ router.get('/:id', (req, res) => {
 // create draft - missing auth
 router.post('/', /* withAuth? */ (req, res) => {
     req.body.id = uniqid();
+    console.log(req.body.id);
     Draft.create({
+        id: req.body.id,
         sign_off: req.body.sign_off,
+        recipient_name: req.body.recipient_name,
         recipient_email: req.body.recipient_email,
         letter_body: req.body.letter_body,
         spotify_id: req.body.spotify_id,
-        font_id: req.body.font_id
-        // user_id: req.session.user_id
+        font_id: req.body.font_id,
+        user_id: req.body.user_id //change to req.session.user_id
     })
     .then(dbDraftData => res.json(dbDraftData))
     .catch(err => {

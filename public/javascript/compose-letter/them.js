@@ -12,7 +12,7 @@ document.querySelector('#them-btn').addEventListener('click', () => {
         return
     }
     sessionStorage.setItem('recipient_name', name.value.trim());
-    sessionStorage.setItem('recipient_email', name.value.trim());
+    sessionStorage.setItem('recipient_email', email.value.trim());
     document.location.replace('./song');
 });
 
