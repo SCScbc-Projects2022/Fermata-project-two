@@ -1,8 +1,8 @@
 <?php
 
 // Include required files
-require '../_private/global.php';
-require 'curl.class.php';
+require '_inc/_private/global.php';
+require '_inc/curl.class.php';
 
 // Start new instance of CurlServer object
 $__cURL = new CurlServer();

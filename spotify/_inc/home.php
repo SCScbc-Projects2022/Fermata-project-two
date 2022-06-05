@@ -20,7 +20,10 @@ include '_inc/html/header.php';
     // console.log(loginUri);
 
     //Open URL to request user login from Spotify
-    window.open(loginUri, ' self')
-
+    window.open(loginUri, '_self');
   }
 </script>
+<?php
+
+// Include page footer
+include '_inc/html/footer.php';
