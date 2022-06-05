@@ -17,23 +17,15 @@
   <div class="container-fluid d-flex ms-2 mt-5">
     <h4>Drafts:</h4>
   </div>
-  <div class="container-fluid ms-2 d-flex">
-    <a href="#">
-      <p class="draft" id="history-item">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-      </p>
-    </a>
+  <div class="container-fluid ms-2 d-flex drafts">
+    {{> draft-info draft-info = draft}}
   </div>
 
   <div class="container-fluid d-flex ms-2 mt-5">
     <h4>History:</h4>
   </div>
   <div class="container-fluid ms-2 d-flex">
-    <a href="#">
-      <p class="history" id="history-item">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-      </p>
-    </a>
+    {{> history-info = history-info = sent}}
   </div>
 </section>
 <script src="/javascript/dashboard.js"></script>
