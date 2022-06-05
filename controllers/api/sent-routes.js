@@ -59,7 +59,7 @@ router.post('/', authenticate, (req, res) => {
     req.body.id = uniqid();
     Sent.create({
         id: req.body.id,
-        user_id: req.session.user_id, // change to req.session.user_id
+        user_id: req.session.user_id,
         sign_off: req.body.sign_off,
         recipient_name: req.body.recipient_name,
         recipient_email: req.body.recipient_email,

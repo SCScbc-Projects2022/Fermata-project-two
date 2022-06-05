@@ -107,9 +107,10 @@ document.querySelector('#save-btn').addEventListener('click', async () => {
         }
     })
     if (createDraft.ok) {
-        // let preview = await createDraft.json(); //I got it to return the data I need :sob:
-        // console.log(preview.response);
-        document.location.replace('/dashboard');
+        let preview = await createDraft.json(); //I got it to return the data I need :sob:
+        console.log(preview);
+        // console.log(createDraft).json()
+        // document.location.replace('/dashboard');
     } else {
         alert(createDraft.statusText);
     }

@@ -77,7 +77,7 @@ p.draft {
 }
 
 p.history {
-    color: gray
+    color: gray;
 }
 
 .small-text {
@@ -92,4 +92,8 @@ li {
 
 table {
     font-size: 1.2rem;
+}
+
+#logout-btn:hover {
+    color: blue;
 }
