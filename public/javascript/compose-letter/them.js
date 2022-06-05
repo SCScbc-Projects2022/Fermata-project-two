@@ -1,18 +1,18 @@
 // capture input fields
 document.querySelector('#them-btn').addEventListener('click', () => {
-    let name = document.querySelector('#their-name');
-    let email = document.querySelector('#their-email');
-    if (!name.value || !email.value) {
+    let name = document.querySelector('#their-name').value.trim();
+    let email = document.querySelector('#their-email').value.trim();
+    if (!name || !email) {
         alert('Please enter the recipient name and email');
         return
     }
-    let format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value);
+    const format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
     if (!format) {
         alert('Please enter a valid email');
         return
     }
-    sessionStorage.setItem('recipient_name', name.value.trim());
-    sessionStorage.setItem('recipient_email', email.value.trim());
+    sessionStorage.setItem('recipient_name', name);
+    sessionStorage.setItem('recipient_email', email);
     document.location.replace('/compose/song');
 });
 

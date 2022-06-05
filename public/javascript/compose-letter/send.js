@@ -1,7 +1,7 @@
 // set font
 let letterBody = document.querySelector('#letter-input');
 let text;
-switch(sessionStorage.getItem('font_id').toString()) {
+switch(sessionStorage.getItem('font_id').toString()) { // get request?
     case '1':
         text = "'Caveat', cursive";
         letterBody.style.fontFamily = text;

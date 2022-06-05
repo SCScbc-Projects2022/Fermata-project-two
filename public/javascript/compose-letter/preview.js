@@ -8,7 +8,7 @@ let letterBody = document.querySelector('#letter-preview');
 
 // set font
 letterBody = document.querySelector('#letter-preview');
-switch(sessionStorage.getItem('font_id').toString()) {
+switch(sessionStorage.getItem('font_id').toString()) { //get request?
     case '1':
         text = "'Caveat', cursive";
         letterBody.style.fontFamily = text;
@@ -35,7 +35,7 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
         alert('Your message should be between 0 and 255 characters');
         return
     }
-    let format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(recipientEmail.value);
+    const format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(recipientEmail.value);
     if (!format) {
         alert('Please enter a valid email');
         return
@@ -50,32 +50,25 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
     let spotify_id = sessionStorage.getItem('spotify_id'); // keep this one
     let font_id = sessionStorage.getItem('font_id'); // keep this one
     let letter_body = letterBody.value.trim();
-    let user_id = 2;     // placeholder
-    try {
-        const createLetter = await fetch('../../api/sent', {
-            method: 'POST',
-            body: JSON.stringify({
-                sign_off,
-                recipient_name,
-                recipient_email,
-                spotify_id,
-                font_id,
-                letter_body,
-                user_id
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        if (createLetter.ok) {
-            document.location.replace('/compose/confirm');
-        } else {
-            alert(createLetter.statusText);
+    const createLetter = await fetch('../../api/sent', {
+        method: 'POST',
+        body: JSON.stringify({
+            sign_off,
+            recipient_name,
+            recipient_email,
+            spotify_id,
+            font_id,
+            letter_body,
+        }),
+        headers: {
+            'Content-Type': 'application/json'
         }
+    })
+    if (createLetter.ok) {
+        document.location.replace('/compose/confirm');
+    } else {
+        alert(createLetter.statusText);
     }
-    catch (err) {
-        console.log(err);
-    } 
 });
 
 // save letter
@@ -99,32 +92,25 @@ document.querySelector('#save-btn').addEventListener('click', async () => {
     let spotify_id = sessionStorage.getItem('spotify_id'); // keep this one
     let font_id = sessionStorage.getItem('font_id'); // keep this one
     let letter_body = letterBody.value.trim();
-    let user_id = 2;     // placeholder
-    try {
-        let createDraft = await fetch('../../api/drafts', {
-            method: 'POST',
-            body: JSON.stringify({
-                sign_off,
-                recipient_name,
-                recipient_email,
-                spotify_id,
-                font_id,
-                letter_body,
-                user_id
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        if (createDraft.ok) {
-            // let preview = await createDraft.json(); //I got it to return the data I need :sob:
-            // console.log(preview.response);
-            document.location.replace('/dashboard');
-        } else {
-            alert(createDraft.statusText);
+    let createDraft = await fetch('../../api/drafts', {
+        method: 'POST',
+        body: JSON.stringify({
+            sign_off,
+            recipient_name,
+            recipient_email,
+            spotify_id,
+            font_id,
+            letter_body,
+        }),
+        headers: {
+            'Content-Type': 'application/json'
         }
+    })
+    if (createDraft.ok) {
+        // let preview = await createDraft.json(); //I got it to return the data I need :sob:
+        // console.log(preview.response);
+        document.location.replace('/dashboard');
+    } else {
+        alert(createDraft.statusText);
     }
-    catch (err) {
-        console.log(err);
-    } 
 });

@@ -60,7 +60,7 @@ router.post('/', /* withAuth? */ (req, res) => {
     Draft.create({
         id: req.body.id,
         sign_off: req.body.sign_off,
-        user_id: req.body.user_id, //change to req.session.user_id
+        user_id: req.session.user_id, //change to req.session.user_id
         recipient_name: req.body.recipient_name,
         recipient_email: req.body.recipient_email,
         letter_body: req.body.letter_body,

@@ -72,7 +72,7 @@ router.post('/', async (req, res) => {
 // verify login
 router.post('/login', async (req, res) => {
     try {
-        let findUser = User.findOne({
+        let findUser = await User.findOne({
             where: {
                 email: req.body.email
             }
@@ -82,14 +82,13 @@ router.post('/login', async (req, res) => {
             return;
         }
         // verify user
-        const validPassword = findUser.checkPassword(req.body.password);
-        if (!validPassword) {
+        const validCredentials = findUser.checkPassword(req.body.password);
+        if (!validCredentials) {
             res.status(400).json({message: 'Incorrect password!'});
             return;
         }
         req.session.save(() => {
             req.session.user_id = findUser.id;
-            req.session.username = findUser.username;
             req.session.loggedIn = true;
             res.json({user: findUser, message: 'You are now logged in!'});
         })
