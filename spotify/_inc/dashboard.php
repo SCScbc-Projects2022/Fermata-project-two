@@ -7,16 +7,16 @@ $__cURL = new CurlServer();
 $req_url = `https://api.spotify.com/v1/users/${user_id}/playlists`;
 
 // Start POST request via cURL
-$create_playlist = $cURL->post_request($req_url, $_SESSION['spotify_token']->access_token);
+$__create_playlist = $cURL->post_request($req_url, $_SESSION['spotify_token']->access_token);
 
 // Set URL for request to search Spotify
-$req_url = `https://api.spotify.com/v1/search?query=track:${trackTitle}&type=track&include_external=audio&offset=0&limit=5`;
+$__req_url = `https://api.spotify.com/v1/search?query=track:${trackTitle}&type=track&include_external=audio&offset=0&limit=5`;
 
 // Start GET request via cURL
-$search_track = $cURL->get_request($req_url, $_SESSION['spotify_token']->access_token);
+$__search_track = $cURL->get_request($req_url, $_SESSION['spotify_token']->access_token);
 
 // Set URL for request to add song to playlist
-$req_url = `https://api.spotify.com/v1/playlists/${playlist_id}/tracks?uris=${track_id}`;
+$__req_url = `https://api.spotify.com/v1/playlists/${playlist_id}/tracks?uris=${track_id}`;
 
 // Start POST reqiest via cURL
 $add_track = $cURL->post_request($req_url, $_SESSION['spotify_token']->access_token);
