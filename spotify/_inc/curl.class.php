@@ -4,7 +4,7 @@ class CurlServer
 {
   private $access_token;
 
-  function __construct()
+  function construct()
   {
     $this->access_token = '';
   }
