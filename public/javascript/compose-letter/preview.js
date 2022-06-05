@@ -51,25 +51,30 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
     let font_id = sessionStorage.getItem('font_id'); // keep this one
     let letter_body = letterBody.value.trim();
     let user_id = 2;     // placeholder
-    const createLetter = await fetch('../../api/sent', {
-        method: 'POST',
-        body: JSON.stringify({
-            sign_off,
-            recipient_name,
-            recipient_email,
-            spotify_id,
-            font_id,
-            letter_body,
-            user_id
-        }),
-        headers: {
-            'Content-Type': 'application/json'
+    try {
+        const createLetter = await fetch('../../api/sent', {
+            method: 'POST',
+            body: JSON.stringify({
+                sign_off,
+                recipient_name,
+                recipient_email,
+                spotify_id,
+                font_id,
+                letter_body,
+                user_id
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if (createLetter.ok) {
+            document.location.replace('/compose/confirm');
+        } else {
+            alert(createLetter.statusText);
         }
-    })
-    if (createLetter.ok) {
-        document.location.replace('/compose/confirm');
-    } else {
-        alert(createLetter.statusText);
+    }
+    catch (err) {
+        console.log(err);
     } 
 });
 
@@ -95,26 +100,31 @@ document.querySelector('#save-btn').addEventListener('click', async () => {
     let font_id = sessionStorage.getItem('font_id'); // keep this one
     let letter_body = letterBody.value.trim();
     let user_id = 2;     // placeholder
-    let createDraft = await fetch('../../api/drafts', {
-        method: 'POST',
-        body: JSON.stringify({
-            sign_off,
-            recipient_name,
-            recipient_email,
-            spotify_id,
-            font_id,
-            letter_body,
-            user_id
-        }),
-        headers: {
-            'Content-Type': 'application/json'
+    try {
+        let createDraft = await fetch('../../api/drafts', {
+            method: 'POST',
+            body: JSON.stringify({
+                sign_off,
+                recipient_name,
+                recipient_email,
+                spotify_id,
+                font_id,
+                letter_body,
+                user_id
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if (createDraft.ok) {
+            // let preview = await createDraft.json(); //I got it to return the data I need :sob:
+            // console.log(preview.response);
+            document.location.replace('/dashboard');
+        } else {
+            alert(createDraft.statusText);
         }
-    })
-    if (createDraft.ok) {
-        let preview = await createDraft.json();
-        console.log(preview.response);
-        document.location.replace('/dashboard');
-    } else {
-        alert(createDraft.statusText);
+    }
+    catch (err) {
+        console.log(err);
     } 
 });

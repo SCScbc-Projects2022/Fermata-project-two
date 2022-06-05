@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
         let existingUser = await User.findOne({
             attributes: {exclude: ['password']},
             where: {
-                email: req.body.email
+                email: req.body.email.toString()
             }
         })
         if (!existingUser) {
@@ -69,56 +69,34 @@ router.post('/', async (req, res) => {
     }
 });
 
-// /// paste logic here
-
-// // POST /api/users
-// router.post('/', (req, res) => {
-//     // expects {username: '', email: '', password: ''}
-//     User.create({
-//         username: req.body.username,
-//         email: req.body.email,
-//         password: req.body.password
-//     })
-//     .then(dbUserData => {
-//         req.session.save(() => {
-//             req.session.user_id = dbUserData.id;
-//             req.session.username = dbUserData.username;
-//             req.session.loggedIn = true;
-//             res.json(dbUserData);
-//         })
-//     })
-//     .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err);
-//     });
-// });
-
-// verfiies login
-router.post('/login', (req, res) => {
-    // expects {email: '', password: ''}
-    User.findOne({
-        where: {
-            email: req.body.email
-        }
-    }).then(dbUserData => {
-        if (!dbUserData) {
+// verify login
+router.post('/login', async (req, res) => {
+    try {
+        let findUser = User.findOne({
+            where: {
+                email: req.body.email
+            }
+        })
+        if (!findUser) {
             res.status(400).json({message: 'No user with that email address!'});
             return;
         }
         // verify user
-        const validPassword = dbUserData.checkPassword(req.body.password);
+        const validPassword = findUser.checkPassword(req.body.password);
         if (!validPassword) {
             res.status(400).json({message: 'Incorrect password!'});
             return;
         }
         req.session.save(() => {
-            // declare session variables
-            req.session.user_id = dbUserData.id;
-            req.session.username = dbUserData.username;
+            req.session.user_id = findUser.id;
+            req.session.username = findUser.username;
             req.session.loggedIn = true;
-            res.json({user: dbUserData, message: 'You are now logged in!'});
+            res.json({user: findUser, message: 'You are now logged in!'});
         })
-    })
+    }
+    catch (err) {
+        console.log(err);
+    }
 });
 
 // logout
@@ -131,8 +109,6 @@ router.post('/logout', (req,res) =>{
         res.status(404).end();
     }
 });
-
-/// endd pasted logic
 
 // update user info
 router.put('/:id', (req, res) => {

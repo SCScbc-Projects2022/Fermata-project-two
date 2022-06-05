@@ -70,7 +70,9 @@ router.post('/', /* withAuth? */ (req, res) => {
     .then(dbDraftData => {
         // res.append('previewURL', dbDraftData.dataValues.id).json();
         // I'm gonna give up on this even though I got it to set headers. :( - V
-        res.json({'response': dbDraftData.dataValues.id});
+        // I GOT IT TO WORK USING JSON HELL YEAH - but I have no time to refactor :(
+        // res.json({'response': dbDraftData.dataValues.id});
+        res.json(dbDraftData);
     })
     .catch(err => {
         console.log(err);
