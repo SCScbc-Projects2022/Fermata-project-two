@@ -82,6 +82,8 @@ router.post('/login', async (req, res) => {
             return;
         }
         // verify user
+        console.log(findUser);
+        console.log(req.body.password);
         const validCredentials = findUser.checkPassword(req.body.password);
         if (!validCredentials) {
             res.status(400).json({message: 'Incorrect password!'});

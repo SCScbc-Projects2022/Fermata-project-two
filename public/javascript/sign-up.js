@@ -2,7 +2,7 @@
 document.querySelector('#signup-btn').addEventListener('click', async () => {
     const username = document.querySelector('#signupname-input').value.trim();
     const email = document.querySelector('#signupemail-input').value.trim();
-    const password = document.querySelector('#password-input').value.trim();
+    const password = document.querySelector('#password-input').value.trim().toString();
     const format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
     if (!username || !email|| !password) {
         alert('Please complete all fields');
