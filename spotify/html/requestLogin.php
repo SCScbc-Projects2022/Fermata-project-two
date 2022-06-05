@@ -14,9 +14,12 @@ $url = $__base_url . '/api/token';
 $submit_post_fields = 'grant_type=authorization_code&code=' . $_GET['code'];
 $submit_post_fields .= "&redirect_uri=$__redirect_uri";
 
-// Application access token needs to be Base64 encoded
-// Content of token will be 'Client ID:Client Secret'
+// Content of token will be 'client_id:client_secret'
 $access_token = "Basic_" .base64_encode("$__app_client_id:$__app_secret");
 
 // Start cURL Post reqiest to obtain user token
 $used_token_data = $__cURL->post_request($url, $submit_post_fields, $access_token);
+
+// Store access token in Session
+$_SESSION['spotify_token'] = $used_token_data;
+header("Location: $__app_url");
