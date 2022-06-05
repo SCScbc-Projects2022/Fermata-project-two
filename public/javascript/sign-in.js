@@ -14,7 +14,7 @@ document.querySelector('#signin-btn').addEventListener('click', async () => {
         headers: {'Content-Type': 'application/json'}
     });
     if (signIn.ok) {
-        console.log('success');
+        document.location.replace('/dashboard');
     } else {
         alert(signIn.statusText);
     }

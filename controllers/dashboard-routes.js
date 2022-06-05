@@ -1,13 +1,18 @@
 const router = require('express').Router();
 const {Draft, Sent, Font, User} = require('../models');
+const authenticate = require('../utils/auth');
 
-router.get('/', async (req, res) => {
+router.get('/', authenticate, async (req, res) => {
 // this is going to render partials to make a list for the dashboard
     try {
         let draftData = await Draft.findAll({
-            // where: {
-            //     user_id: req.session.user_id
-            // },
+            where: {
+                user_id: req.session.user_id
+            },
+            attributes: ['id', 'sign_off', 'user_id', 'recipient_name', 'recipient_email', 'letter_body', 'spotify_id', 'font_id', 'updatedAt'],
+            order: [
+                ['updatedAt', 'DESC']
+            ],
             include: [
                 {
                     model: Font,
@@ -20,9 +25,13 @@ router.get('/', async (req, res) => {
             ]
         });
         let sentData = await Sent.findAll({
-            // where: {
-            //     user_id: req.session.user_id
-            // },
+            where: {
+                user_id: req.session.user_id
+            },
+            attributes: ['id', 'sign_off', 'user_id', 'recipient_name', 'recipient_email', 'letter_body', 'spotify_id', 'font_id', 'createdAt'],
+            order: [
+                ['updatedAt', 'DESC']
+            ],
             include: [
                 {
                     model: Font,
@@ -34,8 +43,9 @@ router.get('/', async (req, res) => {
                 }
             ]
         });
-        let draftLetter = draftData.map(draft => draft.get({plain: true}));
-        let sentLetter = sentData.map(sent => sent.get({plain: true}));
+        const draftLetter = draftData.map(draft => draft.get({plain: true}));
+        const sentLetter = sentData.map(sent => sent.get({plain: true}));
+        console.log(draftLetter)
         res.render('dashboard', {draftLetter, sentLetter, loggedIn: true});
     }
     catch (err) {

@@ -27,7 +27,7 @@
 
   <body>
     <header>
-      <nav class="navbar navbar-light bg-light">
+      <nav class="navbar navbar-light bg-light d-flex justify-content-between">
         <a class="navbar-brand" href="/dashboard">
           <img
             src="/img/Fermata-logos_transparent.png"
@@ -35,11 +35,19 @@
             height="100"
             alt="Fermata logo"/>
         </a>
-        <h4 class="me-3">song. style. send.</h4>
+        <div>
+        {{#if loggedIn}}
+        <p class="d-inline mx-5" id="logout-btn">Logout</p>
+        {{/if}}
+        <h4 class="me-3 d-inline">song. style. send.</h4>
+        </div>
       </nav>
     </header>
     <main class="px-5">
       {{{ body }}}
     </main>
+    {{#if loggedIn}}
+    <script src="/javascript/main.js"></script>
+    {{/if}}
   </body>
 </html>

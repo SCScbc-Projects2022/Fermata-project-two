@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const {Draft, Font, User} = require('../models');
+const authenticate = require('../utils/auth');
 
 // add a route to get one draft and render a draft page
-router.get('/:id', (req, res) => {
+router.get('/:id', authenticate, (req, res) => {
     Draft.findOne({
         where: {
             id: req.session.id
