@@ -74,8 +74,59 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
         }
     })
     if (createLetter.ok) {
-        // document.location.replace('/compose/preview/');
+        document.location.replace('/compose/confirm');
     } else {
         alert(createLetter.statusText);
+    } 
+});
+
+// save letter
+document.querySelector('#save-btn').addEventListener('click', async () => {
+    if (letterBody.value.length > 255 || letterBody.value.length === 0) { // eventually add character counter on textarea
+        alert('Your message should be between 0 and 255 characters');
+        return
+    }
+    let format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(recipientEmail.value);
+    if (!format) {
+        alert('Please enter a valid email');
+        return
+    }
+    if (!recipientName.value || !recipientEmail.value) {
+        alert('Please enter valid recipient and sender names')
+    }
+    // let id = uniqid(); npm packages are backend only add to API POST requests
+    let sign_off = signOff.value;
+    let recipient_name = recipientName.value;
+    let recipient_email = recipientEmail.value;
+    let spotify_id = sessionStorage.getItem('spotify_id'); // keep this one
+    let font_id = sessionStorage.getItem('font_id'); // keep this one
+    let letter_body = letterBody.value.trim();
+    let user_id = 2;     // placeholder
+    console.log(sign_off);
+    console.log(recipient_name);
+    console.log(recipient_email);
+    console.log(spotify_id);
+    console.log(font_id);
+    console.log(letter_body);
+    console.log(user_id);
+    const createDraft = await fetch('../../api/drafts', {
+        method: 'POST',
+        body: JSON.stringify({
+            sign_off,
+            recipient_name,
+            recipient_email,
+            spotify_id,
+            font_id,
+            letter_body,
+            user_id
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    if (createDraft.ok) {
+        document.location.replace('/dashboard');
+    } else {
+        alert(createDraft.statusText);
     } 
 });

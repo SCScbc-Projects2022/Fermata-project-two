@@ -58,9 +58,9 @@ router.post('/', /* withAuth? */ (req, res) => {
     req.body.id = uniqid();
     Sent.create({
         id: req.body.id,
-        user_id: req.body.id, // change to req.session.user_id
+        user_id: req.body.user_id, // change to req.session.user_id
         sign_off: req.body.sign_off,
-        recipient_name: req.body.recipient.name,
+        recipient_name: req.body.recipient_name,
         recipient_email: req.body.recipient_email,
         letter_body: req.body.letter_body,
         spotify_id: req.body.spotify_id,
