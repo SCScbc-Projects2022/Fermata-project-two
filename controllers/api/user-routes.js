@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
         let existingUser = await User.findOne({
             attributes: {exclude: ['password']},
             where: {
-                email: req.body.email.toString()
+                email: req.body.email
             }
         })
         if (!existingUser) {

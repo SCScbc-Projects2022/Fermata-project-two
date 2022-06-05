@@ -15,11 +15,15 @@ document.querySelector('#signup-btn').addEventListener('click', async () => {
     let format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(signupEmail.value);
     if (!signupName.value || !signupEmail.value || !signupPassword.value) {
         alert('Please complete all fields');
-        return
+        return;
     }
     if (!format) {
         alert('Please enter a valid email');
-        return
+        return;
+    }
+    if (signupPassword.value.length < 6) {
+        alert('Password must be at least 6 characters');
+        return;
     }
     let username = signupName.value;
     let email = signupEmail.value;

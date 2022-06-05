@@ -16,7 +16,18 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 //
 
+const sess = {
+    secret: 'the sun, the moon, and the stars grim reaping',
+    cookie: {},
+    resave: false,
+    saveUninitialized: true,
+    store: new SequelizeStore({
+        db: sequelize
+    })
+}
+
 app.use(express.json());
+app.use(session(sess));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
