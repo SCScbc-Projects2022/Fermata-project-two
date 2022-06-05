@@ -97,3 +97,11 @@ table {
 #logout-btn:hover {
     color: blue;
 }
+
+.draft:hover {
+    color: blue;
+}
+
+.history:hover {
+    color: blue;
+}

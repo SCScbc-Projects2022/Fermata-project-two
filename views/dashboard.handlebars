@@ -17,23 +17,29 @@
   <div class="container-fluid d-flex ms-2 mt-5">
     <h4>Drafts:</h4>
   </div>
-  <div class="container-fluid ms-2 d-flex drafts">
-    {{> draft-info draft-info = draft}}
   {{#if draftLetter.length}}
   <div class="container-fluid ms-2 d-flex">
     <ul>
     {{#each draftLetter as |draft|}}
     <li>
       <a href="/sent/{{draft.id}}">
-        <p class="draft d-inline" id="draft-item" style="fontFamily:'{{draft.font.style_tag}}'"> {{!-- fix this font family--}}
+        <p class="draft d-inline" id="draft-item" style="font-family:{{draft.font.style_tag}}"> {{!--maybe get rid of this?--}}
           {{draft.updatedAt}} - To {{draft.recipient_name}}
         </p>
       </a>
-      <p id="delete-btn" class="d-inline small-text mx-2">
+      <p class="d-inline small-text mx-2 delete-btn" data="{{draft.id}}">
         delete
       </p>
     </li>
     {{/each}}
+    </ul>
+  </div>
+  {{else}}
+  <div>
+    <ul>
+      <li>
+        You can find the letters you saved for later here!
+      </li>
     </ul>
   </div>
   {{/if}}
@@ -43,12 +49,11 @@
   </div>
   {{#if sentLetter.length}}
   <div class="container-fluid ms-2 d-flex">
-    {{> history-info = history-info = sent}}
     <ul>
     {{#each sentLetter as |sent|}}
     <li>
       <a href="/sent/{{sent.id}}">
-        <p class="history" id="history-item">
+        <p class="history" id="history-item" style="font-family:{{draft.font.style_tag}}">{{!-- maybe get rid of this lol --}}
           {{sent.createdAt}} - To {{sent.recipient_name}}
         </p>
       </a>
@@ -56,10 +61,14 @@
     {{/each}}
     </ul>
   </div>
+  {{else}}
+  <div>
+    <ul>
+      <li>
+        You can find the letters you've sent here!
+      </li>
+    </ul>
+  </div>
   {{/if}}
 </section>
 <script src="/javascript/dashboard.js"></script>
-
-        {{!-- const draftLetter = draftData.map(draft => draft.get({plain: true}));
-        const sentLetter = sentData.map(sent => sent.get({plain: true}));
-        res.render('dashboard', {draftLetter, sentLetter, loggedIn: true}); --}}
