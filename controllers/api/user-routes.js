@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
+const authenticate = require('../../utils/auth');
 
 // get all users
 router.get('/', (req, res) => {
@@ -62,7 +63,6 @@ router.post('/', async (req, res) => {
             return;
         }
     }
-
     catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -82,9 +82,7 @@ router.post('/login', async (req, res) => {
             return;
         }
         // verify user
-        console.log(findUser);
-        console.log(req.body.password);
-        const validCredentials = findUser.checkPassword(req.body.password);
+        const validCredentials = findUser.authenticate(req.body.password);
         if (!validCredentials) {
             res.status(400).json({message: 'Incorrect password!'});
             return;
@@ -97,6 +95,7 @@ router.post('/login', async (req, res) => {
     }
     catch (err) {
         console.log(err);
+        res.status(500).json(err);
     }
 });
 
@@ -112,7 +111,7 @@ router.post('/logout', (req,res) =>{
 });
 
 // update user info
-router.put('/:id', (req, res) => {
+router.put('/:id', authenticate, (req, res) => {
     User.update(req.body, {
         individualHooks: true,
         where: {
@@ -133,7 +132,7 @@ router.put('/:id', (req, res) => {
 });
 
 // delete user
-router.delete('/:id', (req, res) => {
+router.delete('/:id', authenticate, (req, res) => {
     User.destroy({
         where: {
             id: req.params.id

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Draft, Font, User } = require('../../models');
 const uniqid = require('uniqid');
-// will also need withAuth once login is added?
+const authenticate = require('../../utils/auth');
 
 // get all drafts
 router.get('/', (req, res) => {
@@ -55,7 +55,7 @@ router.get('/:id', (req, res) => {
 });
 
 // create draft - missing auth
-router.post('/', /* withAuth? */ (req, res) => {
+router.post('/', authenticate, (req, res) => {
     req.body.id = uniqid();
     Draft.create({
         id: req.body.id,
@@ -80,8 +80,8 @@ router.post('/', /* withAuth? */ (req, res) => {
     });
 });
 
-// update draft - WILL PROBABLY NEED AUTH AS WELL
-router.put('/:id', /* withAuth? */ (req, res) => {
+// update draft
+router.put('/:id', authenticate, (req, res) => {
     Draft.update(
         {
             sign_off: req.body.sign_off,
@@ -108,8 +108,8 @@ router.put('/:id', /* withAuth? */ (req, res) => {
     });
 });
 
-// delete draft - withAuth as well
-router.delete('/:id', /* withAuth? */ (req, res) => {
+// delete draft
+router.delete('/:id', authenticate, (req, res) => {
     console.log('id', req.params.id);
     Draft.destroy({
         where: {

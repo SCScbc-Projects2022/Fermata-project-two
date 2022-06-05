@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { Sent, Font, User } = require('../../models');
 const uniqid = require('uniqid');
+const authenticate = require('../../utils/auth');
 
 // get all Sent emails
 router.get('/', (req, res) => {
@@ -53,8 +54,8 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// create Sent - missing auth
-router.post('/', /* withAuth? */ (req, res) => {
+// create Sent
+router.post('/', authenticate, (req, res) => {
     req.body.id = uniqid();
     Sent.create({
         id: req.body.id,
@@ -73,8 +74,8 @@ router.post('/', /* withAuth? */ (req, res) => {
     });
 });
 
-// update Sent - WILL PROBABLY NEED AUTH AS WELL
-router.put('/:id', /* withAuth? */ (req, res) => {
+// update Sent
+router.put('/:id', authenticate, (req, res) => {
     Sent.update(
         {
             sign_off: req.body.sign_off,
@@ -101,8 +102,8 @@ router.put('/:id', /* withAuth? */ (req, res) => {
     });
 });
 
-// delete Sent - withAuth as well
-router.delete('/:id', /* withAuth? */ (req, res) => {
+// delete Sent
+router.delete('/:id', authenticate, (req, res) => {
     console.log('id', req.params.id);
     Sent.destroy({
         where: {

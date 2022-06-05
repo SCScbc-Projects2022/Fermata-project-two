@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const {Draft, Sent, Font, User} = require('../models');
+const authenticate = require('../utils/auth');
 
-router.get('/', async (req, res) => {
+router.get('/', authenticate, async (req, res) => {
 // this is going to render partials to make a list for the dashboard
     try {
         let draftData = await Draft.findAll({

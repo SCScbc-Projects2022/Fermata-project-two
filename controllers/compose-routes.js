@@ -1,27 +1,28 @@
 const router = require('express').Router();
+const authenticate = require('../utils/auth');
 
 // routes for letter composition
-router.get('/you', (req, res) => {
+router.get('/you', authenticate, (req, res) => {
     res.render('you');
 });
 
-router.get('/them', (req, res) => {
+router.get('/them', authenticate, (req, res) => {
     res.render('them');
 });
 
-router.get('/song', (req, res) => {
+router.get('/song', authenticate, (req, res) => {
     res.render('song');
 });
 
-router.get('/style', (req, res) => {
+router.get('/style', authenticate, (req, res) => {
     res.render('style');
 });
 
-router.get('/send', (req, res) => {
+router.get('/send', authenticate, (req, res) => {
     res.render('send');
 });
 
-router.get('/preview', (req, res) => {
+router.get('/preview', authenticate, (req, res) => {
     res.render('preview');
 });
 
