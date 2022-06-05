@@ -2,7 +2,7 @@
 // Include page header
 include '_inc/html/header.php';
 ?>
-<div class="container" id="home_container">
+<div class="container" id="home-container">
   <p><img src="images/logo.png" alt="fermata logo"></p>
   <p><button onclick="userLoginRequest();">Login</button><p>
 </div>
