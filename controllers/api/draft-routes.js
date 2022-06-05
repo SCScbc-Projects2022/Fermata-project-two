@@ -42,7 +42,7 @@ router.get('/:id', (req, res) => {
         ]
     })
     .then(dbDraftData => {
-        if(!dbDraftData) {
+        if (!dbDraftData) {
             res.status(404).json({message: 'No draft found with that ID'});
             return;
         }
@@ -70,7 +70,7 @@ router.post('/', /* withAuth? */ (req, res) => {
     .then(dbDraftData => {
         // res.append('previewURL', dbDraftData.dataValues.id).json();
         // I'm gonna give up on this even though I got it to set headers. :( - V
-        res.json(dbDraftData);
+        res.json({'response': dbDraftData.dataValues.id});
     })
     .catch(err => {
         console.log(err);

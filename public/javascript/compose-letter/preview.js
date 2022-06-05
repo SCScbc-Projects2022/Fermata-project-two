@@ -51,13 +51,6 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
     let font_id = sessionStorage.getItem('font_id'); // keep this one
     let letter_body = letterBody.value.trim();
     let user_id = 2;     // placeholder
-    console.log(sign_off);
-    console.log(recipient_name);
-    console.log(recipient_email);
-    console.log(spotify_id);
-    console.log(font_id);
-    console.log(letter_body);
-    console.log(user_id);
     const createLetter = await fetch('../../api/sent', {
         method: 'POST',
         body: JSON.stringify({
@@ -102,14 +95,7 @@ document.querySelector('#save-btn').addEventListener('click', async () => {
     let font_id = sessionStorage.getItem('font_id'); // keep this one
     let letter_body = letterBody.value.trim();
     let user_id = 2;     // placeholder
-    console.log(sign_off);
-    console.log(recipient_name);
-    console.log(recipient_email);
-    console.log(spotify_id);
-    console.log(font_id);
-    console.log(letter_body);
-    console.log(user_id);
-    const createDraft = await fetch('../../api/drafts', {
+    let createDraft = await fetch('../../api/drafts', {
         method: 'POST',
         body: JSON.stringify({
             sign_off,
@@ -125,6 +111,8 @@ document.querySelector('#save-btn').addEventListener('click', async () => {
         }
     })
     if (createDraft.ok) {
+        let preview = await createDraft.json();
+        console.log(preview.response);
         document.location.replace('/dashboard');
     } else {
         alert(createDraft.statusText);
