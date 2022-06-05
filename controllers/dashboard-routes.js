@@ -45,7 +45,6 @@ router.get('/', authenticate, async (req, res) => {
         });
         const draftLetter = draftData.map(draft => draft.get({plain: true}));
         const sentLetter = sentData.map(sent => sent.get({plain: true}));
-        console.log(draftLetter)
         res.render('dashboard', {draftLetter, sentLetter, loggedIn: true});
     }
     catch (err) {

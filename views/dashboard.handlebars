@@ -22,7 +22,7 @@
     <ul>
     {{#each draftLetter as |draft|}}
     <li>
-      <a href="/sent/{{draft.id}}">
+      <a href="/drafts/{{draft.id}}">
         <p class="draft d-inline" id="draft-item" style="font-family:{{draft.font.style_tag}}"> {{!--maybe get rid of this?--}}
           {{draft.updatedAt}} - To {{draft.recipient_name}}
         </p>
