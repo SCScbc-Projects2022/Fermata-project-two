@@ -26,40 +26,6 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
         alert('Your message should be less than 255 characters');
         return
     }
-    // let id = uniqid(); npm packages are backend only add to API POST requests
-    let sign_off = sessionStorage.getItem('sign_off');
-    let recipient_name = sessionStorage.getItem('recipient_name');
-    let recipient_email = sessionStorage.getItem('recipient_email');
-    let spotify_id = sessionStorage.getItem('spotify_id');
-    let font_id = sessionStorage.getItem('font_id');
-    let letter_body = letterBody.value.trim();
-    let user_id = 2;     // placeholder
-    console.log(sign_off);
-    console.log(recipient_name);
-    console.log(recipient_email);
-    console.log(spotify_id);
-    console.log(font_id);
-    console.log(letter_body);
-    console.log(user_id);
-    const createLetter = await fetch('../api/drafts', {
-        method: 'POST',
-        body: JSON.stringify({
-            sign_off,
-            recipient_name,
-            recipient_email,
-            spotify_id,
-            font_id,
-            letter_body,
-            user_id
-        }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-    if (createLetter.ok) {
-        console.log(createLetter)
-        // document.location.replace(`/draft/${createLetter.body.id}`);
-    } else {
-        alert(createLetter.statusText);
-    } 
+    sessionStorage.setItem('letter_body', letterBody.value.trim());
+    document.location.replace('/compose/preview/');
 });

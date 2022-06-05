@@ -21,6 +21,10 @@ router.get('/send', (req, res) => {
     res.render('send');
 });
 
+router.get('/preview', (req, res) => {
+    res.render('preview');
+});
+
 router.get('/confirm', (req, res) => {
     res.render('confirm');
 });

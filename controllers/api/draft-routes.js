@@ -68,9 +68,9 @@ router.post('/', /* withAuth? */ (req, res) => {
         font_id: req.body.font_id,
     })
     .then(dbDraftData => {
-        // dbDraftData.previewURL = dbDraftData.dataValues.id;
-        console.log(res.json(dbDraftData));
-        // res.json({response: dbDraftData, location: dbDraftData.dataValues.id});
+        // res.append('previewURL', dbDraftData.dataValues.id).json();
+        // I'm gonna give up on this even though I got it to set headers. :( - V
+        res.json(dbDraftData);
     })
     .catch(err => {
         console.log(err);

@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Sent, Font, User } = require('../../models');
+const uniqid = require('uniqid');
 
 // get all Sent emails
 router.get('/', (req, res) => {
@@ -56,12 +57,14 @@ router.get('/:id', (req, res) => {
 router.post('/', /* withAuth? */ (req, res) => {
     req.body.id = uniqid();
     Sent.create({
+        id: req.body.id,
+        user_id: req.body.id, // change to req.session.user_id
         sign_off: req.body.sign_off,
+        recipient_name: req.body.recipient.name,
         recipient_email: req.body.recipient_email,
         letter_body: req.body.letter_body,
         spotify_id: req.body.spotify_id,
         font_id: req.body.font_id
-        // user_id: req.session.user_id
     })
     .then(dbSentData => res.json(dbSentData))
     .catch(err => {
