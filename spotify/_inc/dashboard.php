@@ -21,15 +21,10 @@ $search_track = $cURL->get_request($req_url, $_SESSION['spotify_token']->access_
 // Start POST reqiest via cURL
 // $add_track = $cURL->post_request($req_url, $_SESSION['spotify_token']->access_token);
 
-// Include page body
-include 'html/body.php';
+// Include page header
+include '_inc/html/header.php';
 ?>
 <body>
-  <script src="https://sdk.scdn.co/spotify-player.js"></script>
-  <script>
-    const token = '<?php echo $_SESSION['spotify_token']->access_token; ?>';
-  </script>
-  <script src="scripts/web_playback.js"></script>
   <div class="container" id="dashboard-container">
     <p>
       <img src="images/logo.png" class="dashboard-fermata-logo" alt="fermata logo">

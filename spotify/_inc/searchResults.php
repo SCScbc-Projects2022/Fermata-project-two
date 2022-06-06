@@ -15,8 +15,15 @@ $req_url = `https://api.spotify.com/v1/playlists/${playlist_id}/tracks?uris=${tr
 // Start POST reqiest via cURL
 $add_track = $cURL->post_request($req_url, $_SESSION['spotify_token']->access_token);
 
-// page header
+// Set URL for request to search Spotify
+$req_url = `https://api.spotify.com/v1/search?query=track:${trackTitle}&type=track&include_external=audio&offset=0&limit=5`;
+
+// Start GET request via cURL
+$search_track = $cURL->get_request($req_url, $_SESSION['spotify_token']->access_token);
+
+// include page header
 include '_inc/html/header.php';
+
 ?>
 <header>
   <script src="https://sdk.scdn.co/spotify-player.js"></script>

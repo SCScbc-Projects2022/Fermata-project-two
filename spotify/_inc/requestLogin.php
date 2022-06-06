@@ -1,6 +1,6 @@
 <?php
 
-// Include required files
+// Required files
 require '_inc/_private/global.php';
 require '_inc/curl.class.php';
 
