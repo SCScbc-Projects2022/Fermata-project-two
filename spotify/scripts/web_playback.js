@@ -18,7 +18,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
           method: "PUT",
           body: JSON.stringify({
             device_ids: [device_id],
-            play: true,
+            play: false,
           }),
           headers: new Headers({
             Authorization: "Bearer " + token,

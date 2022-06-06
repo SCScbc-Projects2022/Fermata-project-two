@@ -1,4 +1,9 @@
 <?php
+
+// Redirect URI
+const redirect_uri = 'https://oauth.pstmn.io/v1/browser-callback'
+
+
 // Include page header
 include '_inc/html/header.php';
 ?>
