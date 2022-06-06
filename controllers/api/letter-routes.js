@@ -82,6 +82,7 @@ router.put('/:id', authenticate, (req, res) => {
     Letter.update(
         {
             sign_off: req.body.sign_off,
+            recipient_name: req.body.recipient_name,
             recipient_email: req.body.recipient_email,
             letter_body: req.body.letter_body,
             font_id: req.body.font_id,

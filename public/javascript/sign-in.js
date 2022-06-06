@@ -5,6 +5,11 @@ document.querySelector('#signin-btn').addEventListener('click', async () => {
         alert('Please enter your email and password');
         return;
     }
+    let format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+    if (!format) {
+        alert('Please enter a valid email');
+        return
+    }
     const signIn = await fetch('/api/users/login', {
         method: 'post',
         body: JSON.stringify({

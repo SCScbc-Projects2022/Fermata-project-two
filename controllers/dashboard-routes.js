@@ -30,7 +30,7 @@ router.get('/', authenticate, async (req, res) => {
                 user_id: req.session.user_id,
                 readonly: true
             },
-            attributes: ['id', 'sign_off', 'user_id', 'recipient_name', 'recipient_email', 'letter_body', 'spotify_id', 'font_id', 'createdAt'],
+            attributes: ['id', 'sign_off', 'user_id', 'recipient_name', 'recipient_email', 'letter_body', 'spotify_id', 'font_id', 'updatedAt'],
             order: [
                 ['updatedAt', 'DESC']
             ],

@@ -2,10 +2,16 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-2 mt-3">
-        <input id="their-name" class="border-0 preview-fields" value={{letter.recipient_name}}></input>
-        <input id="their-email" class="border-0" value={{letter.recipient_email}}></input>
-        <input id="sign-off" class="border-0" value={{letter.sign_off}}></input>
-        <p class="small-text">Last updated: {{letter.updatedAt}}</p>
+        <p class="small-text">Sending to:</p>
+        <input id="their-name" class="border-0 preview-fields" value={{letter.recipient_name}} placeholder="Their name"></input>
+        <input id="their-email" class="border-0" value={{letter.recipient_email}} placeholder="Their email"></input>
+        <br/>
+        <br/>
+        <p class="small-text">As:</p>
+        <input id="sign-off" class="border-0" value={{letter.sign_off}} placeholder="Your name"></input>
+        <br/>
+        <br/>
+        <p class="small-text">Last updated: {{format_date letter.updatedAt}}</p>
         <p class="small-text">click to edit</p>
       </div>
     </div>    
@@ -14,7 +20,7 @@
     </div>
 
     <div class="container-fluid d-flex mt-5 justify-content-around align-items-center">
-      <textarea name="" id="letter-preview" style={{letter.font.style_tag}} class="w-50 vh-75 align-text-top"> 
+      <textarea id="letter-preview" style={{letter.font.style_tag}} class="w-50 vh-75 align-text-top" placeholder="Enter your message here"> 
       {{letter.letter_body}}
       </textarea>
     </div>

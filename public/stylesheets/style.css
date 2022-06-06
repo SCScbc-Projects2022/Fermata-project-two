@@ -93,15 +93,7 @@ table {
     font-size: 1.2rem;
 }
 
-#logout-btn:hover {
-    color: blue;
-}
-
-.draft:hover {
-    color: blue;
-}
-
-.history:hover {
+.draft:hover, .history:hover, .delete-btn:hover, #logout-btn:hover {
     color: blue;
 }
 

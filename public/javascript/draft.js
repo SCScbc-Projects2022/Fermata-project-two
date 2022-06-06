@@ -29,7 +29,7 @@ document.querySelector('#save-btn').addEventListener('click', async () => {
     }
     let format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(recipientEmail.value);
     if (!format) {
-        alert('Please enter a valid email');
+        alert('Please enter a valid recipient email');
         return
     }
     if (!recipientName.value || !recipientEmail.value) {
@@ -75,7 +75,7 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
     }
     let format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(recipientEmail.value);
     if (!format) {
-        alert('Please enter a valid email');
+        alert('Please enter a valid recipient email');
         return
     }
     if (!recipientName.value || !recipientEmail.value) {
@@ -107,7 +107,7 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
     })
     if (sendLetter.ok) {
         var email = document.createElement("a");
-        email.href = `mailto:${recipient_email}?subject=\u{1F4C3} Your Fermata Has Arrived \u{1F3B5}&body=Hey ${recipient_name}, %0D%0A %0D%0A${sign_off} just sent you a Fermata - a personal letter with a song chosen just for you! %0D%0AExperience it here: http://localhost:3001/drafts/${id}%0D%0A %0D%0AWith \u{1F498}, %0D%0AThe Fermata Team %0D%0A %0D%0A `;
+        email.href = `mailto:${recipient_email}?subject=\u{1F4C3} Your Fermata Has Arrived \u{1F3B5}&body=Hey ${recipient_name}, %0D%0A %0D%0A${sign_off} just sent you a Fermata - a personal letter with a song chosen just for you! %0D%0AExperience it here: http://localhost:3001/letter/${id}%0D%0A %0D%0AWith \u{1F498}, %0D%0AThe Fermata Team %0D%0A %0D%0A `;
         email.click();
         document.location.replace('/compose/confirm');
     } else {

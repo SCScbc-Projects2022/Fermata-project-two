@@ -17,58 +17,64 @@
   <div class="container-fluid d-flex ms-2 mt-5">
     <h4>Drafts:</h4>
   </div>
-  {{#if draftLetter.length}}
-  <div class="container-fluid ms-2 d-flex">
-    <ul>
-    {{#each draftLetter as |draft|}}
-    <li>
-      <a href="/drafts/{{draft.id}}">
-        <p class="draft d-inline" id="draft-item" style="font-family:{{draft.font.style_tag}}"> {{!--maybe get rid of this?--}}
-          {{draft.updatedAt}} - To {{draft.recipient_name}}
-        </p>
-      </a>
-      <p class="d-inline small-text mx-2 delete-btn" data="{{draft.id}}">
-        delete
-      </p>
-    </li>
-    {{/each}}
-    </ul>
-  </div>
-  {{else}}
-  <div>
-    <ul>
+  <div id="list-drafts">
+      {{#if draftLetter.length}}
+    <div class="container-fluid ms-2 d-flex">
+      <ul>
+      {{#each draftLetter as |draft|}}
       <li>
-        You can find the letters you saved for later here!
+        <p class="d-inline small-text mx-2 delete-btn" data="{{draft.id}}">
+          delete
+        </p>
+        <a href="/letter/{{draft.id}}">
+          <p class="draft d-inline" id="draft-item">
+            {{format_date draft.updatedAt}} - to - {{draft.recipient_name}}
+          </p>
+        </a>
       </li>
-    </ul>
+      {{/each}}
+      </ul>
+    </div>
+    {{else}}
+    <div>
+      <ul>
+        <li>
+          You can find the letters you saved for later here!
+        </li>
+      </ul>
+    </div>
+    {{/if}}
   </div>
-  {{/if}}
 
   <div class="container-fluid d-flex ms-2 mt-5">
     <h4>History:</h4>
   </div>
-  {{#if sentLetter.length}}
-  <div class="container-fluid ms-2 d-flex">
-    <ul>
-    {{#each sentLetter as |sent|}}
-    <li>
-      <a href="/sent/{{sent.id}}">
-        <p class="history" id="history-item" style="font-family:{{draft.font.style_tag}}">{{!-- maybe get rid of this lol --}}
-          {{sent.createdAt}} - To {{sent.recipient_name}}
-        </p>
-      </a>
-    </li>
-    {{/each}}
-    </ul>
-  </div>
-  {{else}}
-  <div>
-    <ul>
+  <div id="list-history">
+    {{#if sentLetter.length}}
+    <div class="container-fluid ms-2 d-flex">
+      <ul>
+      {{#each sentLetter as |sent|}}
       <li>
-        You can find the letters you've sent here!
+        <a href="/letter/{{sent.id}}">
+          <p class="draft d-inline" id="draft-item">
+            {{format_date sent.updatedAt}} - to - {{sent.recipient_name}} - at - {{sent.recipient_email}}
+          </p>
+        </a>
       </li>
-    </ul>
+      {{/each}}
+      </ul>
+    </div>
+    {{else}}
+    <div>
+      <ul>
+        <li>
+          You can find the letters you've sent here!
+        </li>
+      </ul>
+    </div>
+    {{/if}}
   </div>
-  {{/if}}
 </section>
+{{#if draftLetter.length}}
 <script src="/javascript/dashboard.js"></script>
+{{/if}}
