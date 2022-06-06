@@ -1,13 +1,14 @@
 const router = require('express').Router();
-const {Draft, Sent, Font, User} = require('../models');
+const {Letter, Font, User} = require('../models');
 const authenticate = require('../utils/auth');
 
 router.get('/', authenticate, async (req, res) => {
 // this is going to render partials to make a list for the dashboard
     try {
-        let draftData = await Draft.findAll({
+        let draftData = await Letter.findAll({
             where: {
-                user_id: req.session.user_id
+                user_id: req.session.user_id,
+                readonly: false
             },
             attributes: ['id', 'sign_off', 'user_id', 'recipient_name', 'recipient_email', 'letter_body', 'spotify_id', 'font_id', 'updatedAt'],
             order: [
@@ -24,9 +25,10 @@ router.get('/', authenticate, async (req, res) => {
                 }
             ]
         });
-        let sentData = await Sent.findAll({
+        let sentData = await Letter.findAll({
             where: {
-                user_id: req.session.user_id
+                user_id: req.session.user_id,
+                readonly: true
             },
             attributes: ['id', 'sign_off', 'user_id', 'recipient_name', 'recipient_email', 'letter_body', 'spotify_id', 'font_id', 'createdAt'],
             order: [

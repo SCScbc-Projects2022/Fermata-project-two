@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { Draft, Font, User } = require('../../models');
+const { Letter, Font, User } = require('../../models');
 const uniqid = require('uniqid');
 const authenticate = require('../../utils/auth');
 
-// get all drafts
+// get all Letters
 router.get('/', (req, res) => {
-    Draft.findAll({
+    Letter.findAll({
         include: [
             {
                 model: Font,
@@ -17,16 +17,16 @@ router.get('/', (req, res) => {
             }
         ]
     })
-    .then(dbDraftData => res.json(dbDraftData))
+    .then(dbLetterData => res.json(dbLetterData))
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
     });
 });
 
-// get single draft based on id
+// get single Letter based on id
 router.get('/:id', (req, res) => {
-    Draft.findOne({
+    Letter.findOne({
         where: {
             id: req.params.id
         },
@@ -41,12 +41,12 @@ router.get('/:id', (req, res) => {
             }
         ]
     })
-    .then(dbDraftData => {
-        if (!dbDraftData) {
-            res.status(404).json({message: 'No draft found with that ID'});
+    .then(dbLetterData => {
+        if (!dbLetterData) {
+            res.status(404).json({message: 'No letter found with that ID'});
             return;
         }
-        res.json(dbDraftData);
+        res.json(dbLetterData);
     })
     .catch(err => {
         console.log(err);
@@ -54,10 +54,10 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// create draft - missing auth
+// create Letter - missing auth
 router.post('/', authenticate, (req, res) => {
     req.body.id = uniqid();
-    Draft.create({
+    Letter.create({
         id: req.body.id,
         sign_off: req.body.sign_off,
         user_id: req.session.user_id, //change to req.session.user_id
@@ -66,13 +66,10 @@ router.post('/', authenticate, (req, res) => {
         letter_body: req.body.letter_body,
         spotify_id: req.body.spotify_id,
         font_id: req.body.font_id,
+        readonly: req.body.readonly
     })
-    .then(dbDraftData => {
-        // res.append('previewURL', dbDraftData.dataValues.id).json();
-        // I'm gonna give up on this even though I got it to set headers. :( - V
-        // I GOT IT TO WORK USING JSON HELL YEAH - but I have no time to refactor :(
-        // res.json({'response': dbDraftData.dataValues.id});
-        res.json(dbDraftData);
+    .then(dbLetterData => {
+        res.json({'response': dbLetterData.dataValues.id});
     })
     .catch(err => {
         console.log(err);
@@ -80,14 +77,15 @@ router.post('/', authenticate, (req, res) => {
     });
 });
 
-// update draft
+// update Letter
 router.put('/:id', authenticate, (req, res) => {
-    Draft.update(
+    Letter.update(
         {
             sign_off: req.body.sign_off,
             recipient_email: req.body.recipient_email,
             letter_body: req.body.letter_body,
-            font_id: req.body.font_id
+            font_id: req.body.font_id,
+            readonly: req.body.readonly
         },
         {
             where: {
@@ -95,12 +93,12 @@ router.put('/:id', authenticate, (req, res) => {
             }
         }
     )
-    .then(dbDraftData => {
-        if(!dbDraftData) {
-            res.status(404).json({message: 'No draft found with that ID'});
+    .then(dbLetterData => {
+        if(!dbLetterData) {
+            res.status(404).json({message: 'No letter found with that ID'});
             return;
         }
-        res.json(dbDraftData);
+        res.json(dbLetterData);
     })
     .catch(err => {
         console.log(err);
@@ -108,20 +106,20 @@ router.put('/:id', authenticate, (req, res) => {
     });
 });
 
-// delete draft
+// delete Letter
 router.delete('/:id', authenticate, (req, res) => {
     console.log('id', req.params.id);
-    Draft.destroy({
+    Letter.destroy({
         where: {
             id: req.params.id
         }
     })
-    .then(dbDraftData => {
-        if(!dbDraftData) {
-            res.status(404).json({message: 'No draft found with that ID'});
+    .then(dbLetterData => {
+        if(!dbLetterData) {
+            res.status(404).json({message: 'No letter found with that ID'});
             return;
         }
-        res.json(dbDraftData);
+        res.json(dbLetterData);
     })
     .catch(err => {
         console.log(err);

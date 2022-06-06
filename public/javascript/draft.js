@@ -1,33 +1,25 @@
-// variables
-let text;
-
-let recipientName = document.querySelector('#sent-to');
-let recipientEmail = document.querySelector('#sent-toward');
-let signOff = document.querySelector('#signed-as');
+let signOff = document.querySelector('#sign-off');
+let recipientName = document.querySelector('#their-name');
+let recipientEmail = document.querySelector('#their-email');
 let letterBody = document.querySelector('#letter-preview');
+let fontId = document.querySelector('#hidden-font-id').textContent;
 
-// set font
-letterBody = document.querySelector('#letter-preview');
-switch(sessionStorage.getItem('font_id').toString()) { //get request?
-    case '1':
-        text = "'Caveat', cursive";
-        letterBody.style.fontFamily = text;
-        break;
-    case '2':
-        text = "'Lato', sans-serif";
-        letterBody.style.fontFamily = text;
-        break;
-    case '3':
-        text = "'Merriweather', serif";
-        letterBody.style.fontFamily = text;
-        break;
+document.querySelector('#rendering-additional-data').style.display = 'none';
+getFont();
+
+// set font for letter body
+async function getFont() {
+    try {
+        let font = await fetch(`../../api/fonts/${fontId}`);
+        if (font.ok) {
+            let parsed = await font.json();
+            letterBody.style.fontFamily = parsed.style_tag;
+        }
+    }
+    catch (err) {
+        console.log(err);
+    }
 }
-
-// set values
-signOff.value = sessionStorage.getItem('sign_off');
-recipientName.value = sessionStorage.getItem('recipient_name');
-recipientEmail.value = sessionStorage.getItem('recipient_email');
-letterBody.value = sessionStorage.getItem('letter_body');
 
 // save letter
 document.querySelector('#save-btn').addEventListener('click', async () => {
@@ -48,10 +40,11 @@ document.querySelector('#save-btn').addEventListener('click', async () => {
     let sign_off = signOff.value;
     let recipient_name = recipientName.value;
     let recipient_email = recipientEmail.value;
-    let spotify_id = a1b2c3; //might need to render this into a display none elment (or hide it as a value somewhere) idk man
-    let font_id = sessionStorage.getItem('font_id'); // keep this one
+    let spotify_id = document.querySelector('#hidden-spotify-info').textContent;
+    let font_id = fontId;
     let letter_body = letterBody.value.trim();
-    let createDraft = await fetch('../../api/drafts', {
+    const readonly = false;
+    let createDraft = await fetch(`../../api/letter/${id}`, {
         method: 'PUT',
         body: JSON.stringify({
             id,
@@ -61,16 +54,15 @@ document.querySelector('#save-btn').addEventListener('click', async () => {
             letter_body,
             spotify_id,
             font_id,
+            readonly
         }),
         headers: {
             'Content-Type': 'application/json'
         }
     })
     if (createDraft.ok) {
-        // let preview = await createDraft.json(); //I got it to return the data I need :sob:
-        // console.log(preview);
-        // console.log(createDraft).json()
-        // document.location.replace('/dashboard');
+        location.reload();
+        alert('Your draft has been saved!')
     } else {
         alert(createDraft.statusText);
     }

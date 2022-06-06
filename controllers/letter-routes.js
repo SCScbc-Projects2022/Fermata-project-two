@@ -1,15 +1,14 @@
 const router = require('express').Router();
-const {Draft, Font} = require('../models');
+const {Letter, Font} = require('../models');
 const authenticate = require('../utils/auth');
 
 // add a route to get one draft and render a draft page
 router.get('/:id', authenticate, async (req, res) => {
     try {
-        let draftLetter = await Draft.findOne({
+        let letterData = await Letter.findOne({
             where: {
                 id: req.params.id
             },
-            attributes: ['id', 'sign_off', 'user_id', 'recipient_name', 'recipient_email', 'letter_body', 'spotify_id', 'font_id', 'updatedAt'],
             include: [
                 {
                     model: Font,
@@ -17,8 +16,12 @@ router.get('/:id', authenticate, async (req, res) => {
                 }
             ]
         })
-        const drafts = draftLetter.get({plain: true});
-        res.render('draft', {drafts, loggedIn: req.session.loggedIn});
+        const letter = letterData.get({plain: true});
+        if (!letter.readonly) {
+            res.render('draft', {letter, loggedIn: req.session.loggedIn});
+            return;
+        }
+        res.render('sent', {letter, loggedIn: req.session.loggedIn});
     }
     catch (err) {
         console.log(err);
