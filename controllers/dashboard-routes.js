@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {Letter, Font, User} = require('../models');
-const authenticate = require('../utils/auth');
+const {authenticate} = require('../utils/auth');
 
 router.get('/', authenticate, async (req, res) => {
 // this is going to render partials to make a list for the dashboard

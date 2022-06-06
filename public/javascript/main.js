@@ -1,4 +1,4 @@
-document.querySelector('#greeting').textContent = `Welcome back ${sessionStorage.getItem('username')}!`;
+document.querySelector('#greeting').textContent = `Welcome back, ${localStorage.getItem('username')}!`;
 
 document.querySelector('#logout-btn').addEventListener('click', async () => {
     const logout = await fetch('/api/users/logout', {
@@ -6,6 +6,7 @@ document.querySelector('#logout-btn').addEventListener('click', async () => {
         headers: {'Content-Type': 'application/json'}
     });
     if (logout.ok) {
+        localStorage.clear();
         document.location.replace('/home');
     } else {
         alert(response.statusText);

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Letter, Font, User } = require('../../models');
 const uniqid = require('uniqid');
-const authenticate = require('../../utils/auth');
+const {authenticate} = require('../../utils/auth');
 
 // get all Letters
 router.get('/', (req, res) => {

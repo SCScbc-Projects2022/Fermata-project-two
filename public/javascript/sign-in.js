@@ -20,7 +20,7 @@ document.querySelector('#signin-btn').addEventListener('click', async () => {
     });
     if (signIn.ok) {
         let user = await signIn.json();
-        sessionStorage.setItem('username', user.user.username);
+        localStorage.setItem('username', user.user.username);
         document.location.replace('/dashboard');
     } else {
         alert(signIn.statusText);

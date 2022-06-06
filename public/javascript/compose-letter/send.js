@@ -49,6 +49,7 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
         }
     })
     if (createLetter.ok) {
+        sessionStorage.clear();
         let preview = await createLetter.json();
         document.location.replace(`/letter/${preview.response}`);
     } else {

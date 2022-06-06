@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const authenticate = require('../utils/auth');
+const {authenticate} = require('../utils/auth');
 
 // routes for letter composition
 router.get('/you', authenticate, (req, res) => {
@@ -22,11 +22,7 @@ router.get('/send', authenticate, (req, res) => {
     res.render('send');
 });
 
-router.get('/preview', authenticate, (req, res) => {
-    res.render('preview');
-});
-
-router.get('/confirm', (req, res) => {
+router.get('/confirm', authenticate, (req, res) => {
     res.render('confirm');
 });
 
