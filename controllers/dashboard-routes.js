@@ -52,27 +52,5 @@ router.get('/', authenticate, async (req, res) => {
         res.status(500).json(err);
     };
 });
-    
-
-//     .then(dbDraftData => {
-//         const drafts = dbDraftData.map(post => post.get({plain: true}));
-//         res.render('drafts', {
-//             drafts,
-//             loggedIn: req.session.loggedIn
-//         });
-//     })
-//     .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err);
-//     });
-// // this will render partials for the dashboard
-   
-//     .then(dbSentData => {
-//         const sent = dbSentData.map(post => post.get({plain: true}));
-//         res.render('sent', { // handlebars name is sent for both, might need to change one
-//             sent,
-//             loggedIn: req.session.loggedIn
-//         });
-//     })
 
 module.exports = router;
