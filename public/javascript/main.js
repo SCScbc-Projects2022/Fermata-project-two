@@ -1,3 +1,5 @@
+document.querySelector('#greeting').textContent = `Welcome back ${sessionStorage.getItem('username')}!`;
+
 document.querySelector('#logout-btn').addEventListener('click', async () => {
     const logout = await fetch('/api/users/logout', {
         method: 'POST',
