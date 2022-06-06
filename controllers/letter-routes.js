@@ -9,6 +9,7 @@ router.get('/:id', authenticate, async (req, res) => {
             where: {
                 id: req.params.id
             },
+            attributes: ['id', 'sign_off', 'user_id', 'recipient_name', 'recipient_email', 'letter_body', 'spotify_id', 'font_id', 'readonly', 'createdAt', 'updatedAt'],
             include: [
                 {
                     model: Font,
@@ -22,6 +23,7 @@ router.get('/:id', authenticate, async (req, res) => {
             return;
         }
         res.render('sent', {letter, loggedIn: req.session.loggedIn});
+        return;
     }
     catch (err) {
         console.log(err);
