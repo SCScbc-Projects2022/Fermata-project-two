@@ -14,7 +14,7 @@ module.exports = router;
 
 router.get('/login', async (req, res) => {
     const scope =
-      `user-modify-playback-state`;
+      `user-modify-playback-state playlist-modify-public playlist-modify-private`;
   
     res.redirect('https://accounts.spotify.com/authorize?' +
       urlsearchparams.stringify({
@@ -29,7 +29,7 @@ router.get('/login', async (req, res) => {
 router.get('/logged', async (req, res) => {
   const body = {
     grant_type: 'authorization_code',
-    code: req.query.code,
+    code: req.url.code,
     redirect_uri: process.env.REDIRECTURI,
     client_id: process.env.CLIENT_ID,
     client_secret: process.env.CLIENT_SECRET,
@@ -45,7 +45,7 @@ router.get('/logged', async (req, res) => {
   })
   .then(response => response.json())
   .then(data => {
-    const query = urlsearchparams.stringify(data);
-    res.redirect(`${process.env.CLIENT_REDIRECTURI}?${query}`);
+    const url = urlsearchparams.stringify(data);
+    res.redirect(`${process.env.CLIENT_REDIRECTURI}?${url}`);
   });
 });

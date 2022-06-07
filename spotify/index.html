@@ -9,8 +9,15 @@
 
     <h1>Spotify Web Playback SDK Quick Start</h1>
 
+    <form onsubmit="test()">
+        <label for="username">Enter username:</label> 
+        <input type="text" name="username" id="username" />
+        <input type="submit" />
+    </form>
+
     <button type="submit" id="loginBtn" alt="login to your spotify account">Login</button>
-    
+
+
     <script>
         function login() {
           alert("The function 'login' is executed");
@@ -19,7 +26,7 @@
         loginBtnEl.addEventListener('click', event => {
           login();
         });
-      </script>
+    </script>
 
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
     <script>
@@ -61,6 +68,8 @@
             player.connect().then((success) => {
               if (success) {
               console.log("The Web Playback SDK successfully connected to Spotify!");
+              } else {
+                console.log("Something went wrong connecting to the Web Playback SDK!")
               }
             });
         }
