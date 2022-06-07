@@ -26,7 +26,7 @@ document.querySelector('#style-btn').addEventListener('click', () => {
         return
     }
     sessionStorage.setItem('font_id', parseInt(selected.value));
-    document.location.replace('./send');
+    document.location.replace('/compose/send');
 });
 
 // YOU -> THEM -> SONG -> STYLE -> SCRIPT(SEND) -> PREVIEW -> SENT -> DASHBOARD

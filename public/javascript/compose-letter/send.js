@@ -1,47 +1,39 @@
+// variables
+let text;
+
 // set font
 let letterBody = document.querySelector('#letter-input');
-let text;
-switch(sessionStorage.getItem('font_id').toString()) {
-    case '1':
-        text = "'Caveat', cursive";
-        letterBody.style.fontFamily = text;
-        break;
-    case '2':
-        text = "'Lato', sans-serif";
-        letterBody.style.fontFamily = text;
-        break;
-    case '3':
-        text = "'Merriweather', serif";
-        letterBody.style.fontFamily = text;
-        break;
+
+// set font for letter body
+getFont();
+async function getFont() {
+    try {
+        let font = await fetch(`../../api/fonts/${sessionStorage.getItem('font_id').toString()}`);
+        if (font.ok) {
+            let parsed = await font.json();
+            letterBody.style.fontFamily = parsed.style_tag;
+        }
+    }
+    catch (err) {
+        console.log(err);
+    }
 }
 
 // send letter
 document.querySelector('#send-btn').addEventListener('click', async () => {
-    if (!letterBody.value) {
-        alert('Please enter your message');
-        return
-    }
-    if (letterBody.value.length > 255) { // eventually add character counter on textarea
-        alert('Your message should be less than 255 characters');
+    if (letterBody.value.length > 255 || letterBody.value.length === 0) { // eventually add character counter on textarea
+        alert('Your message should be between 0 and 255 characters');
         return
     }
     // let id = uniqid(); npm packages are backend only add to API POST requests
     let sign_off = sessionStorage.getItem('sign_off');
     let recipient_name = sessionStorage.getItem('recipient_name');
     let recipient_email = sessionStorage.getItem('recipient_email');
-    let spotify_id = sessionStorage.getItem('spotify_id');
-    let font_id = sessionStorage.getItem('font_id');
+    let spotify_id = sessionStorage.getItem('spotify_id'); // keep this one
+    let font_id = sessionStorage.getItem('font_id'); // keep this one
     let letter_body = letterBody.value.trim();
-    let user_id = 2;     // placeholder
-    console.log(sign_off);
-    console.log(recipient_name);
-    console.log(recipient_email);
-    console.log(spotify_id);
-    console.log(font_id);
-    console.log(letter_body);
-    console.log(user_id);
-    const createLetter = await fetch('api/drafts', {
+    const readonly = false;
+    const createLetter = await fetch('../../api/letter', {
         method: 'POST',
         body: JSON.stringify({
             sign_off,
@@ -50,16 +42,17 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
             spotify_id,
             font_id,
             letter_body,
-            user_id
+            readonly
         }),
         headers: {
             'Content-Type': 'application/json'
         }
-    });
+    })
     if (createLetter.ok) {
-        document.location.replace('sent');
+        sessionStorage.clear();
+        let preview = await createLetter.json();
+        document.location.replace(`/letter/${preview.response}`);
     } else {
         alert(createLetter.statusText);
     }
-    
 });

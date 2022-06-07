@@ -1,9 +1,9 @@
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Draft extends Model {}
+class Letter extends Model {}
 
-Draft.init(
+Letter.init(
     {
         id: {
             type: DataTypes.STRING,
@@ -14,7 +14,7 @@ Draft.init(
         },
         sign_off: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         user_id: {
             type: DataTypes.INTEGER,
@@ -26,22 +26,22 @@ Draft.init(
         },
         recipient_name: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         recipient_email: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
             validate: {
                 isEmail: true
             }   
         },
         letter_body: {
             type: DataTypes.STRING,
-            allowNull: true
+            allowNull: false
         },
         spotify_id: {
             type: DataTypes.STRING,
-            allowNull: true
+            allowNull: false
         },
         font_id: {
             type: DataTypes.INTEGER,
@@ -50,14 +50,18 @@ Draft.init(
                 model: 'font',
                 key: 'id'
             }
+        },
+        readonly: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
         }
     },
     {
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'draft'
+        modelName: 'letter'
     }
 )
 
-module.exports = Draft;
+module.exports = Letter;

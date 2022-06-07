@@ -1,7 +1,58 @@
 const router = require('express').Router();
+const {Letter, Font, User} = require('../models');
+const {authenticate} = require('../utils/auth');
 
-router.get('/', (req, res) => {
-    res.render('dashboard');
+router.get('/', authenticate, async (req, res) => {
+// this is going to render partials to make a list for the dashboard
+    try {
+        let draftData = await Letter.findAll({
+            where: {
+                user_id: req.session.user_id,
+                readonly: false
+            },
+            attributes: ['id', 'sign_off', 'user_id', 'recipient_name', 'recipient_email', 'letter_body', 'spotify_id', 'font_id', 'updatedAt'],
+            order: [
+                ['updatedAt', 'DESC']
+            ],
+            include: [
+                {
+                    model: Font,
+                    attributes: ['id', 'style_tag']
+                },
+                {
+                    model: User,
+                    attributes: ['id', 'username', 'email']
+                }
+            ]
+        });
+        let sentData = await Letter.findAll({
+            where: {
+                user_id: req.session.user_id,
+                readonly: true
+            },
+            attributes: ['id', 'sign_off', 'user_id', 'recipient_name', 'recipient_email', 'letter_body', 'spotify_id', 'font_id', 'updatedAt'],
+            order: [
+                ['updatedAt', 'DESC']
+            ],
+            include: [
+                {
+                    model: Font,
+                    attributes: ['id', 'style_tag']
+                },
+                {
+                    model: User,
+                    attributes: ['id', 'username', 'email']
+                }
+            ]
+        });
+        const draftLetter = draftData.map(draft => draft.get({plain: true}));
+        const sentLetter = sentData.map(sent => sent.get({plain: true}));
+        res.render('dashboard', {draftLetter, sentLetter, loggedIn: true});
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    };
 });
 
 module.exports = router;

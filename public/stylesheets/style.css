@@ -77,7 +77,7 @@ p.draft {
 }
 
 p.history {
-    color: gray
+    color: gray;
 }
 
 .small-text {
@@ -89,7 +89,14 @@ li {
     list-style: none;
 }
 
-
 table {
     font-size: 1.2rem;
+}
+
+.draft:hover, .history:hover, .delete-btn:hover, #logout-btn:hover {
+    color: blue;
+}
+
+.preview-fields {
+    border: none;
 }
