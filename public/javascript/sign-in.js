@@ -10,19 +10,24 @@ document.querySelector('#signin-btn').addEventListener('click', async () => {
         alert('Please enter a valid email');
         return
     }
-    const signIn = await fetch('/api/users/login', {
-        method: 'post',
-        body: JSON.stringify({
-            email,
-            password
-        }),
-        headers: {'Content-Type': 'application/json'}
-    });
-    if (signIn.ok) {
-        let user = await signIn.json();
-        localStorage.setItem('username', user.user.username);
-        document.location.replace('/dashboard');
-    } else {
-        alert(signIn.statusText);
+    try {
+        const signIn = await fetch('/api/users/login', {
+            method: 'post',
+            body: JSON.stringify({
+                email,
+                password
+            }),
+            headers: {'Content-Type': 'application/json'}
+        });
+        if (signIn.ok) {
+            let user = await signIn.json();
+            localStorage.setItem('username', user.user.username);
+            document.location.replace('/dashboard');
+        } else {
+            alert(signIn.statusText);
+        }
+    }
+    catch (err) {
+        console.log(err);
     }
 });

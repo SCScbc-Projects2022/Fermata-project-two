@@ -20,9 +20,7 @@
     </div>
 
     <div class="container-fluid d-flex mt-5 justify-content-around align-items-center">
-      <textarea id="letter-preview" style={{letter.font.style_tag}} class="w-50 vh-75 align-text-top" placeholder="Enter your message here"> 
-      {{letter.letter_body}}
-      </textarea>
+      <textarea id="letter-preview" style={{letter.font.style_tag}} class="w-50 vh-75 align-text-top" placeholder="Enter your message here">{{letter.letter_body}}</textarea>
     </div>
 
     <div class="container-fluid d-flex mt-5 justify-content-around">
@@ -47,10 +45,6 @@
       <span id="artist-select">Arthur Rubenstein - </span>
       <span id="song-select">Nocturnes, Op. 9: No. 2 in E-Flat Major</span> 
     </div>
-  </div>
-  <div id="rendering-additional-data">
-    <p id="hidden-font-id">{{letter.font.id}}</p>
-    <p id="hidden-spotify-info">{{letter.spotify_id}}</p>
   </div>
 </section>
 <script src="/javascript/draft.js"></script>

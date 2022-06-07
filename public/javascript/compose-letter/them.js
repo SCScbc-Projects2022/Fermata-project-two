@@ -15,6 +15,3 @@ document.querySelector('#them-btn').addEventListener('click', () => {
     sessionStorage.setItem('recipient_email', email);
     document.location.replace('/compose/song');
 });
-
-// YOU -> THEM -> SONG -> STYLE -> SCRIPT(SEND) -> PREVIEW -> SENT -> DASHBOARD
-// <script src="../../../public/javascript/compose-letter/them.js"></script>

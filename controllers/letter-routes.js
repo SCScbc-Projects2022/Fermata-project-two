@@ -18,7 +18,7 @@ router.get('/:id', async (req, res) => {
             ]
         })
         const letter = letterData.get({plain: true});
-        if (!letter.readonly && noDrafts) {
+        if (!letter.readonly && !noDrafts) {
             res.render('draft', {letter, loggedIn: req.session.loggedIn});
             return;
         } else if (letter.readonly) {

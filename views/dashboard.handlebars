@@ -23,7 +23,7 @@
       <ul>
       {{#each draftLetter as |draft|}}
       <li>
-        <p class="d-inline small-text mx-2 delete-btn" data="{{draft.id}}">
+        <p class="d-inline small-text mx-2 delete-btn" data-letter="{{draft.id}}">
           delete
         </p>
         <a href="/letter/{{draft.id}}">

@@ -28,6 +28,3 @@ document.querySelector('#style-btn').addEventListener('click', () => {
     sessionStorage.setItem('font_id', parseInt(selected.value));
     document.location.replace('/compose/send');
 });
-
-// YOU -> THEM -> SONG -> STYLE -> SCRIPT(SEND) -> PREVIEW -> SENT -> DASHBOARD
-// <script src="../../../public/javascript/compose-letter/style.js"></script>
