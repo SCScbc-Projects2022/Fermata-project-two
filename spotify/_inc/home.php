@@ -1,11 +1,12 @@
 <?php
 
-// Redirect URI
-const redirect_uri = 'https://oauth.pstmn.io/v1/browser-callback'
+// Require files
+require '_inc/_private/global.php'
 
 
 // Include page header
 include '_inc/html/header.php';
+
 ?>
 <div class="container" id="home-container">
   <p><img src="images/logo.png" alt="fermata logo"></p>
