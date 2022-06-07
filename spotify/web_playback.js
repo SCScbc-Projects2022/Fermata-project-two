@@ -15,8 +15,9 @@ application.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
 
+// Start Web Playback SDK
 window.onSpotifyWebPlaybackSDKReady = () => {
-  const token = 'BQALogfFtWXz-itONiLkHA0zxDSudxekKDCeytkePNn_VaXbImDns8JPKimPdUEBMw2p2huKgeKLM_q0BT4YujJ4KMKrIBpg4U62BzDWR6iTszi7nBNOPBCnJjFr3XpGFTNNR5dHkBV3RlaBRXY6UTGGcyGq5hQ_sy3v_6kdqJPraIH4ahYLJ0k';
+  const token = 'BQAkfVvDMdVQo5x1EbMzpov-83Ji2nAVdgSe1fwnHDtDQ0sM6JlBiEH42tDIaa23ZkOCyfaXjDYX_T9UdaHAgV18qrDJrWM50RY0XKIv-6zh6yYTuAPboZ7yy64vVlK64FAgpnU1my_VlF3LgdEzGeEil9bvdvvyL38NT74vw9x3kC8-WysB9JJdpqbmn8YVqdxPMtUxvg0ege16hZyCnDxSpmGcMIHAeTooij5BX_CnGL564Q';
     const player = new Spotify.Player({
       name: 'Web Playback SDK Quick Start Player',
       getOAuthToken: cb => { cb(token); },
@@ -27,7 +28,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     }
   }
 
-  // Ready
+  // SDK ready
   player.addListener('ready', ({ device_id }) => {
   console.log('Ready with Device ID', device_id);
 
