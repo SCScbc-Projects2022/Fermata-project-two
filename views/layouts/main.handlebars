@@ -31,19 +31,23 @@
         <a class="navbar-brand" href="/dashboard">
           <img
             src="/img/Fermata-logos_transparent.png"
-            width="100"
-            height="100"
+            class="logo-fermata"
+            width="50px"
+            height="50px"
             alt="Fermata logo"/>
         </a>
         <div>
-        {{#if loggedIn}}
-        <p class="d-inline" id="logout-btn">Logout</p>
-        <p class="d-inline mx-5" id="greeting"></p>
-        {{/if}}
-        <h4 class="me-3 d-inline">song. style. send.</h4>
+        <h4 class="me-3 d-inline slogan">song. style. send.</h4>
         </div>
       </nav>
     </header>
+     {{#if loggedIn}}
+        <div class="d-flex justify-content-between greeting-logout">
+          <p class="ms-3" id="greeting"></p>
+          <p class="me-3" id="logout-btn">Logout</p>
+        </div>
+        {{/if}}
+
     <main class="px-5 pb-5">
       {{{ body }}}
     </main>
