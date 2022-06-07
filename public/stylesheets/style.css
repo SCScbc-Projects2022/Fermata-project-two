@@ -19,26 +19,6 @@ p {
     font-size: 1rem;
 }
 
-@media (min-width: 450px) {
-    h1 {font-size: 3rem;};
-}
-
-@media (min-width: 450px) {
-    .logo-fermata {width: 100px; height: 100px;}
-}
-
-@media (min-width: 450px) {
-    .logo-fermata {width: 100px; height: 100px;}
-}
-
-@media (min-width: 450px) {
-    h4 {font-size: 1.5rem;}
-}
-
-@media (min-width: 450px) {
-    p {font-size: 1.5rem;}
-}
-
 .btn {
     background-color: white; 
     color:#7089AC ;
@@ -71,18 +51,18 @@ a:active {
 
 
 #letter-input {
-    height: 500px;
-    width: 500px;
-    font-size: 1.5rem;
+    height: 300px;
+    width: 300px;
+    font-size: 1rem;
     /* border: none; */
     outline: none;
     color:#7089AC
 }
 
 #letter-preview {
-    height: 500px;
-    width: 500px;
-    font-size: 1.5rem;
+    height: 300px;
+    width: 300px;
+    font-size: 1rem;
     border: none;
     outline: none;
     color:#7089AC
@@ -123,5 +103,37 @@ table {
 
 p.greeting-logout {
     font-size: 0.5rem;
+}
+
+@media (min-width: 450px) {
+    h1 {font-size: 3rem;};
+}
+
+@media (min-width: 450px) {
+    .logo-fermata {width: 100px; height: 100px;}
+}
+
+@media (min-width: 450px) {
+    .logo-fermata {width: 100px; height: 100px;}
+}
+
+@media (min-width: 450px) {
+    h4 {font-size: 1.5rem;}
+}
+
+@media (min-width: 450px) {
+    p {font-size: 1.5rem;}
+}
+
+@media (min-width: 450px) {
+    #letter-input {height: 500px;
+        width: 500px;
+        font-size: 1.5rem;}
+}
+
+@media (min-width: 450px) {
+    #letter-preview {height: 500px;
+        width: 500px;
+        font-size: 1.5rem;}
 }
 
