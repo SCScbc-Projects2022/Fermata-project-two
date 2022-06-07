@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Web Playback SDK</title>
+</head>
+<body>
+    <h1>Spotify Web Playback SDK Quick Start</h1>
+
+    <button type="submit" id="addSongButton" alt="add this song to your fermata and start writing">Add Song</button>
+
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script>
+        window.onSpotifyWebPlaybackSDKReady = () => {
+            const token = 'BQD4fGybS2ajuu5GGsJCQpgPXUSUb_IrbCGUUpadBosbYniAxrATwVtotJ-075laX_ezIobbn_zkk8AyleXDkq04KqCu-kd-EFPZaXP2uzAnWKD4S9WmZ6N7Gpyeu49DHQbq4h0G6vNJ0ApYuwmTbhPxHiW0E8ubyMUV0-yF03V3fAPmUKIuYhI';
+            const player = new Spotify.Player({
+                name: 'Web Playback SDK Quick Start Player',
+                getOAuthToken: cb => { cb(token); },
+                volume: 0.5
+            });
+
+            // Ready
+            player.addListener('ready', ({ device_id }) => {
+                console.log('Ready with Device ID', device_id);
+            });
+
+            // Not Ready
+            player.addListener('not_ready', ({ device_id }) => {
+                console.log('Device ID has gone offline', device_id);
+            });
+
+            player.addListener('initialization_error', ({ message }) => {
+                console.error(message);
+            });
+
+            player.addListener('authentication_error', ({ message }) => {
+                console.error(message);
+            });
+
+            player.addListener('account_error', ({ message }) => {
+                console.error(message);
+            });
+
+            document.getElementById('addSongButton').onclick = function() {
+              player.togglePlay();
+            };
+
+            // start device connection
+            player.connect().then((success) => {
+              if (success) {
+              console.log("The Web Playback SDK successfully connected to Spotify!");
+              }
+            });
+        }
+    </script>
+</body>
