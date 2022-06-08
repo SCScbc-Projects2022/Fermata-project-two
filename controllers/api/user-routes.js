@@ -35,21 +35,23 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// create user
+// create a new user
 router.post('/', async (req, res) => {
     try {
+        // query the database and determine whether a user already exists with the posted email
         let existingUser = await User.findOne({
             attributes: {exclude: ['password']},
             where: {
                 email: req.body.email
             }
-        })
+        });
+        // if the email does not already exist, create a new user
         if (!existingUser) {
             let newUser = await User.create({
                 username: req.body.username,
                 email: req.body.email,
                 password: req.body.password
-            })
+            });
             req.session.save(() => {
                 req.session.user_id = newUser.id;
                 req.session.username = newUser.username;
@@ -57,8 +59,7 @@ router.post('/', async (req, res) => {
 
                 res.json(newUser);
                 return;
-            })
-        } else {
+            });
             res.status(400).json({message: 'A user with this email already exists!'});
             return;
         }
@@ -76,22 +77,23 @@ router.post('/login', async (req, res) => {
             where: {
                 email: req.body.email
             }
-        })
+        });
         if (!findUser) {
             res.status(400).json({message: 'No user with that email address!'});
             return;
         }
         // verify user
-        const validCredentials = findUser.authenticate(req.body.password);
+        const validCredentials = findUser.login(req.body.password);
         if (!validCredentials) {
             res.status(400).json({message: 'Incorrect password!'});
             return;
         }
+        // start a new express sessions
         req.session.save(() => {
             req.session.user_id = findUser.id;
             req.session.loggedIn = true;
             res.json({user: findUser, message: 'You are now logged in!'});
-        })
+        });
     }
     catch (err) {
         console.log(err);
@@ -100,7 +102,8 @@ router.post('/login', async (req, res) => {
 });
 
 // logout
-router.post('/logout', (req,res) =>{
+router.post('/logout', (req, res) =>{
+    // destroy express sessions
     try {
         if (req.session.loggedIn) {
             req.session.destroy(() => {

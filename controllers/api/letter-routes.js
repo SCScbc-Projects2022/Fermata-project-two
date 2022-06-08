@@ -56,11 +56,12 @@ router.get('/:id', (req, res) => {
 
 // create Letter - missing auth
 router.post('/', authenticate, (req, res) => {
+    // generate a new string using uniqid and set the id property to req.body before creating a new letter
     req.body.id = uniqid();
     Letter.create({
         id: req.body.id,
         sign_off: req.body.sign_off,
-        user_id: req.session.user_id, //change to req.session.user_id
+        user_id: req.session.user_id,
         recipient_name: req.body.recipient_name,
         recipient_email: req.body.recipient_email,
         letter_body: req.body.letter_body,

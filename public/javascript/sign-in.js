@@ -8,11 +8,11 @@ document.querySelector('#signin-btn').addEventListener('click', async () => {
     let format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
     if (!format) {
         alert('Please enter a valid email');
-        return
+        return;
     }
     try {
-        const signIn = await fetch('/api/users/login', {
-            method: 'post',
+        let signIn = await fetch('/api/users/login', {
+            method: 'POST',
             body: JSON.stringify({
                 email,
                 password
@@ -20,6 +20,7 @@ document.querySelector('#signin-btn').addEventListener('click', async () => {
             headers: {'Content-Type': 'application/json'}
         });
         if (signIn.ok) {
+            // use json to parse the response body and retrive the username property of the logged in user and set to local storage
             let user = await signIn.json();
             localStorage.setItem('username', user.user.username);
             document.location.replace('/dashboard');

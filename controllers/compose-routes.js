@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const {authenticate} = require('../utils/auth');
 
-// routes for letter composition
+// routes for letter composition - no database queries/api calls during drafting, only session storage
 router.get('/you', authenticate, (req, res) => {
     res.render('you');
 });

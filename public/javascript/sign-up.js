@@ -27,7 +27,7 @@ document.querySelector('#signup-btn').addEventListener('click', async () => {
             headers: {
                 'Content-Type': 'application/json'
             }
-        })
+        });
         if (createUser.ok) {
             document.location.replace('/home/sign-in');
         } else {

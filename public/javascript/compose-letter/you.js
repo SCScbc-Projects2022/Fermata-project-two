@@ -1,9 +1,9 @@
-// capture input fields
+// capture input field and save to session storage
 document.querySelector('#you-btn').addEventListener('click', () => {
     let name = document.querySelector('#yourname-input').value.trim();
     if (!name) {
         alert('Please enter your name');
-        return
+        return;
     }
     sessionStorage.setItem('sign_off', name);
     document.location.replace('/compose/them');

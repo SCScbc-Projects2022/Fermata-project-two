@@ -1,3 +1,4 @@
+// delete letter whose id matches the data-letter property of the clicked delete button
 document.querySelector('#list-drafts').addEventListener('click', async (event) => {
     event.stopPropagation();
     let btn = event.target;
@@ -9,7 +10,7 @@ document.querySelector('#list-drafts').addEventListener('click', async (event) =
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            })
+            });
             if (del.ok) {
                 location.reload();
                 alert('Draft deleted!');
@@ -17,8 +18,8 @@ document.querySelector('#list-drafts').addEventListener('click', async (event) =
                 alert(del.statusText);
             }
         }
-    catch (err) {
-        console.log(err);
-    }
+        catch (err) {
+            console.log(err);
+        }
     }
 });

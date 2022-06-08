@@ -4,6 +4,7 @@ const sequelize = require('../config/connection');
 class Font extends Model {}
 
 Font.init(
+    // style tags are strings of inline style html
     {
         id: {
             type: DataTypes.INTEGER,

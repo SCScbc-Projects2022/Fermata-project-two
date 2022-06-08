@@ -1,10 +1,7 @@
-// variables
+let letterBody = document.querySelector('#letter-input');
 let text;
 
-// set font
-let letterBody = document.querySelector('#letter-input');
-
-// set font for letter body
+// set font style for letter body by querying the database
 getFont();
 async function getFont() {
     try {
@@ -21,19 +18,19 @@ async function getFont() {
 
 // send letter
 document.querySelector('#send-btn').addEventListener('click', async () => {
-    if (letterBody.value.length > 255 || letterBody.value.length === 0) { // eventually add character counter on textarea
+    if (letterBody.value.length > 255 || letterBody.value.length === 0) { // eventually add character counter on textarea?
         alert('Your message should be between 0 and 255 characters');
-        return
+        return;
     }
-    // let id = uniqid(); npm packages are backend only add to API POST requests
+    // let id = uniqid(); npm packages are backend only - id is generated before the post request is made to the database
     let sign_off = sessionStorage.getItem('sign_off');
     let recipient_name = sessionStorage.getItem('recipient_name');
     let recipient_email = sessionStorage.getItem('recipient_email');
     let spotify_id = sessionStorage.getItem('spotify_id');
     let font_id = sessionStorage.getItem('font_id');
     let letter_body = letterBody.value.trim();
-    const readonly = false;
-    const createLetter = await fetch('../../api/letter', {
+    let readonly = false;
+    let createLetter = await fetch('../../api/letter', {
         method: 'POST',
         body: JSON.stringify({
             sign_off,
@@ -47,9 +44,10 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
         headers: {
             'Content-Type': 'application/json'
         }
-    })
+    });
     if (createLetter.ok) {
         sessionStorage.clear();
+        // use json to parse the response body, retrieve the npm-generated id, and render the actual drafts layout
         let preview = await createLetter.json();
         document.location.replace(`/letter/${preview.response}`);
     } else {

@@ -1,4 +1,4 @@
-// indicate selected using text style
+// indicate selected using text style -- definitely need to refactor at some point lol
 let caveat = document.querySelector('#caveat-label');
 let lato = document.querySelector('#lato-label');
 let merriweather = document.querySelector('#merriweather-label');
@@ -18,12 +18,12 @@ document.querySelector('#merriweather').addEventListener('click',() => {
     merriweather.style.color = "blue"
 });
 
-// capture selected font
+// capture selected font and save to session storage
 document.querySelector('#style-btn').addEventListener('click', () => {
     let selected = document.querySelector('input[name="font"]:checked');
     if (!selected) {
         alert("Please select a style option");
-        return
+        return;
     }
     sessionStorage.setItem('font_id', parseInt(selected.value));
     document.location.replace('/compose/send');
