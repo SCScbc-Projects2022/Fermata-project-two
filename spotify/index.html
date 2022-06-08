@@ -7,16 +7,15 @@
 </head>
 <body>
 
-    <h1>Spotify Web Playback SDK Quick Start</h1>
+    <h1>Welcome to Fermata!</h1>
+    <h2>Enter your Spotify user ID to sign-in</h2>
 
-    <form onsubmit="test()">
+    <form onsubmit="login()">
         <label for="username">Enter username:</label> 
         <input type="text" name="username" id="username" />
-        <input type="submit" />
     </form>
 
     <button type="submit" id="loginBtn" alt="login to your spotify account">Login</button>
-
 
     <script>
         function login() {
@@ -31,7 +30,7 @@
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
     <script>
         window.onSpotifyWebPlaybackSDKReady = () => {
-            const token = 'BQAkfVvDMdVQo5x1EbMzpov-83Ji2nAVdgSe1fwnHDtDQ0sM6JlBiEH42tDIaa23ZkOCyfaXjDYX_T9UdaHAgV18qrDJrWM50RY0XKIv-6zh6yYTuAPboZ7yy64vVlK64FAgpnU1my_VlF3LgdEzGeEil9bvdvvyL38NT74vw9x3kC8-WysB9JJdpqbmn8YVqdxPMtUxvg0ege16hZyCnDxSpmGcMIHAeTooij5BX_CnGL564Q';
+            const token = 'BQD-Kv-ihabTiOA6twa15LFQ7K7ReqBjOLJ-sA_fJ9yt4SrAj0TR5FUnG64o-polfsG4441DUElOa4_YWOB-XgVV3NfgNQ0XszSdUPshTm0ZrM_uJogZBMzynBbYm6pV0zN-L8ATUPNl54m-nulSPshrRRlpRzDfGNUDhJ5L7G6ZLezzRB75xsE';
             const player = new Spotify.Player({
                 name: 'Web Playback SDK Quick Start Player',
                 getOAuthToken: cb => { cb(token); },
