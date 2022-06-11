@@ -1,8 +1,7 @@
 const router = require('express').Router();
 const {Letter, Font} = require('../models');
-const {noDrafts}= require('../utils/auth');
 
-// add a route to get one draft and render a draft page
+// retrieve one letter and render the draft or the sent handlebars layout depending on the letter's readonly property
 router.get('/:id', async (req, res) => {
     try {
         let letterData = await Letter.findOne({
@@ -18,14 +17,15 @@ router.get('/:id', async (req, res) => {
             ]
         })
         const letter = letterData.get({plain: true});
-        if (!letter.readonly && noDrafts) {
+        // if the user is requesting a draft, they must be logged in to view it
+        if (!letter.readonly && req.session.loggedIn) {
             res.render('draft', {letter, loggedIn: req.session.loggedIn});
             return;
         } else if (letter.readonly) {
             res.render('sent', {letter, loggedIn: req.session.loggedIn});
             return;
         }
-        res.status(404).json({message: 'You are not authorized to view this resource'});
+        res.status(401).json({message: 'You are not authorized to view this resource'});
     }
     catch (err) {
         console.log(err);

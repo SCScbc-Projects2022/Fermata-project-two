@@ -16,22 +16,25 @@ document.querySelector('#signup-btn').addEventListener('click', async () => {
         alert('Password must be at least 6 characters');
         return;
     }
-    let createUser = await fetch('../api/users', {
-        method: 'POST',
-        body: JSON.stringify({
-            username,
-            email,
-            password
-        }),
-        headers: {
-            'Content-Type': 'application/json'
+    try {
+        let createUser = await fetch('../api/users', {
+            method: 'POST',
+            body: JSON.stringify({
+                username,
+                email,
+                password
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        if (createUser.ok) {
+            document.location.replace('/home/sign-in');
+        } else {
+            alert(createUser.statusText);
         }
-    })
-    if (createUser.ok) {
-        // let preview = await createDraft.json(); //I got it to return the data I need :sob:
-        // console.log(preview.response);
-        document.location.replace('/home/sign-in');
-    } else {
-        alert(createUser.statusText);
+    }
+    catch (err) {
+        console.log(err);
     }
 });

@@ -2,8 +2,9 @@ const router = require('express').Router();
 const {Letter, Font, User} = require('../models');
 const {authenticate} = require('../utils/auth');
 
+// this function queries the database twice
 router.get('/', authenticate, async (req, res) => {
-// this is going to render partials to make a list for the dashboard
+    // find all drafts (where letter property readonly is false) and assign to draftData
     try {
         let draftData = await Letter.findAll({
             where: {
@@ -25,6 +26,7 @@ router.get('/', authenticate, async (req, res) => {
                 }
             ]
         });
+        // find all sent letters (where letter property readonly is true) and assign to sentData
         let sentData = await Letter.findAll({
             where: {
                 user_id: req.session.user_id,
@@ -47,6 +49,7 @@ router.get('/', authenticate, async (req, res) => {
         });
         const draftLetter = draftData.map(draft => draft.get({plain: true}));
         const sentLetter = sentData.map(sent => sent.get({plain: true}));
+        // render the dashboard template with two arrays of letters, one draft, one sent history
         res.render('dashboard', {draftLetter, sentLetter, loggedIn: true});
     }
     catch (err) {

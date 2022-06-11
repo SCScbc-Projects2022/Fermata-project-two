@@ -5,6 +5,7 @@ class Letter extends Model {}
 
 Letter.init(
     {
+        // id is generated serverside using npm uniqid to better protect letters from randomly being accessed
         id: {
             type: DataTypes.STRING,
             allowNull: false,
