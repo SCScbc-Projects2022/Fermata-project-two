@@ -51,6 +51,5 @@ async function joinLetterUserFont() {
 }
 
 // printAll();
-
-joinUserLetter();
-joinLetterUserFont();
+// joinUserLetter();
+// joinLetterUserFont();
