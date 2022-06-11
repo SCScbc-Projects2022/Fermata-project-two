@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotify Web Playback SDK</title>
+    <title>Fermata</title>
 </head>
 <body>
 
@@ -30,7 +30,7 @@
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
     <script>
         window.onSpotifyWebPlaybackSDKReady = () => {
-            const token = 'BQD-Kv-ihabTiOA6twa15LFQ7K7ReqBjOLJ-sA_fJ9yt4SrAj0TR5FUnG64o-polfsG4441DUElOa4_YWOB-XgVV3NfgNQ0XszSdUPshTm0ZrM_uJogZBMzynBbYm6pV0zN-L8ATUPNl54m-nulSPshrRRlpRzDfGNUDhJ5L7G6ZLezzRB75xsE';
+            const token = 'BQBuio1Z4HZSmtPE0MmGBH1H1VJNLopHX7TjLWgkcxQbhV0otOgGA3rQPnCg0T1KbTIpKm_7bXl_ymiNr4DIIe_QI301-4a8XZl3iFQop-tTkoDgTQhQbxNitWqViwI0RfVbaKUGUX-6XLuUpg831r5FSS-emqVECgq0ZwfMHEDqBKplRAWn2hO6zz_5Asg9kqfVFy6zzRf996AUbwUBkFGi';
             const player = new Spotify.Player({
                 name: 'Web Playback SDK Quick Start Player',
                 getOAuthToken: cb => { cb(token); },
@@ -42,18 +42,19 @@
                 console.log('Ready with Device ID', device_id);
             });
 
-            // Not Ready
+            // not ready
             player.addListener('not_ready', ({ device_id }) => {
                 console.log('Device ID has gone offline', device_id);
             });
 
+            // error handling
             player.addListener('initialization_error', ({ message }) => {
                 console.error(message);
             });
 
-            // player.addListener('authentication_error', ({ message }) => {
-            //     console.error(message);
-            // });
+            player.addListener('authentication_error', ({ message }) => {
+                console.error(message);
+            });
 
             player.addListener('account_error', ({ message }) => {
                 console.error(message);
@@ -73,7 +74,15 @@
             });
         }
     </script>
-</body>
+    <div class="container" id="dashboard-container">
+        <h1>My Fermata Dashboard</h1>
+        <div class="search-container">
+          <h2>Search for any song on Spotify!</h2>
+          <input class="search-input" type="search" id="searchInput"></input>
+          <button class="search-btn" alt="search for any song on spotify">Search Track</button>
+        </div>
+      </div>
 
-<!-- Add song button for other page -->
-<!-- <button type="submit" id="addSongBtn" alt="add this song to your fermata and start writing">Add Song</button> -->
+  <script src="./authRoutes.js"></script>
+  <script src="./search.js"></script>
+</body>

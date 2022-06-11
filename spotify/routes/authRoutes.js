@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const fetch = require('node-fetch');
+//const fetch = require('node-fetch');
 const urlsearchparams = require('urlsearchparams');
 
 // this can be used as a seperate module
@@ -14,7 +14,7 @@ module.exports = router;
 
 router.get('/login', async (req, res) => {
     const scope =
-      `user-modify-playback-state playlist-modify-public playlist-modify-private`;
+      `user-modify-playback-state`;
   
     res.redirect('https://accounts.spotify.com/authorize?' +
       urlsearchparams.stringify({
