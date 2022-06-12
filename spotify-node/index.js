@@ -1,5 +1,8 @@
 const SpotifyWebApi = require('spotify-web-api-node');
 const superagent = require('superagent');
+// var authorize = require('./authorize.js');
+// import { authorizeURL } from "./authorize.js";
+
 
 var spotifyApi = new SpotifyWebApi({
   clientId: "8442f0707b904677a9a8df2022d07c9f",
@@ -7,7 +10,7 @@ var spotifyApi = new SpotifyWebApi({
   redirectUri: "http://localhost:8888/api/logged",
 });
 
-spotifyApi.setAccessToken('BQCoYmlstx_gtZpmOED_Pr6iE2kqR1aZMqH8wvynG28hRFQl-mbl24uNhqvOPYE03xMfYm8K7JRKPh5w5Au-Jq1s8UGKGIDRYXAGPxGnbi_zKUcAdrdRepVV8lJ2aDVs01DSGbBjBgRGdFHdSrkkLDCcnqo1NgwCZdqMlVrOz8I6cYreIAliAgc_K3p7hgcNzkRuanAJRnKvQhOrtKLu67r8YXq5mWUWNLNwvZp75m9eIxHfDiwP9iPosSJV0ZPZ9WVipDJteOAo9WFLMzM');
+spotifyApi.setAccessToken(authorizeURL);
 
 spotifyApi
   // replace text with searchInput variable
