@@ -47,7 +47,7 @@
   <div class="container-fluid d-flex mt-5">
     <h4>History:</h4>
   </div>
-  <div id="list-history">
+  <div id="list-sent">
     {{#if sentLetter.length}}
     <div class="container-fluid ms-2 d-flex">
       <ul>
@@ -72,5 +72,8 @@
   </div>
 </section>
 {{#if draftLetter.length}}
-<script src="/javascript/dashboard.js"></script>
+<script src="/javascript/dashboard-draft.js"></script>
+{{/if}}
+{{#if sentLetter.length}}
+<script src="/javascript/dashboard-sent.js"></script>
 {{/if}}

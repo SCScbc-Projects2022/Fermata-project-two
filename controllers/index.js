@@ -12,6 +12,10 @@ router.use('/compose', composeRoutes);
 router.use('/home', homepageRoutes);
 router.use('/api', apiRoutes);
 
+router.get('/access', (req, res) => {
+    res.render('access');
+});
+
 router.get('/', (req, res) => {
     res.render('homepage');
 });
