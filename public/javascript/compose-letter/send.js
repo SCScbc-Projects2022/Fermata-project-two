@@ -12,7 +12,7 @@ function onYouTubePlayerAPIReady() {
             },
         }
     });
-  }
+}
 
 // set font style for letter body by querying the database
 getFont();

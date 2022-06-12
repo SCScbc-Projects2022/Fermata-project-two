@@ -1,6 +1,11 @@
 const router = require('express').Router();
 const {Letter, Font} = require('../models');
 
+// YouTube only allows autoplay if the page has been interacted with, so interact with this first - also sets the song id value in local storage
+router.get('/access', (req, res) => {
+    res.render('access');
+});
+
 // retrieve one letter and render the draft or the sent handlebars layout depending on the letter's readonly property
 router.get('/:id', async (req, res) => {
     try {

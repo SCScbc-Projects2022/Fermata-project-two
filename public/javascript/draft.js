@@ -7,8 +7,22 @@ let font_id;
 const id = document.location.pathname.split('/')[2];
 let song_id = localStorage.getItem('song_id');
 
-// variables returned from .render() are not meant for client-side javascript, so query the database to return remaining data values
+function onYouTubePlayerAPIReady() {
+    var player = new YT.Player('player', {
+        videoId: song_id,
+        loop: true,
+        events: {
+            onReady: function (e) {
+                e.target.playVideo();
+            },
+        }
+    });
+}
+
 getUnrendered();
+verifySong();
+
+// variables returned from .render() are not meant for client-side javascript, so query the database to return remaining data values
 async function getUnrendered() {
     try {
         let font = await fetch(`../../api/letter/${id}`);
@@ -109,11 +123,10 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
                 'Content-Type': 'application/json'
             }
         });
-        console.log('position 1')
         if (sendLetter.ok) {
             // create an a element that stores a mailto: function and automatically click this unrendered element to open and populate the email engine with the template literal
             var email = document.createElement("a");
-            email.href = `mailto:${recipient_email}?subject=\u{1F4C3} Your Fermata Has Arrived \u{1F3B5}&body=Hey ${recipient_name},%0D%0A %0D%0A${sign_off} just sent you a Fermata - a personal letter with a song chosen just for you!%0D%0AExperience it here: http://localhost:3001/access%0D%0A %0D%0AEnter the following when prompted:%0D%0A %0D%0ALetter Key: ${id}%0D%0AAudio Key: ${song_id}%0D%0A %0D%0AWith \u{1F498}, %0D%0AThe Fermata Team %0D%0A %0D%0A `;
+            email.href = `mailto:${recipient_email}?subject=\u{1F4C3} Your Fermata Has Arrived \u{1F3B5}&body=Hey ${recipient_name},%0D%0A %0D%0A${sign_off} just sent you a Fermata - a personal letter with a song chosen just for you!%0D%0AExperience it here: http://localhost:3001/letter/access%0D%0A %0D%0AEnter the following when prompted:%0D%0A %0D%0ALetter Key: ${id}%0D%0AAudio Key: ${song_id}%0D%0A %0D%0AWith \u{1F498}, %0D%0AThe Fermata Team %0D%0A %0D%0A `;
             email.click();
             setTimeout(delayRedirect, 3000);
         } else {
@@ -125,18 +138,28 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
     }
 });
 
-function onYouTubePlayerAPIReady() {
-    var player = new YT.Player('player', {
-        videoId: song_id,
-        loop: true,
-        events: {
-            onReady: function (e) {
-                e.target.playVideo();
-            },
-        }
-    });
-  }
-
 function delayRedirect() {
     document.location.replace('/compose/confirm');
+}
+
+// prevents users from directly accessing letter via link unless song in local storage matches the letter's song id
+async function verifySong() {
+    try {
+        let getSong = await fetch(`../../api/letter/${id}`);
+        if (getSong.ok) {
+            let parsed = await getSong.json();
+            let song_id = parsed.song_id;
+            if (song_id !== song) {
+                alert('Something went wrong');
+                setTimeout(redirect, 1000);
+            }
+        }
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+function redirect() {
+    document.location.replace('/dashboard');
 }
