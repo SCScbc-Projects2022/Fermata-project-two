@@ -17,7 +17,7 @@
   <div class="container-fluid d-flex mt-5 ">
     <h4>Drafts:</h4>
   </div>
-  <div id="list-drafts">
+  <div  id="list-drafts">
       {{#if draftLetter.length}}
     <div class="container-fluid ms-2 d-flex">
       <ul>
@@ -26,7 +26,7 @@
         <p class="d-inline small-text mx-2 delete-btn" data-letter="{{draft.id}}">
           delete
         </p>
-          <p class="draft d-inline draft-item" id="draft-item" data-song="{{draft.song_id}}" data-letter="{{draft.id}}">
+          <p class="draft d-inline draft-item" data-song="{{draft.song_id}}" data-letter="{{draft.id}}">
             {{format_date draft.updatedAt}} - to - {{draft.recipient_name}}
           </p>
       </li>
@@ -53,7 +53,7 @@
       <ul>
       {{#each sentLetter as |sent|}}
       <li>
-          <p class="draft d-inline draft-item" id="draft-item" data-song="{{sent.song_id}}" data-letter="{{sent.id}}">
+          <p class="draft d-inline history-item" data-song="{{sent.song_id}}" data-letter="{{sent.id}}">
             {{format_date sent.updatedAt}} - to - {{sent.recipient_name}} - at - {{sent.recipient_email}}
           </p>
       </li>

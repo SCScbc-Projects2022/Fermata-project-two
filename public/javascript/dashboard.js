@@ -36,7 +36,8 @@ document.querySelector('#list-drafts').addEventListener('click', async (event) =
 document.querySelector('#list-history').addEventListener('click', (event) => {
     event.stopPropagation();
     let btn = event.target;
-    if (btn.matches('.draft-item')) {
+    console.log(btn);
+    if (btn.matches('.history-item')) {
         let id = btn.getAttribute('data-letter');
         let song = btn.getAttribute('data-song');
         localStorage.setItem('song_id', song)
