@@ -35,6 +35,9 @@
   * Mysql2
   * Sequelize
   * Uniqid
+  * Insomnia
+  * Heroku
+  * Nodemon
   
   ## Usage Information<a name="usage"></a>
   Live application: [https://experience-fermata.herokuapp.com/home](https://experience-fermata.herokuapp.com/home)</br></br>
@@ -62,7 +65,9 @@
   In conjunction with [this](https://www.angelfire.com/dc/html-webmaster/mailto.htm) article</br>
   Rohit's article [here](https://tutorial.eyehunts.com/html/mailto-body-line-break-multiple-lines-example-code/#:~:text=Use%20Encoding%20%0D%0A%20in,content%2Ftext%20in%20the%20body.)</br>
   Cabrakan's answer [here](https://stackoverflow.com/questions/50368162/unicode-value-in-template-literal-for-emoji) for unicode emojis</br>
-  [This](https://unicode.org/emoji/charts/full-emoji-list.html) emoji list</br>
+  [This](https://unicode.org/emoji/charts/full-emoji-list.html) emoji list</br></br>
+
+  And finally, David's answer [here](https://stackoverflow.com/questions/69196421/seed-mysql-database-on-heroku) on seeding Heroku databases
   
   ## License<a name="license"></a>
   This application uses the MIT License. For more information regarding usage, please visit [this link](https://opensource.org/licenses/MIT).
