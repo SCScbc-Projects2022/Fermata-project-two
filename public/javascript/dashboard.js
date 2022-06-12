@@ -1,11 +1,8 @@
 // delete letter whose id matches the data-letter property of the clicked delete button
 document.querySelector('#list-drafts').addEventListener('click', async (event) => {
-    console.log('position 1')
     event.stopPropagation();
-    console.log('position 2')
     let btn = event.target;
-    console.log(btn);
-    if (btn.matches('.draft d-inline')) {
+    if (btn.matches('.draft-item')) {
         console.log('position 3')
         let id = btn.getAttribute('data-letter');
         let song = btn.getAttribute('data-song');
@@ -38,9 +35,8 @@ document.querySelector('#list-drafts').addEventListener('click', async (event) =
 
 document.querySelector('#list-history').addEventListener('click', (event) => {
     event.stopPropagation();
-    console.log('clicked')
     let btn = event.target;
-    if (btn.matches('.draft d-inline')) {
+    if (btn.matches('.draft-item')) {
         let id = btn.getAttribute('data-letter');
         let song = btn.getAttribute('data-song');
         localStorage.setItem('song_id', song)
