@@ -1,5 +1,4 @@
-sessionStorage.setItem('song_id', '8L0XuwPzmgU');
-let song = sessionStorage.getItem('song_id');
+let song = localStorage.getItem('song_id');
 
 function onYouTubePlayerAPIReady() {
     var player = new YT.Player('player', {
@@ -11,20 +10,4 @@ function onYouTubePlayerAPIReady() {
             },
         }
     });
-}
-
-async function getSong() {
-    try {
-        let song = await fetch(`../../api/letter/${id}`);
-        if (song.ok) {
-            let parsed = await song.json();
-            spotify_id = parsed.spotify_id;
-            if (song !== spotify_id) {
-                alert('Incorrect password');
-            }
-        }
-    }
-    catch (err) {
-        console.log(err);
-    }
 }
