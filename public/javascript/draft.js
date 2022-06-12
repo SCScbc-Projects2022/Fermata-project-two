@@ -6,6 +6,8 @@ let spotify_id;
 let font_id;
 const id = document.location.pathname.split('/')[2];
 
+let song = sessionStorage.getItem('song_id');
+
 // variables returned from .render() are not meant for client-side javascript, so query the database to return remaining data values
 getUnrendered();
 async function getUnrendered() {
@@ -15,7 +17,8 @@ async function getUnrendered() {
             let parsed = await font.json();
             font_id = parsed.font.id;
             letterBody.style.fontFamily = parsed.font.style_tag;
-            spotify_id = parsed.spotify_id;
+            // spotify_id = parsed.spotify_id;
+            spotify_id = song;
         }
     }
     catch (err) {
@@ -123,3 +126,15 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
         console.log(err);
     }
 });
+
+function onYouTubePlayerAPIReady() {
+    var player = new YT.Player('player', {
+        videoId: song,
+        loop: true,
+        events: {
+            onReady: function (e) {
+                e.target.playVideo();
+            },
+        }
+    });
+  }
