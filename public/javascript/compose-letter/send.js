@@ -1,4 +1,5 @@
 let letterBody = document.querySelector('#letter-input');
+let song = sessionStorage.getItem('song_id');
 let text;
 
 // set font style for letter body by querying the database
@@ -26,7 +27,7 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
     let sign_off = sessionStorage.getItem('sign_off');
     let recipient_name = sessionStorage.getItem('recipient_name');
     let recipient_email = sessionStorage.getItem('recipient_email');
-    let spotify_id = sessionStorage.getItem('spotify_id');
+    let spotify_id = song;
     let font_id = sessionStorage.getItem('font_id');
     let letter_body = letterBody.value.trim();
     let readonly = false;
@@ -54,3 +55,15 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
         alert(createLetter.statusText);
     }
 });
+
+function onYouTubePlayerAPIReady() {
+    var player = new YT.Player('player', {
+        videoId: song,
+        loop: true,
+        events: {
+            onReady: function (e) {
+                e.target.playVideo();
+            },
+        }
+    });
+  }
