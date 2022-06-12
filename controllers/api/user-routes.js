@@ -56,13 +56,12 @@ router.post('/', async (req, res) => {
                 req.session.user_id = newUser.id;
                 req.session.username = newUser.username;
                 req.session.loggedIn = true;
-
-                res.json(newUser);
-                return;
             });
-            res.status(400).json({message: 'A user with this email already exists!'});
+            res.json(newUser);
             return;
         }
+        res.status(400).json({message: 'A user with this email already exists!'});
+        return;
     }
     catch (err) {
         console.log(err);
