@@ -105,6 +105,49 @@ p.greeting-logout {
     font-size: 0.5rem;
 }
 
+/* modals */
+
+.modal-box {
+  
+    background-color: blue;
+  
+    padding: 1rem 1.5rem;
+  
+    width: 24rem;
+  
+    border-radius: 0.5rem;
+    
+    display: 'none';
+  
+  }
+  
+  .close-button {
+  
+    float: right;
+  
+    width: 1.5rem;
+  
+    line-height: 1.5rem;
+  
+    text-align: center;
+  
+    cursor: pointer;
+  
+    border-radius: 0.25rem;
+  
+    background-color: lightgray;
+  
+  }
+  .show-modal {
+  
+    opacity: 1;
+  
+    visibility: visible;
+  
+    transform: scale(1.0);
+
+  }
+
 @media (min-width: 450px) {
     h1 {font-size: 3rem;};
 }
