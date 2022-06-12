@@ -17,35 +17,41 @@ var spotifyApi = new SpotifyWebApi({
 var authorizeUrl = spotifyApi.createAuthorizeURL(scopes, state);
 console.log(authorizeUrl);
 
+// module.exports = { authorizeUrl }
+
 
 // The code that's returned as a query parameter to the redirect URI
 var code = process.env.CODE;
   
 // Retrieve an access token and a refresh token
-spotifyApi.authorizationCodeGrant(code).then(
-  function(data) {
-    console.log('The token expires in ' + data.body['expires_in']);
-    console.log('The access token is ' + data.body['access_token']);
-    console.log('The refresh token is ' + data.body['refresh_token']);
-  
-    // Set the access token on the API object to use it in later calls
-    spotifyApi.setAccessToken(data.body['access_token']);
-    spotifyApi.setRefreshToken(data.body['refresh_token']);
-  },
-  function(err) {
-    console.log('Something went wrong!', err);
-  }
-);
 
-// Refresh authorization code
-spotifyApi.refreshAccessToken().then(
+function getToken() {
+    spotifyApi.authorizationCodeGrant(code).then(
     function(data) {
-      console.log('The access token has been refreshed!');
-  
-      // Save the access token so that it's used in future calls
-      spotifyApi.setAccessToken(data.body['access_token']);
+        console.log('The token expires in ' + data.body['expires_in']);
+        console.log('The access token is ' + data.body['access_token']);
+        console.log('The refresh token is ' + data.body['refresh_token']);
+    
+        // Set the access token on the API object to use it in later calls
+        spotifyApi.setAccessToken(data.body['access_token']);
+        spotifyApi.setRefreshToken(data.body['refresh_token']);
     },
     function(err) {
-      console.log('Could not refresh access token', err);
-    }
-);
+        console.log('Something went wrong!', err);
+    });
+}
+setInterval(getToken, 1000 * 60 * 60);
+
+// // Refresh authorization code
+// spotifyApi.refreshAccessToken().then(
+//     function(data) {
+//       console.log('The access token has been refreshed!');
+//       console.log('The new access token is ' + data.body['access_token']);
+  
+//       // Save the access token so that it's used in future calls
+//       spotifyApi.setAccessToken(data.body['access_token']);
+//     },
+//     function(err) {
+//       console.log('Could not refresh access token', err);
+//     }
+// );
