@@ -1,6 +1,6 @@
 document.querySelector('#signin-btn').addEventListener('click', async () => {
-    let email = document.querySelector('#email-input').value.trim();
-    let password = document.querySelector('#password-input').value.trim();
+    let email = document.querySelector('#email-input').value.toString().trim();
+    let password = document.querySelector('#password-input').value.toString().trim();
     if (!email || !password) {
         alert('Please enter your email and password');
         return;
