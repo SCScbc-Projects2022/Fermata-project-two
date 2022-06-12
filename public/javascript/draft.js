@@ -129,7 +129,7 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
         if (sendLetter.ok) {
             // create an a element that stores a mailto: function and automatically click this unrendered element to open and populate the email engine with the template literal
             var email = document.createElement("a");
-            email.href = `mailto:${recipient_email}?subject=\u{1F4C3} Your Fermata Has Arrived \u{1F3B5}&body=Hey ${recipient_name},%0D%0A %0D%0A${sign_off} just sent you a Fermata - a personal letter with a song chosen just for you!%0D%0AExperience it here: http://localhost:3001/letter/access%0D%0A %0D%0AEnter the following when prompted:%0D%0A %0D%0ALetter Key: ${id}%0D%0AAudio Key: ${song_id}%0D%0A %0D%0AWith \u{1F498}, %0D%0AThe Fermata Team %0D%0A %0D%0A `;
+            email.href = `mailto:${recipient_email}?subject=\u{1F4C3} Your Fermata Has Arrived \u{1F3B5}&body=Hey ${recipient_name},%0D%0A %0D%0A${sign_off} just sent you a Fermata - a personal letter with a song chosen just for you!%0D%0AExperience it here: http://experience-fermata.herokuapp.com/letter/access%0D%0A %0D%0AEnter the following when prompted:%0D%0A %0D%0ALetter Key: ${id}%0D%0AAudio Key: ${song_id}%0D%0A %0D%0AWith \u{1F498}, %0D%0AThe Fermata Team %0D%0A %0D%0A `;
             email.click();
             setTimeout(delayRedirect, 3000);
         } else {
