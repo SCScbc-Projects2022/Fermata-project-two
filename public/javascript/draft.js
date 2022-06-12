@@ -15,6 +15,9 @@ function onYouTubePlayerAPIReady() {
             onReady: function (e) {
                 e.target.playVideo();
             },
+            onStateChange: function (e) {
+                e.target.playVideo();
+            }
         }
     });
 }
