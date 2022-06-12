@@ -15,6 +15,6 @@ document.querySelector('#song-btn').addEventListener('click', async () => {
     }
     let splitParams = query.split('=');
     let song_id = splitParams[1].split('&')[0];
-    sessionStorage.setItem('song_id', song_id);
-    document.location.replace('/compose/send')
+    localStorage.setItem('song_id', song_id);
+    document.location.replace('/compose/style')
 });

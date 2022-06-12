@@ -2,6 +2,12 @@
 document.querySelector('#list-drafts').addEventListener('click', async (event) => {
     event.stopPropagation();
     let btn = event.target;
+    if (btn.matches('#draft-item')) {
+        let id = btn.getAttribute('data-letter');
+        let song = btn.getAttribute('data-song');
+        localStorage.setItem('song_id', song)
+        document.location.replace(`/letter/${id}`);
+    }
     if (btn.matches('.delete-btn')) {
         let id = btn.getAttribute('data-letter');
         try {
@@ -21,5 +27,16 @@ document.querySelector('#list-drafts').addEventListener('click', async (event) =
         catch (err) {
             console.log(err);
         }
+    }
+});
+
+document.querySelector('#list-history').addEventListener('click', async (event) => {
+    event.stopPropagation();
+    let btn = event.target;
+    if (btn.matches('#draft-item')) {
+        let id = btn.getAttribute('data-letter');
+        let song = btn.getAttribute('data-song');
+        localStorage.setItem('song_id', song)
+        document.location.replace(`/letter/${id}`);
     }
 });

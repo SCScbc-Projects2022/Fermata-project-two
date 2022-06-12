@@ -2,10 +2,11 @@ let signOff = document.querySelector('#sign-off');
 let recipientName = document.querySelector('#their-name');
 let recipientEmail = document.querySelector('#their-email');
 let letterBody = document.querySelector('#letter-preview');
-let spotify_id;
+
 let font_id;
 const id = document.location.pathname.split('/')[2];
-let song;
+let song = localStorage.getItem('song_id');
+let spotify_id = song;
 
 // variables returned from .render() are not meant for client-side javascript, so query the database to return remaining data values
 getUnrendered();
@@ -16,7 +17,6 @@ async function getUnrendered() {
             let parsed = await font.json();
             font_id = parsed.font.id;
             letterBody.style.fontFamily = parsed.font.style_tag;
-            song = parsed.spotify_id;
         }
     }
     catch (err) {

@@ -1,6 +1,18 @@
 let letterBody = document.querySelector('#letter-input');
-let song = sessionStorage.getItem('song_id');
 let text;
+let song = localStorage.getItem('song_id');
+
+function onYouTubePlayerAPIReady() {
+    var player = new YT.Player('player', {
+        videoId: song,
+        loop: true,
+        events: {
+            onReady: function (e) {
+                e.target.playVideo();
+            },
+        }
+    });
+  }
 
 // set font style for letter body by querying the database
 getFont();
@@ -55,15 +67,3 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
         alert(createLetter.statusText);
     }
 });
-
-function onYouTubePlayerAPIReady() {
-    var player = new YT.Player('player', {
-        videoId: song,
-        loop: true,
-        events: {
-            onReady: function (e) {
-                e.target.playVideo();
-            },
-        }
-    });
-  }
