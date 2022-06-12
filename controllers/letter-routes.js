@@ -8,7 +8,7 @@ router.get('/:id', async (req, res) => {
             where: {
                 id: req.params.id
             },
-            attributes: ['id', 'sign_off', 'user_id', 'recipient_name', 'recipient_email', 'letter_body', 'spotify_id', 'font_id', 'readonly', 'createdAt', 'updatedAt'],
+            attributes: ['id', 'sign_off', 'user_id', 'recipient_name', 'recipient_email', 'letter_body', 'song_id', 'font_id', 'readonly', 'createdAt', 'updatedAt'],
             include: [
                 {
                     model: Font,

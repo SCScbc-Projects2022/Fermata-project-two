@@ -39,7 +39,7 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
     let sign_off = sessionStorage.getItem('sign_off');
     let recipient_name = sessionStorage.getItem('recipient_name');
     let recipient_email = sessionStorage.getItem('recipient_email');
-    let spotify_id = song;
+    let song_id = song;
     let font_id = sessionStorage.getItem('font_id');
     let letter_body = letterBody.value.trim();
     let readonly = false;
@@ -49,7 +49,7 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
             sign_off,
             recipient_name,
             recipient_email,
-            spotify_id,
+            song_id,
             font_id,
             letter_body,
             readonly

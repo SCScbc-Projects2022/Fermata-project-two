@@ -18,7 +18,7 @@ async function joinUserLetter() {
         include: [
             {
                 model: Letter,
-                attributes: ['id', 'sign_off', 'user_id', 'recipient_name', 'recipient_email', 'letter_body', 'spotify_id', 'font_id', 'readonly']
+                attributes: ['id', 'sign_off', 'user_id', 'recipient_name', 'recipient_email', 'letter_body', 'song_id', 'font_id', 'readonly']
             }
         ]
     });
@@ -30,7 +30,7 @@ async function joinUserLetter() {
 
 async function joinLetterUserFont() {
     let x = await Letter.findAll({
-        attributes: ['id', 'sign_off', 'user_id', 'recipient_name', 'recipient_email', 'letter_body', 'spotify_id', 'font_id'],
+        attributes: ['id', 'sign_off', 'user_id', 'recipient_name', 'recipient_email', 'letter_body', 'song_id', 'font_id'],
         include: [
             {
                 model: User,

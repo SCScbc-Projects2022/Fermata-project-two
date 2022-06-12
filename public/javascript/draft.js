@@ -5,8 +5,7 @@ let letterBody = document.querySelector('#letter-preview');
 
 let font_id;
 const id = document.location.pathname.split('/')[2];
-let song = localStorage.getItem('song_id');
-let spotify_id = song;
+let song_id = localStorage.getItem('song_id');
 
 // variables returned from .render() are not meant for client-side javascript, so query the database to return remaining data values
 getUnrendered();
@@ -52,7 +51,7 @@ document.querySelector('#save-btn').addEventListener('click', async () => {
                 recipient_name,
                 recipient_email,
                 letter_body,
-                spotify_id,
+                song_id,
                 font_id,
                 readonly
             }),
@@ -62,7 +61,7 @@ document.querySelector('#save-btn').addEventListener('click', async () => {
         });
         if (createDraft.ok) {
             location.reload();
-            alert('Your draft has been saved!')
+            alert('Your draft has been saved!');
         } else {
             alert(createDraft.statusText);
         }
@@ -102,7 +101,7 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
                 recipient_name,
                 recipient_email,
                 letter_body,
-                spotify_id,
+                song_id,
                 font_id,
                 readonly
             }),
@@ -127,7 +126,7 @@ document.querySelector('#send-btn').addEventListener('click', async () => {
 
 function onYouTubePlayerAPIReady() {
     var player = new YT.Player('player', {
-        videoId: song,
+        videoId: song_id,
         loop: true,
         events: {
             onReady: function (e) {

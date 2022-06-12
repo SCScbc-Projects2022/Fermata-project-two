@@ -26,7 +26,7 @@
         <p class="d-inline small-text mx-2 delete-btn" data-letter="{{draft.id}}">
           delete
         </p>
-          <p class="draft d-inline" id="draft-item" data-song="{{draft.spotify_id}}" data-letter="{{draft.id}}">
+          <p class="draft d-inline" id="draft-item" data-song="{{draft.song_id}}" data-letter="{{draft.id}}">
             {{format_date draft.updatedAt}} - to - {{draft.recipient_name}}
           </p>
       </li>
@@ -53,7 +53,7 @@
       <ul>
       {{#each sentLetter as |sent|}}
       <li>
-          <p class="draft d-inline" id="draft-item" data-song="{{sent.spotify_id}}" data-letter="{{sent.id}}">
+          <p class="draft d-inline" id="draft-item" data-song="{{sent.song_id}}" data-letter="{{sent.id}}">
             {{format_date sent.updatedAt}} - to - {{sent.recipient_name}} - at - {{sent.recipient_email}}
           </p>
       </li>

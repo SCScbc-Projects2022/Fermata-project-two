@@ -40,7 +40,7 @@ Letter.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        spotify_id: {
+        song_id: {
             type: DataTypes.STRING,
             allowNull: false
         },
