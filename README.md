@@ -62,6 +62,15 @@
   David's answer [here](https://stackoverflow.com/questions/69196421/seed-mysql-database-on-heroku) on seeding Heroku databases</br>
   And finally, the hack that saved us all, Kaeruct's article on YouTube autoplay embeds [here](https://kaeruct.github.io/posts/how-to-use-the-youtube-js-api-to-play-music-in-the-background.html)
 
+  And the following resources for our mailto functionality:</br>
+  [This](https://www.delftstack.com/howto/javascript/mailto-javascript/#:~:text=Use%20the%20code%20below%20and,to%20any%20element%20using%20JavaScript.&text=Copy%20var%20email%20%3D%20document.,mail.com%22%3B%20email.) DelftStack article</br>
+  In conjunction with [this](https://www.angelfire.com/dc/html-webmaster/mailto.htm) article</br>
+  Rohit's article [here](https://tutorial.eyehunts.com/html/mailto-body-line-break-multiple-lines-example-code/#:~:text=Use%20Encoding%20%0D%0A%20in,content%2Ftext%20in%20the%20body.)</br>
+  Cabrakan's answer [here](https://stackoverflow.com/questions/50368162/unicode-value-in-template-literal-for-emoji) for unicode emojis</br>
+  [This](https://unicode.org/emoji/charts/full-emoji-list.html) emoji list</br></br>
+
+  Also shoutout to [Erik](https://github.com/CodingErik) for ~~gaslighting~~ believing in us and telling us that the Spotify API seems doable. 😂
+
   #### Sharon
   Referencing:</br>
   Ahmet Ömer, [here] (https://ahmetomer.net/spotify-api-authorization-in-nodejs/) for a deep dive into authorization with the Spotify Node API Wrapper</br>
@@ -69,17 +78,22 @@
   Maker At Play, [here] (https://www.youtube.com/watch?v=1vR3m0HupGI) for a helpful Spotify Web API tutorial</br>
   Gilberto Cortez, [here] (https://www.youtube.com/watch?v=EqisCZG9MAc) for a Spotify Playback SDK tutorial using PHP and JavaScript</br></br>
   
-  And the following resources for our mailto functionality:</br>
-  [This](https://www.delftstack.com/howto/javascript/mailto-javascript/#:~:text=Use%20the%20code%20below%20and,to%20any%20element%20using%20JavaScript.&text=Copy%20var%20email%20%3D%20document.,mail.com%22%3B%20email.) DelftStack article</br>
-  In conjunction with [this](https://www.angelfire.com/dc/html-webmaster/mailto.htm) article</br>
-  Rohit's article [here](https://tutorial.eyehunts.com/html/mailto-body-line-break-multiple-lines-example-code/#:~:text=Use%20Encoding%20%0D%0A%20in,content%2Ftext%20in%20the%20body.)</br>
-  Cabrakan's answer [here](https://stackoverflow.com/questions/50368162/unicode-value-in-template-literal-for-emoji) for unicode emojis</br>
-  [This](https://unicode.org/emoji/charts/full-emoji-list.html) emoji list</br></br>
-  
   ## License<a name="license"></a>
   This application uses the MIT License. For more information regarding usage, please visit [this link](https://opensource.org/licenses/MIT).
 
   ## Questions?<a name="questions"></a>
+
+  Contact repository author via [GitHub](https://github.com/SCScbc-Projects2022).</br>
+
+  Contact specific repository author:</br>
+  [Ali](https://github.com/alimomen10) - Creative Direction, Concept + Branding, UI/UX + Mobile Responsiveness, Handlebars (Formatting), Custom CSS, Pitch + Presentation, Project Documentation</br>
+  [Veronica](https://github.com/TOVTC) - Project Management, Frontend JavaScript, MySQL/Sequelize Database + Seeds, API Routes (Rendering: Final + Login/Logout), Handlebars (Rendering), Fullstack Integration, Heroku Deployment, YT Failsafe, Documentation</br>
+  [Sharon](https://github.com/schris48) - Spotify API (she got authentication and refresh tokens working!!)</br>
+  [Kyle](https://github.com/kylebaylis) - API Routes (Core), API Routes (Rendering: Initial)</br>
+  [Lewis](https://github.com/thiszlewis) - Modals</br></br>
+
+  See full documentation in "additionals" directory for details.
+
   ### Sharon
   The project direction originally focused on using the Spotify's API and Web Playback SDK. While ideal for security and quality assurance, this ended up being a heavier lift than originally anticipated.</br>
 
@@ -88,15 +102,6 @@
   Due to time restrictions, we decided to impliment a YouTube API workaround.
 
   As part of our business plan and dedication to improving user experience, Fermata plans to impliment more choices for popular music libraries, Spotify included.
-
-  Contact repository author via [GitHub](https://github.com/SCScbc-Projects2022).</br>
-
-  Contact specific repository author:</br>
-  [Ali](https://github.com/alimomen10) - Creative Direction, Concept + Branding, UI/UX + Mobile Responsiveness, Handlebars (Formatting), Custom CSS, Pitch + Presentation, Project Documentation</br>
-  [Veronica](https://github.com/TOVTC) - Project Management, Frontend JavaScript, MySQL/Sequelize Database + Seeds, API Routes (Rendering: Final + Login/Logout), Handlebars (Rendering), Fullstack Integration, Heroku Deployment, YT Failsafe</br>
-  [Sharon](https://github.com/schris48) - Spotify API (she got authentication and refresh tokens working!!)</br>
-  [Kyle](https://github.com/kylebaylis) - API Routes (Core), API Routes (Rendering: Initial)</br>
-  [Lewis](https://github.com/thiszlewis) - Modals</br>
   
   ## Assignment Information - Group Project Two: Interactive Full-Stack Project
   ### Project Requirements
