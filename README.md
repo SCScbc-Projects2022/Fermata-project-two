@@ -53,13 +53,13 @@
   ### Author-Specific Acknowledgements
   #### Veronica
   Special thanks to the following articles:</br>
-  Soufiane's regex [here](https://stackoverflow.com/questions/3717115/regular-expression-for-youtube-links) for YouTube links</br>
-  Amitabh-K's regex [here](https://gist.github.com/Amitabh-K/ae073eea3d5207efaddffde19b1618e8) for emails</br>
-  Ye Lin Aung's answer to date formatting [here](https://stackoverflow.com/questions/14638018/current-time-formatting-with-javascript)</br>
-  Cerbrus's answer [here](https://stackoverflow.com/questions/14052473/go-to-local-url-with-javascript) which was helpful in early development</br>
-  BadPiggie's answer on the different types of data storage [here](https://stackoverflow.com/questions/60050724/express-js-req-session-vs-cookie-vs-local-storage-vs-session-storage)</br>
-  Parthik's answer [here](https://stackoverflow.com/questions/15839169/how-to-get-value-of-selected-radio-button) for radio button values</br>
-  David's answer [here](https://stackoverflow.com/questions/69196421/seed-mysql-database-on-heroku) on seeding Heroku databases</br>
+  * Soufiane's regex [here](https://stackoverflow.com/questions/3717115/regular-expression-for-youtube-links) for YouTube links</br>
+  * Amitabh-K's regex [here](https://gist.github.com/Amitabh-K/ae073eea3d5207efaddffde19b1618e8) for emails</br>
+  * Ye Lin Aung's answer to date formatting [here](https://stackoverflow.com/questions/14638018/current-time-formatting-with-javascript)</br>
+  * Cerbrus's answer [here](https://stackoverflow.com/questions/14052473/go-to-local-url-with-javascript) which was helpful in early development</br>
+  * BadPiggie's answer on the different types of data storage [here](https://stackoverflow.com/questions/60050724/express-js-req-session-vs-cookie-vs-local-storage-vs-session-storage)</br>
+  * Parthik's answer [here](https://stackoverflow.com/questions/15839169/how-to-get-value-of-selected-radio-button) for radio button values</br>
+  * David's answer [here](https://stackoverflow.com/questions/69196421/
   And finally, the hack that saved us all, Kaeruct's article on YouTube autoplay embeds [here](https://kaeruct.github.io/posts/how-to-use-the-youtube-js-api-to-play-music-in-the-background.html)
 
   And the following resources for our mailto functionality:</br>
@@ -73,11 +73,11 @@
 
   #### Sharon
   Referencing:</br>
-  Ahmet Ömer, [here] (https://ahmetomer.net/spotify-api-authorization-in-nodejs/) for a deep dive into authorization with the Spotify Node API Wrapper</br>
-  Michael Thelin [here] (https://github.com/thelinmichael/spotify-web-api-node) for the Spotify Node API Wrapper</br>
-  Maker At Play, [here] (https://www.youtube.com/watch?v=1vR3m0HupGI) for a helpful Spotify Web API tutorial</br>
-  Gilberto Cortez, [here] (https://www.youtube.com/watch?v=EqisCZG9MAc) for a Spotify Playback SDK tutorial using PHP and JavaScript</br></br>
-  
+  * Ahmet Ömer, (https://ahmetomer.net/spotify-api-authorization-in-nodejs/) for a deep dive into authorization with the Spotify Node API Wrapper</br>
+  * Michael Thelin (https://github.com/thelinmichael/spotify-web-api-node) for the Spotify Node API Wrapper</br>
+  * Maker At Play, (https://www.youtube.com/watch?v=1vR3m0HupGI) for a helpful Spotify Web API tutorial</br>
+  * Gilberto Cortez, (https://www.youtube.com/watch?v=EqisCZG9MAc) for a Spotify Playback SDK tutorial using PHP and JavaScript</br></br>
+
   ## License<a name="license"></a>
   This application uses the MIT License. For more information regarding usage, please visit [this link](https://opensource.org/licenses/MIT).
 
