@@ -1,18 +1,15 @@
 {
-  "name": "spotify-node",
+  "name": "spotify-js",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.18.1",
-    "formidable": "^2.0.1",
-    "require": "^2.4.20",
-    "spotify-web-api-node": "^5.0.2",
-    "superagent": "^7.1.6"
+    "urlsearchparams": "^0.1.1"
   }
 }

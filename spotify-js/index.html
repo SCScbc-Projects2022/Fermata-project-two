@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fermata</title>
+</head>
+<body>
+  <h1>Welcome to Fermata</h1>
+  <div class="container">
+  <div id="tokenContainer" class="row">
+    <div class="col">
+      <h2>Client ID:</h2>
+      <input type="text" id="clientId" label="enter your client ID">
+      <h2>Client Secret:</h2>
+      <input type="text" id="clientSecret" label="enter your client secret"></br></br>
+      <button type="submit" id="requestAuth" label="Add selected song to your Fermata">Request Authorization</button></br></br>
+    </div>
+  </div>
+  <div id="deviceContainer" class="row">
+    <div class="col">
+        <h2>Search for song:</h2>
+        <input type="search" label="Search for the song you want to add to your Fermata"></br></br>
+        <button type="submit" id="addSongBtn" label="Add selected song to your Fermata">Add Song</button>
+    </div>
+
+  </div>
+  <script src="./app.js"></script>
+</body>
+</html>
