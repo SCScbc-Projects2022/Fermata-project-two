@@ -73,10 +73,10 @@
 
   #### Sharon
   Referencing:</br>
-  Ahmet Ömer, [here] (https://ahmetomer.net/spotify-api-authorization-in-nodejs/) for a deep dive into authorization with the Spotify Node API Wrapper</br>
-  Michael Thelin [here] (https://github.com/thelinmichael/spotify-web-api-node) for the Spotify Node API Wrapper</br>
-  Maker At Play, [here] (https://www.youtube.com/watch?v=1vR3m0HupGI) for a helpful Spotify Web API tutorial</br>
-  Gilberto Cortez, [here] (https://www.youtube.com/watch?v=EqisCZG9MAc) for a Spotify Playback SDK tutorial using PHP and JavaScript</br></br>
+  * Ahmet Ömer, (https://ahmetomer.net/spotify-api-authorization-in-nodejs/) for a deep dive into authorization with the Spotify Node API Wrapper</br>
+  * Michael Thelin (https://github.com/thelinmichael/spotify-web-api-node) for the Spotify Node API Wrapper</br>
+  * Maker At Play, (https://www.youtube.com/watch?v=1vR3m0HupGI) for a helpful Spotify Web API tutorial</br>
+  * Gilberto Cortez, (https://www.youtube.com/watch?v=EqisCZG9MAc) for a Spotify Playback SDK tutorial using PHP and JavaScript</br></br>
   
   ## License<a name="license"></a>
   This application uses the MIT License. For more information regarding usage, please visit [this link](https://opensource.org/licenses/MIT).
