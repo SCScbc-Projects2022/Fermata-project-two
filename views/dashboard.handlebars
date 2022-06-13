@@ -1,0 +1,79 @@
+ <section class="mt-2 row align-items-center">
+  <div class="container-fluid d-flex mt-5 justify-content-center align-items-center">
+    <h1>Welcome to Fermata</h1>
+  </div>
+
+  <div class="container-fluid d-flex mt-5 justify-content-center align-items-center">
+    <a href="/compose/you">
+      <button
+        type="button"
+        class="btn btn-lg btn-outline-dark"
+        id="compose-btn">
+        Compose
+      </button>
+    </a>
+  </div>
+
+  <div class="container-fluid d-flex mt-5 ">
+    <h4>Drafts:</h4>
+  </div>
+  <div  id="list-drafts">
+      {{#if draftLetter.length}}
+    <div class="container-fluid ms-2 d-flex">
+      <ul>
+      {{#each draftLetter as |draft|}}
+      <li>
+        <p class="d-inline small-text mx-2 delete-btn" data-letter="{{draft.id}}">
+          delete
+        </p>
+          <p class="draft d-inline draft-item" data-song="{{draft.song_id}}" data-letter="{{draft.id}}">
+            {{format_date draft.updatedAt}} - to - {{draft.recipient_name}}
+          </p>
+      </li>
+      {{/each}}
+      </ul>
+    </div>
+    {{else}}
+    <div>
+      <ul>
+        <li>
+          You can find the letters you saved for later here!
+        </li>
+      </ul>
+    </div>
+    {{/if}}
+  </div>
+
+  <div class="container-fluid d-flex mt-5">
+    <h4>History:</h4>
+  </div>
+  <div id="list-sent">
+    {{#if sentLetter.length}}
+    <div class="container-fluid ms-2 d-flex">
+      <ul>
+      {{#each sentLetter as |sent|}}
+      <li>
+          <p class="draft d-inline history-item" data-song="{{sent.song_id}}" data-letter="{{sent.id}}">
+            {{format_date sent.updatedAt}} - to - {{sent.recipient_name}} - at - {{sent.recipient_email}}
+          </p>
+      </li>
+      {{/each}}
+      </ul>
+    </div>
+    {{else}}
+    <div>
+      <ul>
+        <li>
+          You can find the letters you've sent here!
+        </li>
+      </ul>
+    </div>
+    {{/if}}
+  </div>
+</section>
+{{#if draftLetter.length}}
+<script src="/javascript/dashboard-draft.js"></script>
+{{/if}}
+{{#if sentLetter.length}}
+<script src="/javascript/dashboard-sent.js"></script>
+{{/if}}
